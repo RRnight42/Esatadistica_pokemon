@@ -1,30 +1,133 @@
 ---
-title: "pokemon_statistics"
-author: "GRUPO_6"
-date: "2024-09-20"
+title: "ANÁLISIS DE ESTADÍSTICAS POKEMON"
+author: "GRUPO_6 : Daniel Mazo, Miguel Amado , Luis Prieto , Alejandro Marín , Roberto Rojas"
+date: "20 de Septiembre de 2024"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE) #poner a True si se quiere ver el codigo R
 ```
 
-## R Markdown
+## Práctica 1 Estadística descriptiva
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+### Estadística curso 2024-25
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+El estudio de los datos de los distintos pokemon ,  buscamos observar sus variables y realizar un sondeo de sus diferentes características
 
-```{r cars}
-summary(cars)
-```
+Para lograr ese objetivo , hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha.
 
-## Including Plots
+**Name:**
 
-You can also embed plots, for example:
+Descripción:  El nombre oficial del Pokémon.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+
+**Type:**
+
+Descripción: La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Puede tener uno o dos tipos.
+
+
+**Species:**
+
+Descripción: La clasificación biológica o general del Pokémon, que indica su especie o características distintivas.
+
+
+**Height:**
+
+Descripción: La altura oficial del Pokémon, generalmente en metros.
+
+**Weight:**
+
+Descripción: El peso oficial del Pokémon, generalmente en kilogramos.
+
+
+**Abilities:**
+
+Descripción: Habilidades especiales o innatas del Pokémon, que pueden influir en el combate o proporcionar efectos únicos. Un Pokémon puede tener una o más habilidades.
+
+
+**Catch Rate:**
+
+Descripción: La probabilidad de capturar al Pokémon con una Poké Ball, representada como un número entero. Cuanto más alto sea el número, más fácil es capturarlo.
+
+**Base Friendship:**
+
+Descripción: El nivel de amistad o lealtad inicial del Pokémon hacia su entrenador. Afecta la evolución de ciertos Pokémon y el uso de algunos movimientos.
+
+**Base Exp:**
+
+Descripción: La cantidad de experiencia base que el Pokémon otorga al ser derrotado en combate.
+
+**Growth Rate:**
+
+Descripción: La velocidad con la que el Pokémon gana experiencia y sube de nivel, lo que afecta la cantidad de experiencia necesaria para alcanzar niveles más altos.
+Tipo de dato: Texto
+Ejemplo: "Medium Fast", "Slow"
+
+**Gender:**
+
+Descripción: La distribución de género del Pokémon, expresada en porcentajes de probabilidades para ser macho, hembra o género desconocido.
+
+**HP (Health Points):**
+
+Descripción: La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate.
+
+**Attack:**
+
+Descripción: La estadística que determina la potencia de los ataques físicos del Pokémon en combate.
+
+**Defense:**
+
+Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate.
+
+**Special Attack:**
+
+Descripción: La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.).
+
+**Special Defense:**
+
+Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos).
+
+**Speed:**
+
+Descripción: La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos.
+
+
+
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(stringr)
+library(tidyverse)
+library(summarytools)
+library(GGally)
+library(readxl)
+library(knitr)
+library(remotes)
+pokemon_combined <- readxl::read_excel("pokemon_combined.xlsx")
+
+
+pokemon <- "pokemon_combined.xlsx"
+
+pokemon_combined |>
+  filter(Type == "Bug") |>  # Filtra los Pokémon de tipo "Bug"
+  count(Type)                      # Cuenta cuántos hay
+
+
+
+pokemon_combined |>
+  filter(str_detect(Type, "Dragon")) |>
+  count(Type)
+
+
+
+
+
+
+```
+
+
+
+
