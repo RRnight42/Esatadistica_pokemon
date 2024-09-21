@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="GRUPO_6" />
+<meta name="author" content="GRUPO_6 : Daniel Mazo, Miguel Amado, Luis Prieto, Alejandro Marín, Roberto Rojas" />
 
 
-<title>ANÁLISIS DE ESTADÍSTICAS POKEMON</title>
+<title>PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA: ANÁLISIS DE ESTADÍSTICAS POKEMON</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -349,82 +349,86 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">ANÁLISIS DE ESTADÍSTICAS POKEMON</h1>
-<h4 class="author">GRUPO_6</h4>
+<h1 class="title toc-ignore">PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA:
+ANÁLISIS DE ESTADÍSTICAS POKEMON</h1>
+<h4 class="author">GRUPO_6 : <em>Daniel Mazo</em>, <em>Miguel
+Amado</em>, <em>Luis Prieto</em>, <em>Alejandro Marín</em>, <em>Roberto
+Rojas</em></h4>
 <h4 class="date">20 de Septiembre de 2024</h4>
 
 </div>
 
 
-<div id="práctica-1-estadística-descriptiva" class="section level2">
-<h2>Práctica 1 Estadística descriptiva</h2>
-<div id="estadística-curso-2024-25" class="section level3">
-<h3>Estadística curso 2024-25</h3>
+<div id="introducción-y-definición-de-objetivos" class="section level1">
+<h1>Introducción y definición de objetivos</h1>
 <p>El estudio de los datos de los distintos pokemon , buscamos observar
 sus variables y realizar un sondeo de sus diferentes características</p>
-<p>Para lograr ese objetivo , hemos recogido una serie de datos de los
-1025 pokemon disponibles desde 1995 hasta la fecha.</p>
-<p><strong>Name:</strong></p>
-<p>Descripción: El nombre oficial del Pokémon.</p>
-<p><strong>Type:</strong></p>
-<p>Descripción: La clasificación elemental del Pokémon, que determina
-sus fortalezas y debilidades en combate. Puede tener uno o dos
-tipos.</p>
-<p><strong>Species:</strong></p>
-<p>Descripción: La clasificación biológica o general del Pokémon, que
-indica su especie o características distintivas.</p>
-<p><strong>Height:</strong></p>
-<p>Descripción: La altura oficial del Pokémon, generalmente en
-metros.</p>
-<p><strong>Weight:</strong></p>
-<p>Descripción: El peso oficial del Pokémon, generalmente en
-kilogramos.</p>
-<p><strong>Abilities:</strong></p>
-<p>Descripción: Habilidades especiales o innatas del Pokémon, que pueden
-influir en el combate o proporcionar efectos únicos. Un Pokémon puede
-tener una o más habilidades.</p>
-<p><strong>Catch Rate:</strong></p>
-<p>Descripción: La probabilidad de capturar al Pokémon con una Poké
-Ball, representada como un número entero. Cuanto más alto sea el número,
-más fácil es capturarlo.</p>
-<p><strong>Base Friendship:</strong></p>
-<p>Descripción: El nivel de amistad o lealtad inicial del Pokémon hacia
-su entrenador. Afecta la evolución de ciertos Pokémon y el uso de
-algunos movimientos.</p>
-<p><strong>Base Exp:</strong></p>
-<p>Descripción: La cantidad de experiencia base que el Pokémon otorga al
-ser derrotado en combate.</p>
-<p><strong>Growth Rate:</strong></p>
-<p>Descripción: La velocidad con la que el Pokémon gana experiencia y
-sube de nivel, lo que afecta la cantidad de experiencia necesaria para
-alcanzar niveles más altos. Tipo de dato: Texto Ejemplo: “Medium Fast”,
-“Slow”</p>
-<p><strong>Gender:</strong></p>
-<p>Descripción: La distribución de género del Pokémon, expresada en
-porcentajes de probabilidades para ser macho, hembra o género
-desconocido.</p>
-<p><strong>HP (Health Points):</strong></p>
-<p>Descripción: La cantidad de puntos de salud del Pokémon, que
-determina cuánto daño puede recibir antes de desmayarse en combate.</p>
-<p><strong>Attack:</strong></p>
-<p>Descripción: La estadística que determina la potencia de los ataques
-físicos del Pokémon en combate.</p>
-<p><strong>Defense:</strong></p>
-<p>Descripción: La estadística que mide la capacidad del Pokémon para
-resistir ataques físicos en combate.</p>
-<p><strong>Special Attack:</strong></p>
-<p>Descripción: La estadística que mide la potencia de los ataques
-especiales del Pokémon, como ataques de tipo elemental (fuego, agua,
-etc.).</p>
-<p><strong>Special Defense:</strong></p>
-<p>Descripción: La estadística que mide la capacidad del Pokémon para
-resistir ataques especiales (movimientos no físicos).</p>
-<p><strong>Speed:</strong></p>
-<p>Descripción: La estadística que determina qué tan rápido actúa el
-Pokémon en combate, lo que influye en el orden de los turnos.</p>
+</div>
+<div id="diccionario-de-datos" class="section level1">
+<h1>Diccionario de datos</h1>
+<p>Para lograr ese objetivo, hemos recogido una serie de datos de los
+1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a
+continuación.</p>
+<ul>
+<li><p><strong><code>Name:</code></strong> Descripción: El nombre
+oficial del Pokémon.</p></li>
+<li><p><strong><code>Type</code></strong>: Descripción: La clasificación
+elemental del Pokémon, que determina sus fortalezas y debilidades en
+combate. Puede tener uno o dos tipos.</p></li>
+<li><p><strong><code>Species:</code></strong> Descripción: La
+clasificación biológica o general del Pokémon, que indica su especie o
+características distintivas.</p></li>
+<li><p><strong><code>Height:</code></strong> Descripción: La altura
+oficial del Pokémon, generalmente en metros.</p></li>
+<li><p><strong><code>Weight:</code></strong> Descripción: El peso
+oficial del Pokémon, generalmente en kilogramos.</p></li>
+<li><p><strong><code>Abilities:</code></strong> Descripción: Habilidades
+especiales o innatas del Pokémon, que pueden influir en el combate o
+proporcionar efectos únicos. Un Pokémon puede tener una o más
+habilidades.</p></li>
+<li><p><strong><code>Catch Rate:</code></strong> Descripción: La
+probabilidad de capturar al Pokémon con una Poké Ball, representada como
+un número entero. Cuanto más alto sea el número, más fácil es
+capturarlo.</p></li>
+<li><p><strong><code>Base Friendship:</code></strong> Descripción: El
+nivel de amistad o lealtad inicial del Pokémon hacia su entrenador.
+Afecta la evolución de ciertos Pokémon y el uso de algunos
+movimientos.</p></li>
+<li><p><strong><code>Base Exp:</code></strong> Descripción: La cantidad
+de experiencia base que el Pokémon otorga al ser derrotado en
+combate.</p></li>
+<li><p><strong><code>Growth Rate:</code></strong> Descripción: La
+velocidad con la que el Pokémon gana experiencia y sube de nivel, lo que
+afecta la cantidad de experiencia necesaria para alcanzar niveles más
+altos. Tipo de dato: Texto Ejemplo: “Medium Fast”, “Slow”</p></li>
+<li><p><strong><code>Gender:</code></strong> Descripción: La
+distribución de género del Pokémon, expresada en porcentajes de
+probabilidades para ser macho, hembra o género desconocido.</p></li>
+<li><p><strong><code>HP (Health Points):</code></strong> Descripción: La
+cantidad de puntos de salud del Pokémon, que determina cuánto daño puede
+recibir antes de desmayarse en combate.</p></li>
+<li><p><strong><code>Attack:</code></strong> Descripción: La estadística
+que determina la potencia de los ataques físicos del Pokémon en
+combate.</p></li>
+<li><p><strong><code>Defense:</code></strong> Descripción: La
+estadística que mide la capacidad del Pokémon para resistir ataques
+físicos en combate.</p></li>
+<li><p><strong><code>Special Attack:</code></strong> Descripción: La
+estadística que mide la potencia de los ataques especiales del Pokémon,
+como ataques de tipo elemental (fuego, agua, etc.).</p></li>
+<li><p><strong><code>Special Defense:</code></strong> Descripción: La
+estadística que mide la capacidad del Pokémon para resistir ataques
+especiales (movimientos no físicos).</p></li>
+<li><p><strong><code>Speed:</code></strong> Descripción: La estadística
+que determina qué tan rápido actúa el Pokémon en combate, lo que influye
+en el orden de los turnos.</p></li>
+</ul>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the
 code chunk to prevent printing of the R code that generated the
 plot.</p>
+</div>
+<div id="importación-de-datos-y-carga-de-paquetes" class="section level1">
+<h1>Importación de datos y carga de paquetes</h1>
 <pre class="r"><code>library(stringr)
 library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -452,7 +456,6 @@ library(knitr)
 library(remotes)
 pokemon_combined &lt;- readxl::read_excel(&quot;pokemon_combined.xlsx&quot;)
 
-
 pokemon &lt;- &quot;pokemon_combined.xlsx&quot;
 
 pokemon_combined |&gt;
@@ -479,7 +482,6 @@ pokemon_combined |&gt;
 ##  9 Dragon Ghost        3
 ## 10 Dragon Ground       4
 ## # ℹ 17 more rows</code></pre>
-</div>
 </div>
 
 
