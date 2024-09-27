@@ -1,16 +1,19 @@
 ---
 title: "PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA: ANÁLISIS DE ESTADÍSTICAS POKEMON"
 author: "GRUPO_6 : *Daniel Mazo*, *Miguel Amado*, *Luis Prieto*, *Alejandro Marín*, *Roberto Rojas*"
-date: "20 de Septiembre de 2024"
-course: "Estadística curso 2024-25" #En esta parte lo he dejado así pero no aparece lo de course, yo quitaría el contenido de date y pondría el de course para mayor claridad y porque lo de la fecha tampoco le veo el sentido.
+date: "Estadística Curso 2024-25"
+# course: "Estadística curso 2024-25" #En esta parte lo he dejado así pero no aparece lo de course, yo quitaría el contenido de date y pondría el de course para mayor claridad y porque lo de la fecha tampoco le veo el sentido.
 
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE) #poner a True si se quiere ver el codigo R
+```{r setup, include=FALSE, purl=FALSE}
+knitr::opts_chunk$set(echo = TRUE, #poner a True si se quiere ver el codigo R
+                      eval = TRUE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      error = TRUE)
 ```
-
 
 # Introducción y definición de objetivos
 El estudio de los datos de los distintos pokemon ,  buscamos observar sus variables y realizar un sondeo de sus diferentes características
@@ -60,6 +63,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 # Importación de datos y carga de paquetes
+En primer lugar, cargaremos las librerías con las que trabajaremos.
 
 ```{r}
 library(stringr)
@@ -69,14 +73,38 @@ library(GGally)
 library(readxl)
 library(knitr)
 library(remotes)
+```
 
+A continuación, leeremos los datos del documento.
+
+```{r}
 pokemon_combined <- readxl::read_excel("pokemon_combined.xlsx")
+```
 
+# Análisis exploratorio de datos
+
+## Datos univariantes
+
+## Datos bivariantes
+
+###
+
+### Comparación Ataque-Defensa
+
+Para el ámbito de combate jugador contra jugador, los pokemon cuentan con diferentes estadisticas de combate , entre ellas las mas destacables son el ataque y la defensa. Según la naturaleza del pokemon y del movimiento empleado para atacar al oponente , se dividen en Ataque y Ataque Especial , el ataque cuenta los movimientos de contaco directo , mientras que el Ataque Especial son movimientos que se realizan sin contacto con el rival.
+
+Decidimos comparar Ataque y Defensa , separando fisico y especial , porque cuando algunos pokemon tienen una estadistica 
+
+### Comparación Ataque-Defensa (Especial)
+
+# Banco de registros de pruebas (sí sabemos qué son)
+
+```{r}
 pokemon <- "pokemon_combined.xlsx"
 
 pokemon_combined |>
-  filter(Type == "Bug") |>  # Filtra los Pokémon de tipo "Bug"
-  count(Type)                      # Cuenta cuántos hay
+  filter(Type == "Fighting") |> 
+  count(Type)                      
 
 
 pokemon_combined |>
