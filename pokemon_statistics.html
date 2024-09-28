@@ -461,22 +461,23 @@ library(summarytools)
 library(GGally)
 library(readxl)
 library(knitr)
-library(remotes)</code></pre>
+library(remotes)
+library(kableExtra)</code></pre>
 <p>A continuación, leeremos los datos del documento.</p>
-<pre class="r"><code>pokemon_combined &lt;- readxl::read_excel(&quot;pokemon_combined.xlsx&quot;)</code></pre>
+<pre class="r"><code>pokemon_table &lt;- readxl::read_excel(&quot;pokemon_data.xlsx&quot;)</code></pre>
 </div>
 <div id="análisis-exploratorio-de-datos" class="section level1">
 <h1>Análisis exploratorio de datos</h1>
 <p>Empezaremos con el primer objetivo de estudio , si el fisico de los
 pokemon influye de sobremanera en los combates.</p>
-<div id="peso-altura" class="section level2">
-<h2>Peso Altura</h2>
+<div id="el-tipo-mas-común" class="section level2">
+<h2>1. El tipo mas común</h2>
+</div>
+<div id="altura" class="section level2">
+<h2>2. Altura</h2>
 </div>
 <div id="datos-bivariantes" class="section level2">
 <h2>Datos bivariantes</h2>
-<div id="section" class="section level3">
-<h3></h3>
-</div>
 <div id="comparación-ataque-defensa" class="section level3">
 <h3>Comparación Ataque-Defensa</h3>
 <p>Para el ámbito de combate jugador contra jugador, los pokemon cuentan
@@ -496,32 +497,7 @@ porque cuando algunos pokemon tienen una estadistica</p>
 </div>
 <div id="banco-de-registros-de-pruebas-sí-sabemos-qué-son" class="section level1">
 <h1>Banco de registros de pruebas (sí sabemos qué son)</h1>
-<pre class="r"><code>pokemon &lt;- &quot;pokemon_combined.xlsx&quot;
-
-pokemon_combined |&gt;
-  filter(Type == &quot;Fighting&quot;) |&gt; 
-  count(Type)                      </code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   Type         n
-##   &lt;chr&gt;    &lt;int&gt;
-## 1 Fighting    27</code></pre>
-<pre class="r"><code>pokemon_combined |&gt;
-  filter(str_detect(Type, &quot;Dragon&quot;)) |&gt;
-  count(Type)</code></pre>
-<pre><code>## # A tibble: 27 × 2
-##    Type                n
-##    &lt;chr&gt;           &lt;int&gt;
-##  1 Dark Dragon         4
-##  2 Dragon             11
-##  3 Dragon Dark         1
-##  4 Dragon Electric     1
-##  5 Dragon Fairy        1
-##  6 Dragon Fighting     2
-##  7 Dragon Fire         1
-##  8 Dragon Flying       3
-##  9 Dragon Ghost        3
-## 10 Dragon Ground       4
-## # ℹ 17 more rows</code></pre>
+<pre class="r"><code>pokemon_table &lt;- &quot;pokemon_data.xlsx&quot;</code></pre>
 </div>
 
 

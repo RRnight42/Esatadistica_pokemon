@@ -2,7 +2,6 @@
 title: "PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA: ANÁLISIS DE ESTADÍSTICAS POKEMON"
 author: "GRUPO_6 : *Daniel Mazo*, *Miguel Amado*, *Luis Prieto*, *Alejandro Marín*, *Roberto Rojas*"
 date: "Estadística Curso 2024-25"
-# course: "Estadística curso 2024-25" #En esta parte lo he dejado así pero no aparece lo de course, yo quitaría el contenido de date y pondría el de course para mayor claridad y porque lo de la fecha tampoco le veo el sentido.
 
 output: html_document
 ---
@@ -17,22 +16,22 @@ knitr::opts_chunk$set(echo = TRUE, #poner a True si se quiere ver el codigo R
 
 # Introducción y definición de objetivos
 
-## ¿Porque este objetivo?
+## ¿Por qué este objetivo?
+
+
+---CAMBIAR---
 
 Vivimos tiempos donde el equilibrio en los videojuegos es esencial para una experiencia de juego sana y divertida para jugadores de todo tipo , un desequilibrio en el cual ciertos personajes de videojuegos poseen cierta ventaja sobre otros , puede suponer que el juego no sea divertido o cause el efecto deseado en los jugadores. 
 
 Hemos elegido la saga Pokémon , que es reconocible e influyente en el mundo de los videojuegos. Tambien conocido por ser un juego de matematica y estadistica , donde la estrategia y el cálculo mental son mecánicas que tienen mucha importancia, mas allá de ser un juego con una paleta de colores amigable. 
 
 
-Este estudio tiene como obetivo dos principales metas : 
+Este estudio tiene como objetivo   : 
 
--La de comprobar si el fisico de algunos pokemon influye de manera significativa en combate.
 
 A través de la comparación entre las estadísticas físicas y las estadísticas de combate de los Pokémon, buscamos identificar patrones que determinen cómo estas características influyen en su efectividad.
 
 -El segundo objetivo de este estudio es identificar cuáles Pokémon poseen una distribución de estadísticas equilibrada, es decir, aquellos que no destacan en una sola área, sino que tienen un desempeño homogéneo en todas las estadísticas de combate.
-
-
 
 Este análisis nos permitirá determinar qué Pokémon son más versátiles y efectivos en una amplia variedad de situaciones de batalla.
 
@@ -77,9 +76,6 @@ Ejemplo: "Medium Fast", "Slow"
 * **`Speed:`** Descripción: La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos.
 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
 # Importación de datos y carga de paquetes
 En primer lugar, cargaremos las librerías con las que trabajaremos.
 
@@ -91,46 +87,32 @@ library(GGally)
 library(readxl)
 library(knitr)
 library(remotes)
+library(kableExtra)
 ```
 
 A continuación, leeremos los datos del documento.
 
 ```{r}
-pokemon_combined <- readxl::read_excel("pokemon_combined.xlsx")
+pokemon_table <- readxl::read_excel("pokemon_data.xlsx")
+
 ```
 
 # Análisis exploratorio de datos
 
 Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon influye de sobremanera en los combates. 
 
-## Peso Altura
-
-
-
-## Datos bivariantes
-
-###
-
-### Comparación Ataque-Defensa
-
-Para el ámbito de combate jugador contra jugador, los pokemon cuentan con diferentes estadisticas de combate , entre ellas las mas destacables son el ataque y la defensa. Según la naturaleza del pokemon y del movimiento empleado para atacar al oponente , se dividen en Ataque y Ataque Especial , el ataque cuenta los movimientos de contaco directo , mientras que el Ataque Especial son movimientos que se realizan sin contacto con el rival.
-
-Decidimos comparar Ataque y Defensa , separando fisico y especial , porque cuando algunos pokemon tienen una estadistica 
 
 ### Comparación Ataque-Defensa (Especial)
 
 # Banco de registros de pruebas (sí sabemos qué son)
 
+---SOLO PARA PRUEBAS ---
+
 ```{r}
-pokemon <- "pokemon_combined.xlsx"
-
-pokemon_combined |>
-  filter(Type == "Fighting") |> 
-  count(Type)                      
 
 
-pokemon_combined |>
-  filter(str_detect(Type, "Dragon")) |>
-  count(Type)
+
+
+
 
 ```
