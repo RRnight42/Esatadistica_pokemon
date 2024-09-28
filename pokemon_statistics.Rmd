@@ -107,6 +107,7 @@ Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon infl
 # Banco de registros de pruebas (sí sabemos qué son)
 
 ---SOLO PARA PRUEBAS ---
+Hola :D
 
 
 Hla hales guapo , dos hombre sudaos metiendose boca
