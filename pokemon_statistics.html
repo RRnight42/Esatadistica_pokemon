@@ -361,8 +361,9 @@ Rojas</em></h4>
 
 <div id="introducción-y-definición-de-objetivos" class="section level1">
 <h1>Introducción y definición de objetivos</h1>
-<div id="porque-este-objetivo" class="section level2">
-<h2>¿Porque este objetivo?</h2>
+<div id="por-qué-este-objetivo" class="section level2">
+<h2>¿Por qué este objetivo?</h2>
+<p>—CAMBIAR—</p>
 <p>Vivimos tiempos donde el equilibrio en los videojuegos es esencial
 para una experiencia de juego sana y divertida para jugadores de todo
 tipo , un desequilibrio en el cual ciertos personajes de videojuegos
@@ -373,9 +374,7 @@ mundo de los videojuegos. Tambien conocido por ser un juego de
 matematica y estadistica , donde la estrategia y el cálculo mental son
 mecánicas que tienen mucha importancia, mas allá de ser un juego con una
 paleta de colores amigable.</p>
-<p>Este estudio tiene como obetivo dos principales metas :</p>
-<p>-La de comprobar si el fisico de algunos pokemon influye de manera
-significativa en combate.</p>
+<p>Este estudio tiene como objetivo :</p>
 <p>A través de la comparación entre las estadísticas físicas y las
 estadísticas de combate de los Pokémon, buscamos identificar patrones
 que determinen cómo estas características influyen en su
@@ -394,62 +393,65 @@ y efectivos en una amplia variedad de situaciones de batalla.</p>
 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a
 continuación.</p>
 <ul>
-<li><p><strong><code>Name:</code></strong> Descripción: El nombre
+<li><p><strong><code>dexnum:</code></strong> Descripción: El número
+asociado a la Pokédex del Pokémon.</p></li>
+<li><p><strong><code>name:</code></strong> Descripción: El nombre
 oficial del Pokémon.</p></li>
-<li><p><strong><code>Type</code></strong>: Descripción: La clasificación
-elemental del Pokémon, que determina sus fortalezas y debilidades en
-combate. Puede tener uno o dos tipos.</p></li>
-<li><p><strong><code>Species:</code></strong> Descripción: La
-clasificación biológica o general del Pokémon, que indica su especie o
-características distintivas.</p></li>
-<li><p><strong><code>Height:</code></strong> Descripción: La altura
+<li><p><strong><code>generation:</code></strong> Descripción: La
+generación a la que corresponde el pokemon. Cada generación se
+caracteriza por la introducción de nuevas especies de Pokémon.</p></li>
+<li><p><strong><code>type1</code></strong>: Descripción: La
+clasificación elemental del Pokémon, que determina sus fortalezas y
+debilidades en combate. Algunos pokémon pueden tener dos tipos.</p></li>
+<li><p><strong><code>type2</code></strong>: Descripción: El segundo tipo
+del Pokémon en caso de que lo tenga.</p></li>
+<li><p><strong><code>height:</code></strong> Descripción: La altura
 oficial del Pokémon, generalmente en metros.</p></li>
-<li><p><strong><code>Weight:</code></strong> Descripción: El peso
+<li><p><strong><code>weight:</code></strong> Descripción: El peso
 oficial del Pokémon, generalmente en kilogramos.</p></li>
-<li><p><strong><code>Abilities:</code></strong> Descripción: Habilidades
-especiales o innatas del Pokémon, que pueden influir en el combate o
-proporcionar efectos únicos. Un Pokémon puede tener una o más
-habilidades.</p></li>
-<li><p><strong><code>Catch Rate:</code></strong> Descripción: La
-probabilidad de capturar al Pokémon con una Poké Ball, representada como
-un número entero. Cuanto más alto sea el número, más fácil es
-capturarlo.</p></li>
-<li><p><strong><code>Base Friendship:</code></strong> Descripción: El
-nivel de amistad o lealtad inicial del Pokémon hacia su entrenador.
-Afecta la evolución de ciertos Pokémon y el uso de algunos
-movimientos.</p></li>
-<li><p><strong><code>Base Exp:</code></strong> Descripción: La cantidad
-de experiencia base que el Pokémon otorga al ser derrotado en
-combate.</p></li>
-<li><p><strong><code>Growth Rate:</code></strong> Descripción: La
-velocidad con la que el Pokémon gana experiencia y sube de nivel, lo que
-afecta la cantidad de experiencia necesaria para alcanzar niveles más
-altos. Tipo de dato: Texto Ejemplo: “Medium Fast”, “Slow”</p></li>
-<li><p><strong><code>Gender:</code></strong> Descripción: La
-distribución de género del Pokémon, expresada en porcentajes de
-probabilidades para ser macho, hembra o género desconocido.</p></li>
-<li><p><strong><code>HP (Health Points):</code></strong> Descripción: La
+<li><p><strong><code>ability1:</code></strong> Descripción: Habilidad
+especiales o innata del Pokémon, que pueden influir en el combate o
+proporcionar efectos únicos.</p></li>
+<li><p><strong><code>ability2:</code></strong> Descripción: Segunda
+habilidad especial del Pokémon en caso de que tenga más de una.</p></li>
+<li><p><strong><code>hidden_ability:</code></strong> Descripción:
+Habilidad oculta del Pokémon que es diferente de sus habilidades
+normales que no siempre están disponibles en un Pokémon al ser capturado
+o al criarse de manera estándar. Suelen proporcionar ventajas
+estratégicas en combate.</p></li>
+<li><p><strong><code>hp (health points):</code></strong> Descripción: La
 cantidad de puntos de salud del Pokémon, que determina cuánto daño puede
 recibir antes de desmayarse en combate.</p></li>
-<li><p><strong><code>Attack:</code></strong> Descripción: La estadística
+<li><p><strong><code>attack:</code></strong> Descripción: La estadística
 que determina la potencia de los ataques físicos del Pokémon en
 combate.</p></li>
-<li><p><strong><code>Defense:</code></strong> Descripción: La
+<li><p><strong><code>defense:</code></strong> Descripción: La
 estadística que mide la capacidad del Pokémon para resistir ataques
 físicos en combate.</p></li>
-<li><p><strong><code>Special Attack:</code></strong> Descripción: La
-estadística que mide la potencia de los ataques especiales del Pokémon,
-como ataques de tipo elemental (fuego, agua, etc.).</p></li>
-<li><p><strong><code>Special Defense:</code></strong> Descripción: La
-estadística que mide la capacidad del Pokémon para resistir ataques
-especiales (movimientos no físicos).</p></li>
-<li><p><strong><code>Speed:</code></strong> Descripción: La estadística
+<li><p><strong><code>sp_atk (special attack):</code></strong>
+Descripción: La estadística que mide la potencia de los ataques
+especiales del Pokémon, como ataques de tipo elemental (fuego, agua,
+etc.).</p></li>
+<li><p><strong><code>sp_def (special defense):</code></strong>
+Descripción: La estadística que mide la capacidad del Pokémon para
+resistir ataques especiales (movimientos no físicos).</p></li>
+<li><p><strong><code>speed:</code></strong> Descripción: La estadística
 que determina qué tan rápido actúa el Pokémon en combate, lo que influye
 en el orden de los turnos.</p></li>
+<li><p><strong><code>total:</code></strong> Descripción: La suma total
+de las principales estadísticas de combate del Pokémon, entre las que se
+incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense),
+Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad
+(speed).</p></li>
+<li><p><strong><code>percent_male:</code></strong> Descripción: El
+porcentaje de probabilidades de que un Pokémon sea de género masculino.
+También se puede dar la posibilidad de que un Pokémon no tenga
+género.</p></li>
+<li><p><strong><code>percent_female:</code></strong> Descripción: El
+porcentaje de probabilidades de que un Pokémon sea de género femenino.
+También se puede dar la posibilidad de que un Pokémon no tenga
+género.</p></li>
 </ul>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the
-code chunk to prevent printing of the R code that generated the
-plot.</p>
 </div>
 <div id="importación-de-datos-y-carga-de-paquetes" class="section level1">
 <h1>Importación de datos y carga de paquetes</h1>
@@ -463,6 +465,7 @@ library(readxl)
 library(knitr)
 library(remotes)
 library(kableExtra)</code></pre>
+<pre><code>## Error in library(kableExtra): no hay paquete llamado &#39;kableExtra&#39;</code></pre>
 <p>A continuación, leeremos los datos del documento.</p>
 <pre class="r"><code>pokemon_table &lt;- readxl::read_excel(&quot;pokemon_data.xlsx&quot;)</code></pre>
 </div>
@@ -470,34 +473,14 @@ library(kableExtra)</code></pre>
 <h1>Análisis exploratorio de datos</h1>
 <p>Empezaremos con el primer objetivo de estudio , si el fisico de los
 pokemon influye de sobremanera en los combates.</p>
-<div id="el-tipo-mas-común" class="section level2">
-<h2>1. El tipo mas común</h2>
-</div>
-<div id="altura" class="section level2">
-<h2>2. Altura</h2>
-</div>
-<div id="datos-bivariantes" class="section level2">
-<h2>Datos bivariantes</h2>
-<div id="comparación-ataque-defensa" class="section level3">
-<h3>Comparación Ataque-Defensa</h3>
-<p>Para el ámbito de combate jugador contra jugador, los pokemon cuentan
-con diferentes estadisticas de combate , entre ellas las mas destacables
-son el ataque y la defensa. Según la naturaleza del pokemon y del
-movimiento empleado para atacar al oponente , se dividen en Ataque y
-Ataque Especial , el ataque cuenta los movimientos de contaco directo ,
-mientras que el Ataque Especial son movimientos que se realizan sin
-contacto con el rival.</p>
-<p>Decidimos comparar Ataque y Defensa , separando fisico y especial ,
-porque cuando algunos pokemon tienen una estadistica</p>
-</div>
 <div id="comparación-ataque-defensa-especial" class="section level3">
 <h3>Comparación Ataque-Defensa (Especial)</h3>
 </div>
 </div>
-</div>
 <div id="banco-de-registros-de-pruebas-sí-sabemos-qué-son" class="section level1">
 <h1>Banco de registros de pruebas (sí sabemos qué son)</h1>
-<pre class="r"><code>pokemon_table &lt;- &quot;pokemon_data.xlsx&quot;</code></pre>
+<p>—SOLO PARA PRUEBAS — Hola :D</p>
+<p>Hla hales guapo , dos hombre sudaos metiendose boca</p>
 </div>
 
 

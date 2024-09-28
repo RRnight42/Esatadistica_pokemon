@@ -39,41 +39,43 @@ Este análisis nos permitirá determinar qué Pokémon son más versátiles y ef
 # Diccionario de datos
 Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
 
-* **`Name:`** Descripción:  El nombre oficial del Pokémon.
+* **`dexnum:`** Descripción: El número asociado a la Pokédex del Pokémon.
 
-* **`Type`**: Descripción: La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Puede tener uno o dos tipos.
+* **`name:`** Descripción:  El nombre oficial del Pokémon.
 
-* **`Species:`** Descripción: La clasificación biológica o general del Pokémon, que indica su especie o características distintivas.
+* **`generation:`** Descripción: La generación a la que corresponde el pokemon. Cada generación se caracteriza por la introducción de nuevas especies de Pokémon.
 
-* **`Height:`** Descripción: La altura oficial del Pokémon, generalmente en metros.
+* **`type1`**: Descripción: La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Algunos pokémon pueden tener dos tipos.
 
-* **`Weight:`** Descripción: El peso oficial del Pokémon, generalmente en kilogramos.
+* **`type2`**: Descripción: El segundo tipo del Pokémon en caso de que lo tenga.
 
-* **`Abilities:`** Descripción: Habilidades especiales o innatas del Pokémon, que pueden influir en el combate o proporcionar efectos únicos. Un Pokémon puede tener una o más habilidades.
+* **`height:`** Descripción: La altura oficial del Pokémon, generalmente en metros.
 
-* **`Catch Rate:`** Descripción: La probabilidad de capturar al Pokémon con una Poké Ball, representada como un número entero. Cuanto más alto sea el número, más fácil es capturarlo.
+* **`weight:`** Descripción: El peso oficial del Pokémon, generalmente en kilogramos.
 
-* **`Base Friendship:`** Descripción: El nivel de amistad o lealtad inicial del Pokémon hacia su entrenador. Afecta la evolución de ciertos Pokémon y el uso de algunos movimientos.
+* **`ability1:`** Descripción: Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos.
 
-* **`Base Exp:`** Descripción: La cantidad de experiencia base que el Pokémon otorga al ser derrotado en combate.
+* **`ability2:`** Descripción: Segunda habilidad especial del Pokémon en caso de que tenga más de una.
 
-* **`Growth Rate:`** Descripción: La velocidad con la que el Pokémon gana experiencia y sube de nivel, lo que afecta la cantidad de experiencia necesaria para alcanzar niveles más altos.
-Tipo de dato: Texto
-Ejemplo: "Medium Fast", "Slow"
+* **`hidden_ability:`** Descripción: Habilidad oculta del Pokémon que es diferente de sus habilidades normales que no siempre están disponibles en un Pokémon al ser capturado o al criarse de manera estándar. Suelen proporcionar ventajas estratégicas en combate.
 
-* **`Gender:`** Descripción: La distribución de género del Pokémon, expresada en porcentajes de probabilidades para ser macho, hembra o género desconocido.
+* **`hp (health points):`** Descripción: La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate.
 
-* **`HP (Health Points):`** Descripción: La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate.
+* **`attack:`** Descripción: La estadística que determina la potencia de los ataques físicos del Pokémon en combate.
 
-* **`Attack:`** Descripción: La estadística que determina la potencia de los ataques físicos del Pokémon en combate.
+* **`defense:`** Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate.
 
-* **`Defense:`** Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate.
+* **`sp_atk (special attack):`** Descripción: La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.).
 
-* **`Special Attack:`** Descripción: La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.).
+* **`sp_def (special defense):`** Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos).
 
-* **`Special Defense:`** Descripción: La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos).
+* **`speed:`** Descripción: La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos.
 
-* **`Speed:`** Descripción: La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos.
+* **`total:`** Descripción: La suma total de las principales estadísticas de combate del Pokémon, entre las que se incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense), Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad (speed). 
+
+* **`percent_male:`** Descripción: El porcentaje de probabilidades de que un Pokémon sea de género masculino. También se puede dar la posibilidad de que un Pokémon no tenga género.
+
+* **`percent_female:`** Descripción: El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género.
 
 
 # Importación de datos y carga de paquetes
