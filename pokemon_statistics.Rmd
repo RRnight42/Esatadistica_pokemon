@@ -16,7 +16,25 @@ knitr::opts_chunk$set(echo = TRUE, #poner a True si se quiere ver el codigo R
 ```
 
 # Introducción y definición de objetivos
-El estudio de los datos de los distintos pokemon ,  buscamos observar sus variables y realizar un sondeo de sus diferentes características
+
+## ¿Porque este objetivo?
+
+Vivimos tiempos donde el equilibrio en los videojuegos es esencial para una experiencia de juego sana y divertida para jugadores de todo tipo , un desequilibrio en el cual ciertos personajes de videojuegos poseen cierta ventaja sobre otros , puede suponer que el juego no sea divertido o cause el efecto deseado en los jugadores. 
+
+Hemos elegido la saga Pokémon , que es reconocible e influyente en el mundo de los videojuegos. Tambien conocido por ser un juego de matematica y estadistica , donde la estrategia y el cálculo mental son mecánicas que tienen mucha importancia, mas allá de ser un juego con una paleta de colores amigable. 
+
+
+Este estudio tiene como obetivo dos principales metas : 
+
+-La de comprobar si el fisico de algunos pokemon influye de manera significativa en combate.
+
+A través de la comparación entre las estadísticas físicas y las estadísticas de combate de los Pokémon, buscamos identificar patrones que determinen cómo estas características influyen en su efectividad.
+
+-El segundo objetivo de este estudio es identificar cuáles Pokémon poseen una distribución de estadísticas equilibrada, es decir, aquellos que no destacan en una sola área, sino que tienen un desempeño homogéneo en todas las estadísticas de combate.
+
+
+
+Este análisis nos permitirá determinar qué Pokémon son más versátiles y efectivos en una amplia variedad de situaciones de batalla.
 
 
 # Diccionario de datos
@@ -83,7 +101,11 @@ pokemon_combined <- readxl::read_excel("pokemon_combined.xlsx")
 
 # Análisis exploratorio de datos
 
-## Datos univariantes
+Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon influye de sobremanera en los combates. 
+
+## Peso Altura
+
+
 
 ## Datos bivariantes
 
