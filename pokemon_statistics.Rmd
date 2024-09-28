@@ -108,6 +108,9 @@ Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon infl
 
 ---SOLO PARA PRUEBAS ---
 
+
+Hla hales guapo , dos hombre sudaos metiendose boca
+
 ```{r}
 
 
