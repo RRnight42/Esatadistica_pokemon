@@ -7,7 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE, purl=FALSE}
-knitr::opts_chunk$set(echo = TRUE, #poner a True si se quiere ver el codigo R
+knitr::opts_chunk$set(echo = FALSE, #poner a True si se quiere ver el codigo R
                       eval = TRUE, 
                       warning = FALSE,
                       message = FALSE,
@@ -31,9 +31,7 @@ Este estudio tiene como objetivo   :
 
 A través de la comparación entre las estadísticas físicas y las estadísticas de combate de los Pokémon, buscamos identificar patrones que determinen cómo estas características influyen en su efectividad.
 
--El segundo objetivo de este estudio es identificar cuáles Pokémon poseen una distribución de estadísticas equilibrada, es decir, aquellos que no destacan en una sola área, sino que tienen un desempeño homogéneo en todas las estadísticas de combate.
-
-Este análisis nos permitirá determinar qué Pokémon son más versátiles y efectivos en una amplia variedad de situaciones de batalla.
+Tras realizar diversos análisis , podemos llegar a una conclusion de como esta balanceado 
 
 
 # Diccionario de datos
@@ -49,9 +47,9 @@ Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon 
 
 * **`type2:`** El segundo tipo del Pokémon en caso de que lo tenga.
 
-* **`height:`** La altura oficial del Pokémon, generalmente en metros.
+* **`height:`** La altura oficial del Pokémon, generalmente en metros (Sistema Internacional).
 
-* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos.
+* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos(Sistema Internacional).
 
 * **`ability1:`** Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos.
 
@@ -103,22 +101,123 @@ pokemon_table <- readxl::read_excel("pokemon_data.xlsx")
 
 Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon influye de sobremanera en los combates. 
 
+## 1.2 Velocidad 
 
-### Comparación Ataque-Defensa (Especial)
+La velocidad en los combates Pokémon es un factor crucial, porque determina que pokemon tiene prioridad para atacar antes, existen combates donde se decide el resultado solo por la velocidad. Existen excepciones como ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
 
-# Banco de registros de pruebas (sí sabemos qué son)
-
----SOLO PARA PRUEBAS ---
-Hola :D
-
-
-Hla hales guapo , dos hombre sudaos metiendose boca
+Vamos a realizar un análisis de como se distribuye la velocidad 
 
 ```{r}
 
+ggplot(pokemon_table, aes(x = speed)) + 
+  geom_histogram(binwidth = 5, fill = "green", color = "black") + 
+  labs(title = "Distribución de la Velocidad", 
+       x = "Velocidad (entero)", 
+       y = "Pokémon con x velocidad") +
+  theme_minimal()
 
 
+```
 
+En la gráfica superior , hemos recogido mediante un histograma todos los pokemon , como podemos observar la mayoria de los valores oscilan entre 30 y 100 , lo cual puede estar influenciado por las especies,  evoluciones o naturaleza interna de los pokémon.
+
+Para contrastar estos valores , realizaremos la media , mediana , moda y desviacion estandar
+
+
+```{r}
+media_speed <- mean(pokemon_table$speed, na.rm = TRUE)
+
+# Mediana de las velocidades
+mediana_speed <- median(pokemon_table$speed, na.rm = TRUE)
+
+# Moda de las velocidades (a veces no hay una función directa en R para la moda, pero podemos hacerla manualmente)
+moda_speed <- as.numeric(names(sort(table(pokemon_table$speed), decreasing=TRUE)[1]))
+
+# Desviación estándar de las velocidades
+de_speed <- sd(pokemon_table$speed, na.rm = TRUE)
+
+
+```
+
+### Media
+La **media** nos indica el valor promedio de las velociades teniendo en cuenta los valores extremos y medios,  la media se ve influida por valores extremos , bajos y altos
+
+```{r}
+media_speed <- round(media_speed, 0)
+media_speed
+
+```
+
+
+### Mediana
+La **mediana** de las velocidades nos indica el valor central de la distribución,contempla el punto en el cual la mitad de los Pokémon son más lentos y la otra mitad son más rápidos.Una visión más equilibrada de la velocidad típica.
+
+```{r}
+mediana_speed <- round(mediana_speed, 0)
+mediana_speed
+
+```
+
+### Moda
+La **moda** es la velocidad que se repite con más frecuencia entre los Pokémon.Puede indicar grupos de Pokémon con capacidades similares.
+
+```{r}
+
+moda_speed <- round(moda_speed ,0)
+moda_speed
+
+```
+
+**Una moda de 50 es un problema porque hay un factor clave y es que al haber pokemon que son formas que evolucionan de otras especies , no se utilizan en el ambito competitivo del mundo Pokémon.Sin embargo, los tomamos en cuenta porque dentro del juego inevitablemente hay que usarlos en algun momento**
+
+### Desviación Estándar
+La **desviación estándar** refleja cómo se distribuyen las velocidades en relación con la media. Si la desviación estándar es alta, significa que hay Pokémon con velocidades muy variadas, desde muy lentos hasta muy rápidos. Si es baja, las velocidades están más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
+
+```{r}
+de_speed <- round(de_speed, 0)
+de_speed
+
+```
+
+
+## 2.2 Velocidad vs Defensa
+
+Uno de los factores que se pueden ver influidos por la velocidad es la defensa , genericamente , un pokemon con altas defensas
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/805.png){width=30% height=30%}
+
+### Stakataka Velocidad : 13 
+
+**Una baja velocidad no implica necesariamente que el pokemon este en desventaja**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/795.png){width=30% height=30%}
+
+
+### Pheromosa Velocidad : 151 
+
+**Tener una velocidad alta no garantiza la victoria ante el rival**
+
+
+Para comprobar si las defensas y las velocidades estan correlacionadas, haremos un grafico de dispersión 
+
+```{r}
+ggplot(pokemon_table, aes(x = speed, y = defense)) +
+  geom_point() +  
+  geom_smooth(method = "loess", se = FALSE, color = "red") + 
+  labs(title = "Relación entre Velocidad y Defensa",
+       x = "Velocidad",
+       y = "Defensa") +
+  theme_minimal()
+
+```
+
+Como podemos observar , existe una correlación inversamente proporcional: a mayor defensa , mayor probabilidad de baja velocidad, mientras que un pokemon sea mas veloz , es mas probable que tenga baja defensa. Aunque es importante señalar que, aunque esta correlación es notable, no implica necesariamente causalidad. Existen otros factores que pueden influir tanto en la velocidad como en la defensa de un Pokémon, como su tipo, habilidades, y estadísticas base. Por lo tanto, se deben considerar estas variables adicionales al interpretar los resultados de nuestro análisis.
+
+
+# Banco de pruebas
+
+---SOLO PARA PRUEBAS ---
+```{r}
 
 
 ```
