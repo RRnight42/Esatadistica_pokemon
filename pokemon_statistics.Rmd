@@ -370,7 +370,96 @@ tipo_combinado_summary <- tipo_combinado_summary %>%
 # Mostrar el resultado final
 print(tipo_combinado_summary)
 ```
+### 1.5 Número de Pokémon por Generación
 
+Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
+
+Analicemos primero la proporción de Pokémon por generación con una gráfica:
+
+```{r}
+ggplot(pokemon_table, aes(x = as.factor(generation))) + 
+  geom_bar(fill = "green", color = "black") + 
+  labs(title = "Proporción de Pokémon por Generación", 
+       x = "Generación", 
+       y = "Nº de Pokémon") +
+  theme_minimal()
+
+```
+
+Una vez observada la gráfica podemos determinar que la progresión no es lineal, no en las primeras 5 generaciones por lo menos, ya que, a partir de la sexta generación, podemos ver como el número de nuevos Pokémon aumenta en cada generación consecutivamente. Además, se puede observar que la generación en la que se introdujo un mayor número de Pokémon fue en la quinta generación, lo cual es lógico teniendo en cuenta que fue la única generación después de la primera en la que solo podías encontrar Pokémon naturalmente de esa generación específica hasta completar la historia principal.
+
+#### **Frecuencias absolutas y frecuencias relativas**
+
+Podemos hallar las frecuencias absolutas y relativas para observar con mayor detalle la cantidad de Pokémon que se introdujeron en cada generación y el porcentaje del total que corresponde:
+
+```{r}
+# Cálculo de frecuencias absolutas y relativas
+frecuencia_absoluta <- table(pokemon_table$generation)
+frecuencia_relativa <- prop.table(frecuencia_absoluta) * 100
+
+# Crear una tabla
+tabla_frecuencias <- data.frame(
+  Generación = as.factor(names(frecuencia_absoluta)),
+  Frecuencia_Absoluta = as.vector(frecuencia_absoluta),
+  Frecuencia_Relativa = round(as.vector(frecuencia_relativa), 2)
+)
+
+# Mostrar la tabla
+print(tabla_frecuencias)
+
+```
+
+Esto nos confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación con 156 nuevas criaturas. En el lado opuesto la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, podemos observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokedex, únicamente bajando del 10% del total la segunda generación, siendo igualemente mayor a la sexta, séptima y octava generación.
+
+Para poder verificar estas afirmaciones, se realizará la media y la moda.
+
+
+```{r}
+#Media de Pokémon por generación
+media_gen <- mean(frecuencia_absoluta)
+
+#Moda de Pokémon por generación
+moda_gen <- as.numeric(names(which.max(frecuencia_absoluta)))
+
+#Desviación estándar por generación
+de_gen <- sd(frecuencia_absoluta)
+
+```
+
+#### **Media**
+La **media** nos da el número de Pokémon promedio que se incluyen por generación.
+
+```{r}
+media_gen <- round(media_gen, 0)
+media_gen
+
+```
+
+Observando este resultado y comparándolo con las frecuencias absolutas, se puede observar que las generaciones con menor número de Pokémon están muy por debajo de lo habitual, especialmente en las mencionadas anteriormente. Incluso es sorprendente que la cuarta generación quede por debajo de la media siendo que no parecía tan por debajo de las demás en un primer momento, lo que nos demuestra la diferencia que hay entre generaciones.
+
+
+#### **Moda**
+La **moda** nos dará la generación en la que más Pokémon se introdujeron.
+
+```{r}
+
+moda_gen <- round(moda_gen ,0)
+moda_gen
+
+```
+
+Como era de esperar, la quinta generación es la que más Pokémon añadió tal y como se mencionó anteriormente, sin embargo este resultado lo termina de confirmar.
+
+#### **Desviación Estándar**
+La **desviación estándar** nos mostrará la diferencia que hay entre generaciones con respecto a la media. Un número alto significará que hay poco equilibrio entre el número de Pokémon introducidos en cada generación y un número bajo significaría que hay bastante equilibrio.
+
+```{r}
+de_gen <- round(de_gen, 0)
+de_gen
+
+```
+
+Como se puede ver, la desviación es algo alta respecto de la media, por lo que se puede afirmar que hay cierto desequilibrio entre generaciones.
 
 ## Datos bivariantes
 
