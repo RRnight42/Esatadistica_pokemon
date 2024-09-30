@@ -7,7 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE, purl=FALSE}
-knitr::opts_chunk$set(echo = FALSE, #poner a True si se quiere ver el codigo R
+knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R.
                       eval = TRUE, 
                       warning = FALSE,
                       message = FALSE,
@@ -16,22 +16,13 @@ knitr::opts_chunk$set(echo = FALSE, #poner a True si se quiere ver el codigo R
 
 # Introducción y definición de objetivos
 
-## ¿Por qué este objetivo?
+En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor arco de jugadores posible. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
 
+Por esta razón, en este análisis se tratará la saga de Pokémon, altamente reconocible e influyente en el mundo de los videojuegos de la actualidad, con un alto grado de matemática y estadística en sus mecánicas, consiguiendo que la estrategia y el cálculo mental tengan una gran relevancia, mas allá de ser un juego con una paleta de colores amigable, diseñada para atraer a la audiencia más joven. 
 
----CAMBIAR---
+El objetivo principal de este estudio consiste en que, mediante de la comparación entre las estadísticas físicas y de combate de los Pokémon, se buscará identificar patrones que determinen cómo estas características influyen en su efectividad y utilidad en el juego.
 
-Vivimos tiempos donde el equilibrio en los videojuegos es esencial para una experiencia de juego sana y divertida para jugadores de todo tipo , un desequilibrio en el cual ciertos personajes de videojuegos poseen cierta ventaja sobre otros , puede suponer que el juego no sea divertido o cause el efecto deseado en los jugadores. 
-
-Hemos elegido la saga Pokémon , que es reconocible e influyente en el mundo de los videojuegos. Tambien conocido por ser un juego de matematica y estadistica , donde la estrategia y el cálculo mental son mecánicas que tienen mucha importancia, mas allá de ser un juego con una paleta de colores amigable. 
-
-
-Este estudio tiene como objetivo   : 
-
-
-A través de la comparación entre las estadísticas físicas y las estadísticas de combate de los Pokémon, buscamos identificar patrones que determinen cómo estas características influyen en su efectividad.
-
-Tras realizar diversos análisis , podemos llegar a una conclusion de como esta balanceado 
+De esta manera, realizando diversos análisis univariantes y bivariantes, se podrá alcanzar una conclusion de qué tan equilibrado está en realidad el mundo de Pokémon. 
 
 
 # Diccionario de datos
@@ -99,9 +90,11 @@ pokemon_table <- readxl::read_excel("pokemon_data.xlsx")
 
 # Análisis exploratorio de datos
 
-Empezaremos con el primer objetivo de estudio , si el fisico de los pokemon influye de sobremanera en los combates. 
+Empezaremos con el primer objetivo de estudio, si el físico de los pokemon influye de sobremanera en los combates. 
 
-## 1.2 Velocidad 
+## Datos univariantes
+
+### 1.2 Velocidad 
 
 La velocidad en los combates Pokémon es un factor crucial, porque determina que pokemon tiene prioridad para atacar antes, existen combates donde se decide el resultado solo por la velocidad. Existen excepciones como ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
 
@@ -119,9 +112,9 @@ ggplot(pokemon_table, aes(x = speed)) +
 
 ```
 
-En la gráfica superior , hemos recogido mediante un histograma todos los pokemon , como podemos observar la mayoria de los valores oscilan entre 30 y 100 , lo cual puede estar influenciado por las especies,  evoluciones o naturaleza interna de los pokémon.
+En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
 
-Para contrastar estos valores , realizaremos la media , mediana , moda y desviacion estandar
+Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
 
 
 ```{r}
@@ -139,8 +132,8 @@ de_speed <- sd(pokemon_table$speed, na.rm = TRUE)
 
 ```
 
-### Media
-La **media** nos indica el valor promedio de las velociades teniendo en cuenta los valores extremos y medios,  la media se ve influida por valores extremos , bajos y altos
+#### **Media**
+La **media** indica el valor promedio de las velociades teniendo en cuenta los valores extremos, tanto bajos como altos, y medios.
 
 ```{r}
 media_speed <- round(media_speed, 0)
@@ -149,8 +142,8 @@ media_speed
 ```
 
 
-### Mediana
-La **mediana** de las velocidades nos indica el valor central de la distribución,contempla el punto en el cual la mitad de los Pokémon son más lentos y la otra mitad son más rápidos.Una visión más equilibrada de la velocidad típica.
+#### **Mediana**
+La **mediana** de las velocidades indica el valor central de la distribución, contemplando el punto en el que la mitad de los Pokémon son más lentos y la otra mitad son más rápidos. Es decir, ofrece una visión más equilibrada de la velocidad típica.
 
 ```{r}
 mediana_speed <- round(mediana_speed, 0)
@@ -158,8 +151,8 @@ mediana_speed
 
 ```
 
-### Moda
-La **moda** es la velocidad que se repite con más frecuencia entre los Pokémon.Puede indicar grupos de Pokémon con capacidades similares.
+#### **Moda**
+La **moda** es la velocidad que se repite con más frecuencia entre los Pokémon. Puede indicar grupos de Pokémon con capacidades similares.
 
 ```{r}
 
@@ -170,8 +163,8 @@ moda_speed
 
 **Una moda de 50 es un problema porque hay un factor clave y es que al haber pokemon que son formas que evolucionan de otras especies , no se utilizan en el ambito competitivo del mundo Pokémon.Sin embargo, los tomamos en cuenta porque dentro del juego inevitablemente hay que usarlos en algun momento**
 
-### Desviación Estándar
-La **desviación estándar** refleja cómo se distribuyen las velocidades en relación con la media. Si la desviación estándar es alta, significa que hay Pokémon con velocidades muy variadas, desde muy lentos hasta muy rápidos. Si es baja, las velocidades están más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
+#### **Desviación Estándar**
+La **desviación estándar** refleja cómo se distribuyen las velocidades en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con velocidades muy variadas, desde muy lentos hasta muy rápidos. Si es baja, las velocidades estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
 
 ```{r}
 de_speed <- round(de_speed, 0)
@@ -179,26 +172,117 @@ de_speed
 
 ```
 
+### 1.3 Distribución de los pesos
 
-## 2.2 Velocidad vs Defensa
+El peso es uno de los factores más influyentes a la hora de garantizar un cierto grado de verosimilitud en un videojuego. Concretamente, en el caso del análisis, permite observar cómo este afectará a otros datos estadísticos como la velocidad, defensa, entre otros. Por lo tanto, se analizará primero de manera univariante para, posteriormente, poder relacionarla con otras estadísticas comprendiendo su forma de ser en el mundo de Pokémon.
 
-Uno de los factores que se pueden ver influidos por la velocidad es la defensa , genericamente , un pokemon con altas defensas
+```{r}
+
+# Eliminar comas o espacios en blanco si existen
+# pokemon_table$weight <- gsub(",", "", pokemon_table$weight)
+# pokemon_table$weight <- gsub(" ", "", pokemon_table$weight)
+
+# Convertir a numérico
+pokemon_table$weight <- as.numeric(pokemon_table$weight)
+
+ggplot(pokemon_table[pokemon_table$weight < 1000, ], aes(x = weight)) + 
+  geom_histogram(binwidth = 10, fill = "green", color = "black") + 
+  labs(title = "Distribución del Peso", x = "Peso (kg)", y = "Frecuencia") +
+  theme_minimal()
+```
+
+En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
+
+Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
+
+
+```{r}
+# Filtrar los valores mayores a 1000 para evitar errores
+filtered_weight <- pokemon_table$weight[pokemon_table$weight <= 1000]
+
+# Media de los pesos
+media_weight <- mean(filtered_weight, na.rm = TRUE)
+
+# Mediana de los pesos
+mediana_weight <- median(filtered_weight, na.rm = TRUE)
+
+# Moda de los pesos
+moda_weight <- as.numeric(names(sort(table(filtered_weight), decreasing=TRUE)[1]))
+
+# Desviación estándar de los pesos
+de_weight <- sd(filtered_weight, na.rm = TRUE)
+
+
+```
+
+#### **Media**
+La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
+
+```{r}
+media_weight <- round(media_weight, 0)
+media_weight
+
+```
+
+Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 93kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
+
+
+#### **Mediana**
+La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más ligeros y la otra mitad son más pesados. Es decir, ofrece una visión más equilibrada del peso típico.
+
+```{r}
+mediana_weight <- round(mediana_weight, 0)
+mediana_weight
+
+```
+
+El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido, hecho cuya causa podría consistir en la necesidad de atraer al público joven al mundo de Pokémon y, por lo tanto, Nintendo recurriendo a la creación de seres de un tamaño y peso más reducido, más adorables o atractivos visualmente para una audiencia de temprana edad.
+
+
+#### **Moda**
+La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
+
+```{r}
+
+moda_weight <- round(moda_weight ,0)
+moda_weight
+
+```
+
+El resultado puede parecer algo inusual, pero considerando que todos los pesos están expresados con decimales, lo que provoca un mayor abarque de cantidades numéricas, unido a la inmensa cantidad de Pokémon de peso reducido, tiene lógica que el resultado de la moda sea un valor tan reducido como este.
+
+#### **Desviación Estándar**
+La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
+
+```{r}
+de_weight <- round(de_weight, 0)
+de_weight
+
+```
+
+En este caso, la desviación típica confirma la existencia de una amplia variedad de pesos en el mundo de Pokémon.
+
+## Datos bivariantes
+
+### 2.2 Velocidad vs Defensa
+
+Uno de los factores que se pueden ver influidos por la velocidad es la defensa, puesto que, generalmente, un Pokémon con altas defensas suele conllevar en si una velocidad baja, y viceversa.
 
 ![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/805.png){width=30% height=30%}
 
 ### Stakataka Velocidad : 13 
 
-**Una baja velocidad no implica necesariamente que el pokemon este en desventaja**
+**Una baja velocidad no implica necesariamente que el pokemon este en desventaja.**
 
 ![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/795.png){width=30% height=30%}
 
 
 ### Pheromosa Velocidad : 151 
 
-**Tener una velocidad alta no garantiza la victoria ante el rival**
+**Tener una velocidad alta no garantiza la victoria ante el rival.**
 
 
-Para comprobar si las defensas y las velocidades estan correlacionadas, haremos un grafico de dispersión 
+Para comprobar si las defensas y las velocidades estan correlacionadas, se realizará un gráfico de dispersión. 
 
 ```{r}
 ggplot(pokemon_table, aes(x = speed, y = defense)) +
@@ -211,13 +295,39 @@ ggplot(pokemon_table, aes(x = speed, y = defense)) +
 
 ```
 
-Como podemos observar , existe una correlación inversamente proporcional: a mayor defensa , mayor probabilidad de baja velocidad, mientras que un pokemon sea mas veloz , es mas probable que tenga baja defensa. Aunque es importante señalar que, aunque esta correlación es notable, no implica necesariamente causalidad. Existen otros factores que pueden influir tanto en la velocidad como en la defensa de un Pokémon, como su tipo, habilidades, y estadísticas base. Por lo tanto, se deben considerar estas variables adicionales al interpretar los resultados de nuestro análisis.
+Como se puede observar, existe una correlación inversamente proporcional: a mayor defensa, mayor probabilidad de baja velocidad, mientras que un Pokémon sea mas veloz, es más probable que tenga baja defensa. Aunque es importante señalar que, aunque esta correlación es notable, no implica necesariamente causalidad. Existen otros factores que pueden influir tanto en la velocidad como en la defensa de un Pokémon, como su tipo, habilidades, y estadísticas base. Por lo tanto, se deben considerar estas variables adicionales al interpretar los resultados de nuestro análisis.
 
+### 2.3 Altura VS Velocidad
+
+La altura de los Pokémon también resulta un factor digno de estudio en relación con la velocidad.
+
+```{r}
+# Filtrar valores irreales
+filtered_pokemon <- pokemon_table %>%
+  filter(height <= 20, speed <= 200)
+
+# Crear el gráfico ajustado
+ggplot(filtered_pokemon, aes(x = height, y = speed)) + 
+  geom_jitter(color = "green", alpha = 0.6, width = 0.3, height = 0.1) +  # Añade jitter para dispersar puntos
+  labs(title = "Relación entre Altura y Velocidad", x = "Altura (m)", y = "Velocidad") +
+  theme_minimal()
+```
+
+De este gráfico, se pueden obtener diversas conclusiones:
+
+- Los puntos están bastante dispersos en toda la gráfica sin una tendencia clara; los Pokémon, independientemente de su altura, cubren un rango similar de velocidades.
+
+- La mayoría de los Pokémon tienen velocidades entre 0 y 100, con casos poco comunes que alcanzan los 150.
+
+- La mayor parte de los Pokémon tienen alturas entre 0.1m y 1.0m, aunque algunos llegan a las 2m. Igualmente, no muestran una relación clara con velocidades más altas o bajas.
+
+- Hay algunas densidades más altas alrededor de ciertas alturas (por ejemplo, en torno a 0.4 m y 1.0 m), pero estas no están asociadas con un rango específico de velocidades.
+
+Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no tienen una relación directa** entre si. Además, otros aspectos como el tipo de Pokémon, su peso o sus estadísticas individuales juegan un papel más importante en determinar la velocidad que la altura por sí sola.
 
 # Banco de pruebas
 
 ---SOLO PARA PRUEBAS ---
 ```{r}
-
 
 ```
