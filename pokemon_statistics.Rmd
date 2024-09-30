@@ -262,6 +262,116 @@ de_weight
 
 En este caso, la desviación típica confirma la existencia de una amplia variedad de pesos en el mundo de Pokémon.
 
+### 1.4 Frecuencia de los tipos elementales
+
+Los tipos elementales de los Pokémon son fundamentales para determinar sus fortalezas y debilidades en combate. Cada tipo interactúa de manera específica con otros tipos, lo que influye en la estrategia a seguir durante las batallas y en el desempeño general de cada Pokémon.
+
+En esta sección, realizaremos dos análisis distintos: primero, examinaremos la frecuencia de los tipos para ver cuál es el más común (contando primer y segundo tipo para el recuento). Posteriormente, llevaremos a cabo un análisis de los tipos combinados, que nos permitirá explorar la diversidad y las interacciones entre diferentes tipos en un solo Pokémon.
+<br>
+
+#### **Tipos elementales**
+
+```{r}
+# Contar la frecuencia de tipos elementales (type1 y type2)
+tipo_frecuencia <- pokemon_table %>%
+  select(type1, type2) %>%
+  pivot_longer(cols = c(type1, type2), names_to = "Tipo", values_to = "Elemento") %>%
+  filter(!is.na(Elemento) & Elemento != "") %>%
+  group_by(Elemento) %>%
+  summarise(Frecuencia = n()) %>%
+  arrange(desc(Frecuencia))
+
+# Gráfico de barras de la frecuencia de tipos elementales
+ggplot(tipo_frecuencia, aes(x = reorder(Elemento, -Frecuencia), y = Frecuencia)) +
+  geom_bar(stat = "identity", fill = "steelblue", color = "black") +
+  labs(title = "Frecuencia de Tipos Elementales (type1 y type2)",
+       x = "Tipo Elemental",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+<br>
+Como podemos observar en el gráfico anterior, los tipos más frecuentes (en orden de mayor a menor) son el agua (water), normal, planta (grass), pájaro (flying) y psíquico (pshychic), mientras que los menos frecuentes son el tipo hielo y el hada (uno de los últimos introducidos en el videojuego).
+<br>
+<br>
+
+#### **Tipos combinados**
+
+En este segundo gráfico, se han limitado las combinaciones de tipos a solo los diez más frecuentes. Esta decisión se tomó debido a la dificultad de manejar la gran cantidad de combinaciones que podría existir, lo que haría que la visualización fuera menos clara y más difícil de interpretar.
+
+
+```{r}
+# Filtrar los Pokémon que tienen un segundo tipo
+tipo_combinado <- pokemon_table %>%
+  filter(!is.na(type2) & type2 != "") %>%
+  group_by(type1, type2) %>%
+  summarise(Frecuencia = n(), .groups = 'drop') %>%
+  arrange(desc(Frecuencia))
+
+# Crear una tabla de frecuencias para el gráfico, limitando a los 10 más frecuentes
+tipo_combinado_summary <- tipo_combinado %>%
+  slice_head(n = 10)  # Seleccionar las 10 combinaciones más frecuentes
+
+# Gráfico de barras de los tipos combinados más frecuentes
+ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -Frecuencia), y = Frecuencia)) +
+  geom_bar(stat = "identity", fill = "steelblue", color = "black") +
+  labs(title = "Tipos Combinados más Frecuentes",
+       x = "Tipos Combinados",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+En la gráfica presentada arriba, se puede observar que los tipos combinados más frecuentes son normal/volador (normal/flying), planta/veneno (grass/poison), bicho/volador (bug/flying) y bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
+
+```{r}
+# Filtrar los Pokémon que tienen un segundo tipo
+tipo_combinado <- pokemon_table %>%
+  filter(!is.na(type2) & type2 != "") %>%  # Excluir combinaciones sin type2
+  group_by(type1, type2) %>%
+  summarise(Frecuencia = n(), .groups = 'drop') %>%
+  arrange(desc(Frecuencia))
+
+# Obtener los 10 tipos combinados más frecuentes
+tipo_combinado_summary <- tipo_combinado %>%
+  slice_head(n = 10)  # Seleccionar las 10 combinaciones más frecuentes
+
+# Crear una función para discretizar tipos combinados
+discretizar_tipos <- function(type1, type2) {
+  if (type1 == "Normal" && type2 == "Flying") {
+    return("Normal/Volador")
+  } else if (type1 == "Grass" && type2 == "Poison") {
+    return("Planta/Veneno")
+  } else if (type1 == "Bug" && type2 == "Flying") {
+    return("Bicho/Volador")
+  } else if (type1 == "Bug" && type2 == "Poison") {
+    return("Bicho/Veneno")
+  } else if (type1 == "Fire" && type2 == "Flying") {
+    return("Fuego/Volador")
+  } else if (type1 == "Water" && type2 == "Ground") {
+    return("Agua/Tierra")
+  } else if (type1 == "Psychic" && type2 == "Fairy") {
+    return("Psíquico/Hada")
+  } else if (type1 == "Dragon" && type2 == "Flying") {
+    return("Dragón/Volador")
+  } else if (type1 == "Ice" && type2 == "Flying") {
+    return("Hielo/Volador")
+  } else if (type1 == "Electric" && type2 == "Flying") {
+    return("Eléctrico/Volador")
+  } else {
+    return(NA)  # Asignar NA si no está en las combinaciones más comunes
+  }
+}
+
+# Aplicar la función a los tipos combinados más comunes
+tipo_combinado_summary <- tipo_combinado_summary %>%
+  mutate(tipo_discretizado = mapply(discretizar_tipos, type1, type2))
+
+# Mostrar el resultado final
+print(tipo_combinado_summary)
+```
+
+
 ## Datos bivariantes
 
 ### 2.2 Velocidad vs Defensa
@@ -324,6 +434,11 @@ De este gráfico, se pueden obtener diversas conclusiones:
 - Hay algunas densidades más altas alrededor de ciertas alturas (por ejemplo, en torno a 0.4 m y 1.0 m), pero estas no están asociadas con un rango específico de velocidades.
 
 Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no tienen una relación directa** entre si. Además, otros aspectos como el tipo de Pokémon, su peso o sus estadísticas individuales juegan un papel más importante en determinar la velocidad que la altura por sí sola.
+
+### 2.4 Comparación entre Tipo Elemental y el Equilibrio (type1 vs. Desviación Estándar de las Estadísticas)
+
+
+
 
 # Banco de pruebas
 
