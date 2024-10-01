@@ -79,6 +79,7 @@ library(readxl)
 library(knitr)
 library(remotes)
 library(kableExtra)
+library(ggplot2)
 ```
 
 A continuación, leeremos los datos del documento.
@@ -524,8 +525,123 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no tienen una relación directa** entre si. Además, otros aspectos como el tipo de Pokémon, su peso o sus estadísticas individuales juegan un papel más importante en determinar la velocidad que la altura por sí sola.
 
-### 2.4 Comparación entre Tipo Elemental y el Equilibrio (type1 vs. Desviación Estándar de las Estadísticas)
+### 2.4 Comparación entre Tipo Elemental (monotipo) y las estadísticas de combate del Pokémon
 
+```{r}
+# Gráfico de caja para HP
+ggplot(pokemon_table, aes(x = type1, y = hp)) +
+  geom_boxplot() +
+  labs(title = "Distribución de HP por Tipo de Pokémon",
+       x = "Tipo de Pokémon (type1)",
+       y = "HP") +
+  theme_minimal() +
+  coord_flip()  # Girar para mejor visualización
+
+# Valores mínimos y máximos de HP
+min_hp <- min(pokemon_table$hp, na.rm = TRUE)
+max_hp <- max(pokemon_table$hp, na.rm = TRUE)
+
+min_hp_pokemon <- pokemon_table %>% filter(hp == min_hp)
+max_hp_pokemon <- pokemon_table %>% filter(hp == max_hp)
+
+list(
+  min_hp = min_hp_pokemon,
+  max_hp = max_hp_pokemon
+)
+```
+
+```{r}
+# Gráfico de caja para Ataque
+ggplot(pokemon_table, aes(x = type1, y = attack)) +
+  geom_boxplot() +
+  labs(title = "Distribución de Ataque por Tipo de Pokémon",
+       x = "Tipo de Pokémon (type1)",
+       y = "Ataque") +
+  theme_minimal() +
+  coord_flip()  # Girar para mejor visualización
+
+# Valores mínimos y máximos de Ataque
+min_attack <- min(pokemon_table$attack, na.rm = TRUE)
+max_attack <- max(pokemon_table$attack, na.rm = TRUE)
+
+min_attack_pokemon <- pokemon_table %>% filter(attack == min_attack)
+max_attack_pokemon <- pokemon_table %>% filter(attack == max_attack)
+
+list(
+  min_attack = min_attack_pokemon,
+  max_attack = max_attack_pokemon
+)
+```
+
+```{r}
+# Gráfico de caja para Defensa
+ggplot(pokemon_table, aes(x = type1, y = defense)) +
+  geom_boxplot() +
+  labs(title = "Distribución de Defensa por Tipo de Pokémon",
+       x = "Tipo de Pokémon (type1)",
+       y = "Defensa") +
+  theme_minimal() +
+  coord_flip()  # Girar para mejor visualización
+
+# Valores mínimos y máximos de Defensa
+min_defense <- min(pokemon_table$defense, na.rm = TRUE)
+max_defense <- max(pokemon_table$defense, na.rm = TRUE)
+
+min_defense_pokemon <- pokemon_table %>% filter(defense == min_defense)
+max_defense_pokemon <- pokemon_table %>% filter(defense == max_defense)
+
+list(
+  min_defense = min_defense_pokemon,
+  max_defense = max_defense_pokemon
+)
+```
+
+```{r}
+# Gráfico de caja para Ataque Especial
+ggplot(pokemon_table, aes(x = type1, y = sp_atk)) +
+  geom_boxplot() +
+  labs(title = "Distribución de Ataque Especial por Tipo de Pokémon",
+       x = "Tipo de Pokémon (type1)",
+       y = "Ataque Especial") +
+  theme_minimal() +
+  coord_flip()  # Girar para mejor visualización
+
+# Valores mínimos y máximos de Ataque Especial
+min_sp_atk <- min(pokemon_table$sp_atk, na.rm = TRUE)
+max_sp_atk <- max(pokemon_table$sp_atk, na.rm = TRUE)
+
+min_sp_atk_pokemon <- pokemon_table %>% filter(sp_atk == min_sp_atk)
+max_sp_atk_pokemon <- pokemon_table %>% filter(sp_atk == max_sp_atk)
+
+list(
+  min_sp_atk = min_sp_atk_pokemon,
+  max_sp_atk = max_sp_atk_pokemon
+)
+```
+
+
+```{r}
+# Gráfico de caja para Defensa Especial
+ggplot(pokemon_table, aes(x = type1, y = sp_def)) +
+  geom_boxplot() +
+  labs(title = "Distribución de Defensa Especial por Tipo de Pokémon",
+       x = "Tipo de Pokémon (type1)",
+       y = "Defensa Especial") +
+  theme_minimal() +
+  coord_flip()  # Girar para mejor visualización
+
+# Valores mínimos y máximos de Defensa Especial
+min_sp_def <- min(pokemon_table$sp_def, na.rm = TRUE)
+max_sp_def <- max(pokemon_table$sp_def, na.rm = TRUE)
+
+min_sp_def_pokemon <- pokemon_table %>% filter(sp_def == min_sp_def)
+max_sp_def_pokemon <- pokemon_table %>% filter(sp_def == max_sp_def)
+
+list(
+  min_sp_def = min_sp_def_pokemon,
+  max_sp_def = max_sp_def_pokemon
+)
+```
 
 
 
