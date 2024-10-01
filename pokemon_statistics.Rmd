@@ -527,6 +527,8 @@ Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no
 
 ### 2.4 Comparación entre Tipo Elemental (monotipo) y las estadísticas de combate del Pokémon
 
+En el siguiente apartado se estudiarán la relación entre las siguientes cinco variables: hp, attack, special_attack, defense y special_defense 
+
 ```{r}
 # Gráfico de caja para HP
 ggplot(pokemon_table, aes(x = type1, y = hp)) +
@@ -643,6 +645,42 @@ list(
 )
 ```
 
+### 2.5 Relación entre HP y Defensa
+
+Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
+
+Comprobemos si esto es cierto con el siguiente gráfico de dispersión:
+
+```{r}
+# Gráfico de dispersión
+ggplot(pokemon_table, aes(x = hp, y = defense)) +
+  geom_point(color = "blue") + 
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  labs(title = "Relación entre HP y Defensa con Línea de Tendencia",
+       x = "Puntos de Salud (HP)",
+       y = "Defensa") +
+  theme_minimal()
+
+```
+
+Podemos observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la anteriormente mencionada relación no es muy fuerte.
+
+Para contrastar este análisis se puede hallar el coeficiente de correlación para obtener datos cuantitativos:
+
+#### **Coeficiente de correlación**
+
+```{r}
+# Calcular el coeficiente de correlación de Pearson entre HP y defensa
+corhpdef <- cor(pokemon_table$hp, pokemon_table$defense)
+
+```
+
+```{r}
+corhpdef <- (round(corhpdef, 2))
+corhpdef
+```
+
+Debido a que el coeficiente de correlación es 0.3, podemos corroborar que la relación entre HP y Defensa es débil pero no inexistente. En conclusión, un Pokémon con una alta Defensa no tiene por qué tener una alta estadística de HP, sin embargo, estas suelen estar relacionadas en algunos casos y no son del todo independientes.
 
 
 # Banco de pruebas
