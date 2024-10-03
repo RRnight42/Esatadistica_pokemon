@@ -535,7 +535,9 @@ pokemon_monotipos <- pokemon_table %>% filter(is.na(type2))
 En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). A continuación se presentan gráficos y análisis detallados para cada estadística de combate.
 
 <br>
-Primero se analizará la relación entre los HP y los tipos elementales Pokémon
+
+#### 2.4.1 Health points
+Primero se analizará la relación entre los puntos de salud (hp) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para HP
@@ -567,7 +569,7 @@ La media de los puntos de HP para los Pokémon monotipos es de 67.57715. Esto re
 ```{r}
 cat("Desviación estándar de HP:", sd_hp, "\n")
 ```
-La desviación estándar es de r sd_hp. Esto indica que, en promedio, los valores de HP se desvían de la media en aproximadamente 28.33 puntos. Esta desviación estándar sugiere que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada: existe dispersión, pero no es extremadamente alta ni extremadamente baja. En otras palabras, hay cierta diversidad en los puntos de vida de los Pokémon monotipos, aunque esta diversidad es manejable.
+La desviación estándar es de 28.32747. Esto indica que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada, existe dispersión, pero no es extremadamente alta ni extremadamente baja. En otras palabras, hay cierta diversidad en los puntos de vida de los Pokémon monotipos, pero no es demasiado pronunciada
 
 ```{r}
 cat("Pokémon con menor HP:", min_hp_pokemon$name, "del tipo", min_hp_pokemon$type1, "\n")
@@ -575,9 +577,13 @@ cat("Pokémon con mayor HP:", max_hp_pokemon$name, "del tipo", max_hp_pokemon$ty
 ```
 Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett de tipo agua. Por otro lado, el Pokémon con mayor HP es Blissey de tipo normal. Estos datos nos permiten identificar qué tipos de Pokémon tienen la menor y mayor capacidad de puntos de vida, lo cual puede ser un indicador de sus roles en el combate: Pokémon con alto HP suelen actuar como tanques, mientras que aquellos con bajo HP pueden ser más frágiles pero compensar en otras áreas como velocidad o ataque.
 
+<br>
+
+#### 2.4.2 Ataque
+A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
 
 ```{r}
-# Gráfico de caja para el ataque
+# Gráfico de caja para Ataque
 ggplot(pokemon_monotipos, aes(x = type1, y = attack)) +
   geom_boxplot() +
   labs(title = "Distribución de Ataque por Tipo de Pokémon Monotipo",
@@ -585,7 +591,11 @@ ggplot(pokemon_monotipos, aes(x = type1, y = attack)) +
        y = "Ataque") +
   theme_minimal() +
   coord_flip()
+```
 
+En este gráfico de caja, se pueden observar las diferencias en los valores de Ataque entre los distintos tipos de Pokémon. La dispersión es notable, sugiriendo que algunos tipos tienen un mayor potencial ofensivo que otros.
+
+```{r}
 # Estadísticas descriptivas de Ataque
 mean_attack <- mean(pokemon_monotipos$attack, na.rm = TRUE)
 sd_attack <- sd(pokemon_monotipos$attack, na.rm = TRUE)
@@ -595,13 +605,28 @@ max_attack <- max(pokemon_monotipos$attack, na.rm = TRUE)
 min_attack_pokemon <- pokemon_monotipos %>% filter(attack == min_attack)
 max_attack_pokemon <- pokemon_monotipos %>% filter(attack == max_attack)
 
-# Mostrar estadísticas
-cat("**Análisis de Ataque:**\n")
 cat("Media de Ataque:", mean_attack, "\n")
+```
+
+La media del ataque para los Pokémon monotipos es de 73.66934. Esto representa el valor promedio de ataque que tienen los Pokémon con un solo tipo elemental.
+
+```{r}
 cat("Desviación estándar de Ataque:", sd_attack, "\n")
+```
+
+La desviación estándar es de 29.18733. Esto sugiere que hay una variabilidad considerable en el ataque de los Pokémon según su tipo. Es decir, algunos Pokémon tienen ataques muy por encima o por debajo del promedio, lo que refleja una diversidad en las capacidades ofensivas dependiendo de ello.
+
+```{r}
 cat("Pokémon con menor Ataque:", min_attack_pokemon$name, "del tipo", min_attack_pokemon$type1, "\n")
 cat("Pokémon con mayor Ataque:", max_attack_pokemon$name, "del tipo", max_attack_pokemon$type1, "\n")
 ```
+
+Los Pokémon con menores valores en su ataque son Chansey y Happiny, ambos de tipo normal y el Pokémon con mayor ataque es Rampardos de tipo roca, siendo este uno de los tipos de Pokémon con un ataque promedio más alto. Esto permite identificar qué tipos de Pokémon tienen mejor desempeño en el combate ofensivo.
+
+<br>
+
+#### 2.4.3 Defensa
+A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Defensa
@@ -612,7 +637,12 @@ ggplot(pokemon_monotipos, aes(x = type1, y = defense)) +
        y = "Defensa") +
   theme_minimal() +
   coord_flip()
+```
 
+El gráfico de caja presenta la distribución de la defensa en relación a los tipos de Pokémon. La variabilidad de la defensa entre los diferentes tipos puede proporcionar información valiosa sobre su resistencia en combate.
+
+
+```{r}
 # Estadísticas descriptivas de Defensa
 mean_defense <- mean(pokemon_monotipos$defense, na.rm = TRUE)
 sd_defense <- sd(pokemon_monotipos$defense, na.rm = TRUE)
@@ -622,13 +652,30 @@ max_defense <- max(pokemon_monotipos$defense, na.rm = TRUE)
 min_defense_pokemon <- pokemon_monotipos %>% filter(defense == min_defense)
 max_defense_pokemon <- pokemon_monotipos %>% filter(defense == max_defense)
 
-# Mostrar estadísticas
-cat("**Análisis de Defensa:**\n")
 cat("Media de Defensa:", mean_defense, "\n")
+```
+La media de la defensa para los Pokémon monotipos es de r mean_defense. Esto refleja el valor promedio de defensa que tienen los Pokémon con un solo tipo elemental.
+
+
+```{r}
 cat("Desviación estándar de Defensa:", sd_defense, "\n")
+```
+
+La desviación estándar es de r sd_defense. Esto indica que, en promedio, los valores de defensa se desvían de la media en aproximadamente X puntos (sustituir X por el valor calculado), lo que sugiere que hay diversidad en la defensa entre los Pokémon monotipos.
+
+
+```{r}
 cat("Pokémon con menor Defensa:", min_defense_pokemon$name, "del tipo", min_defense_pokemon$type1, "\n")
 cat("Pokémon con mayor Defensa:", max_defense_pokemon$name, "del tipo", max_defense_pokemon$type1, "\n")
 ```
+
+Los Pokémon con menores valores en su defensa son r min_defense_pokemon$name de tipo r min_defense_pokemon$type1, mientras que el Pokémon con mayor defensa es r max_defense_pokemon$name de tipo r max_defense_pokemon$type1. Esto destaca qué tipos de Pokémon son más efectivos en resistir ataques.
+
+<br>
+
+#### 2.4.4 Ataque especial
+
+A continuación se analizará la relación entre el ataque especial (sp_atk) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Ataque Especial
@@ -639,7 +686,13 @@ ggplot(pokemon_monotipos, aes(x = type1, y = sp_atk)) +
        y = "Ataque Especial") +
   theme_minimal() +
   coord_flip()
+  
+```
 
+El gráfico de caja muestra la distribución del ataque especial entre los distintos tipos de Pokémon. La variabilidad en el ataque especial puede influir en el desempeño general en combate de los Pokémon que dependen de movimientos especiales.
+
+
+```{r}
 # Estadísticas descriptivas de Ataque Especial
 mean_sp_atk <- mean(pokemon_monotipos$sp_atk, na.rm = TRUE)
 sd_sp_atk <- sd(pokemon_monotipos$sp_atk, na.rm = TRUE)
@@ -649,13 +702,30 @@ max_sp_atk <- max(pokemon_monotipos$sp_atk, na.rm = TRUE)
 min_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == min_sp_atk)
 max_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == max_sp_atk)
 
-# Mostrar estadísticas
-cat("**Análisis de Ataque Especial:**\n")
 cat("Media de Ataque Especial:", mean_sp_atk, "\n")
+```
+
+La media del ataque especial para los Pokémon monotipos es de r mean_sp_atk. Esto representa el valor promedio de ataque especial que tienen los Pokémon con un solo tipo elemental.
+
+
+```{r}
 cat("Desviación estándar de Ataque Especial:", sd_sp_atk, "\n")
+```
+
+La desviación estándar es de r sd_sp_atk. Esto indica que, en promedio, los valores de ataque especial se desvían de la media en aproximadamente X puntos (sustituir X por el valor calculado). Esta variabilidad sugiere que algunos Pokémon tienen capacidades especiales que pueden influir significativamente en el resultado de los combates.
+
+
+```{r}
 cat("Pokémon con menor Ataque Especial:", min_sp_atk_pokemon$name, "del tipo", min_sp_atk_pokemon$type1, "\n")
 cat("Pokémon con mayor Ataque Especial:", max_sp_atk_pokemon$name, "del tipo", max_sp_atk_pokemon$type1, "\n")
 ```
+Los Pokémon con menores valores en su ataque especial son r min_sp_atk_pokemon$name de tipo r min_sp_atk_pokemon$type1, y el Pokémon con mayor ataque especial es r max_sp_atk_pokemon$name de tipo r max_sp_atk_pokemon$type1. Esto permite resaltar qué tipos de Pokémon son más eficaces utilizando movimientos especiales.
+
+
+<br>
+
+#### 2.4.5 Defensa especial
+A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Defensa Especial
