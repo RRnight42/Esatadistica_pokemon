@@ -525,125 +525,166 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no tienen una relación directa** entre si. Además, otros aspectos como el tipo de Pokémon, su peso o sus estadísticas individuales juegan un papel más importante en determinar la velocidad que la altura por sí sola.
 
-### 2.4 Comparación entre Tipo Elemental (monotipo) y las estadísticas de combate del Pokémon
+### 2.4 Comparación entre Tipo Elemental y las estadísticas de combate del Pokémon
 
-En el siguiente apartado se estudiarán la relación entre las siguientes cinco variables: hp, attack, special_attack, defense y special_defense 
+```{r}
+# Filtrar solo los Pokémon monotipos (type2 es NA)
+pokemon_monotipos <- pokemon_table %>% filter(is.na(type2))
+```
+
+En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). A continuación se presentan gráficos y análisis detallados para cada estadística de combate.
+
+<br>
+Primero se analizará la relación entre los HP y los tipos elementales Pokémon
 
 ```{r}
 # Gráfico de caja para HP
-ggplot(pokemon_table, aes(x = type1, y = hp)) +
+ggplot(pokemon_monotipos, aes(x = type1, y = hp)) +
   geom_boxplot() +
-  labs(title = "Distribución de HP por Tipo de Pokémon",
+  labs(title = "Distribución de HP por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
        y = "HP") +
   theme_minimal() +
-  coord_flip()  # Girar para mejor visualización
-
-# Valores mínimos y máximos de HP
-min_hp <- min(pokemon_table$hp, na.rm = TRUE)
-max_hp <- max(pokemon_table$hp, na.rm = TRUE)
-
-min_hp_pokemon <- pokemon_table %>% filter(hp == min_hp)
-max_hp_pokemon <- pokemon_table %>% filter(hp == max_hp)
-
-list(
-  min_hp = min_hp_pokemon,
-  max_hp = max_hp_pokemon
-)
+  coord_flip()
 ```
 
+En este gráfico de caja, se pueden observar las diferencias en los valores de HP entre los distintos tipos de Pokémon. Aunque los valores de HP presentan cierta dispersión, no son excesivamente dispares, lo cual sugiere una variabilidad moderada entre los tipos elementales.
+
 ```{r}
-# Gráfico de caja para Ataque
-ggplot(pokemon_table, aes(x = type1, y = attack)) +
+# Estadísticas descriptivas de HP
+mean_hp <- mean(pokemon_monotipos$hp, na.rm = TRUE)
+sd_hp <- sd(pokemon_monotipos$hp, na.rm = TRUE)
+min_hp <- min(pokemon_monotipos$hp, na.rm = TRUE)
+max_hp <- max(pokemon_monotipos$hp, na.rm = TRUE)
+
+min_hp_pokemon <- pokemon_monotipos %>% filter(hp == min_hp)
+max_hp_pokemon <- pokemon_monotipos %>% filter(hp == max_hp)
+
+cat("Media de HP:", mean_hp, "\n")
+```
+La media de los puntos de HP para los Pokémon monotipos es de 67.57715. Esto representa el valor promedio de vida que tienen los Pokémon con un solo tipo elemental.
+
+```{r}
+cat("Desviación estándar de HP:", sd_hp, "\n")
+```
+La desviación estándar es de r sd_hp. Esto indica que, en promedio, los valores de HP se desvían de la media en aproximadamente 28.33 puntos. Esta desviación estándar sugiere que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada: existe dispersión, pero no es extremadamente alta ni extremadamente baja. En otras palabras, hay cierta diversidad en los puntos de vida de los Pokémon monotipos, aunque esta diversidad es manejable.
+
+```{r}
+cat("Pokémon con menor HP:", min_hp_pokemon$name, "del tipo", min_hp_pokemon$type1, "\n")
+cat("Pokémon con mayor HP:", max_hp_pokemon$name, "del tipo", max_hp_pokemon$type1, "\n")
+```
+Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett de tipo agua. Por otro lado, el Pokémon con mayor HP es Blissey de tipo normal. Estos datos nos permiten identificar qué tipos de Pokémon tienen la menor y mayor capacidad de puntos de vida, lo cual puede ser un indicador de sus roles en el combate: Pokémon con alto HP suelen actuar como tanques, mientras que aquellos con bajo HP pueden ser más frágiles pero compensar en otras áreas como velocidad o ataque.
+
+
+```{r}
+# Gráfico de caja para el ataque
+ggplot(pokemon_monotipos, aes(x = type1, y = attack)) +
   geom_boxplot() +
-  labs(title = "Distribución de Ataque por Tipo de Pokémon",
+  labs(title = "Distribución de Ataque por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
        y = "Ataque") +
   theme_minimal() +
-  coord_flip()  # Girar para mejor visualización
+  coord_flip()
 
-# Valores mínimos y máximos de Ataque
-min_attack <- min(pokemon_table$attack, na.rm = TRUE)
-max_attack <- max(pokemon_table$attack, na.rm = TRUE)
+# Estadísticas descriptivas de Ataque
+mean_attack <- mean(pokemon_monotipos$attack, na.rm = TRUE)
+sd_attack <- sd(pokemon_monotipos$attack, na.rm = TRUE)
+min_attack <- min(pokemon_monotipos$attack, na.rm = TRUE)
+max_attack <- max(pokemon_monotipos$attack, na.rm = TRUE)
 
-min_attack_pokemon <- pokemon_table %>% filter(attack == min_attack)
-max_attack_pokemon <- pokemon_table %>% filter(attack == max_attack)
+min_attack_pokemon <- pokemon_monotipos %>% filter(attack == min_attack)
+max_attack_pokemon <- pokemon_monotipos %>% filter(attack == max_attack)
 
-list(
-  min_attack = min_attack_pokemon,
-  max_attack = max_attack_pokemon
-)
+# Mostrar estadísticas
+cat("**Análisis de Ataque:**\n")
+cat("Media de Ataque:", mean_attack, "\n")
+cat("Desviación estándar de Ataque:", sd_attack, "\n")
+cat("Pokémon con menor Ataque:", min_attack_pokemon$name, "del tipo", min_attack_pokemon$type1, "\n")
+cat("Pokémon con mayor Ataque:", max_attack_pokemon$name, "del tipo", max_attack_pokemon$type1, "\n")
 ```
 
 ```{r}
 # Gráfico de caja para Defensa
-ggplot(pokemon_table, aes(x = type1, y = defense)) +
+ggplot(pokemon_monotipos, aes(x = type1, y = defense)) +
   geom_boxplot() +
-  labs(title = "Distribución de Defensa por Tipo de Pokémon",
+  labs(title = "Distribución de Defensa por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
        y = "Defensa") +
   theme_minimal() +
-  coord_flip()  # Girar para mejor visualización
+  coord_flip()
 
-# Valores mínimos y máximos de Defensa
-min_defense <- min(pokemon_table$defense, na.rm = TRUE)
-max_defense <- max(pokemon_table$defense, na.rm = TRUE)
+# Estadísticas descriptivas de Defensa
+mean_defense <- mean(pokemon_monotipos$defense, na.rm = TRUE)
+sd_defense <- sd(pokemon_monotipos$defense, na.rm = TRUE)
+min_defense <- min(pokemon_monotipos$defense, na.rm = TRUE)
+max_defense <- max(pokemon_monotipos$defense, na.rm = TRUE)
 
-min_defense_pokemon <- pokemon_table %>% filter(defense == min_defense)
-max_defense_pokemon <- pokemon_table %>% filter(defense == max_defense)
+min_defense_pokemon <- pokemon_monotipos %>% filter(defense == min_defense)
+max_defense_pokemon <- pokemon_monotipos %>% filter(defense == max_defense)
 
-list(
-  min_defense = min_defense_pokemon,
-  max_defense = max_defense_pokemon
-)
+# Mostrar estadísticas
+cat("**Análisis de Defensa:**\n")
+cat("Media de Defensa:", mean_defense, "\n")
+cat("Desviación estándar de Defensa:", sd_defense, "\n")
+cat("Pokémon con menor Defensa:", min_defense_pokemon$name, "del tipo", min_defense_pokemon$type1, "\n")
+cat("Pokémon con mayor Defensa:", max_defense_pokemon$name, "del tipo", max_defense_pokemon$type1, "\n")
 ```
 
 ```{r}
 # Gráfico de caja para Ataque Especial
-ggplot(pokemon_table, aes(x = type1, y = sp_atk)) +
+ggplot(pokemon_monotipos, aes(x = type1, y = sp_atk)) +
   geom_boxplot() +
-  labs(title = "Distribución de Ataque Especial por Tipo de Pokémon",
+  labs(title = "Distribución de Ataque Especial por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
        y = "Ataque Especial") +
   theme_minimal() +
-  coord_flip()  # Girar para mejor visualización
+  coord_flip()
 
-# Valores mínimos y máximos de Ataque Especial
-min_sp_atk <- min(pokemon_table$sp_atk, na.rm = TRUE)
-max_sp_atk <- max(pokemon_table$sp_atk, na.rm = TRUE)
+# Estadísticas descriptivas de Ataque Especial
+mean_sp_atk <- mean(pokemon_monotipos$sp_atk, na.rm = TRUE)
+sd_sp_atk <- sd(pokemon_monotipos$sp_atk, na.rm = TRUE)
+min_sp_atk <- min(pokemon_monotipos$sp_atk, na.rm = TRUE)
+max_sp_atk <- max(pokemon_monotipos$sp_atk, na.rm = TRUE)
 
-min_sp_atk_pokemon <- pokemon_table %>% filter(sp_atk == min_sp_atk)
-max_sp_atk_pokemon <- pokemon_table %>% filter(sp_atk == max_sp_atk)
+min_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == min_sp_atk)
+max_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == max_sp_atk)
 
-list(
-  min_sp_atk = min_sp_atk_pokemon,
-  max_sp_atk = max_sp_atk_pokemon
-)
+# Mostrar estadísticas
+cat("**Análisis de Ataque Especial:**\n")
+cat("Media de Ataque Especial:", mean_sp_atk, "\n")
+cat("Desviación estándar de Ataque Especial:", sd_sp_atk, "\n")
+cat("Pokémon con menor Ataque Especial:", min_sp_atk_pokemon$name, "del tipo", min_sp_atk_pokemon$type1, "\n")
+cat("Pokémon con mayor Ataque Especial:", max_sp_atk_pokemon$name, "del tipo", max_sp_atk_pokemon$type1, "\n")
 ```
-
 
 ```{r}
 # Gráfico de caja para Defensa Especial
-ggplot(pokemon_table, aes(x = type1, y = sp_def)) +
+ggplot(pokemon_monotipos, aes(x = type1, y = sp_def)) +
   geom_boxplot() +
-  labs(title = "Distribución de Defensa Especial por Tipo de Pokémon",
+  labs(title = "Distribución de Defensa Especial por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
        y = "Defensa Especial") +
   theme_minimal() +
-  coord_flip()  # Girar para mejor visualización
+  coord_flip()
 
-# Valores mínimos y máximos de Defensa Especial
-min_sp_def <- min(pokemon_table$sp_def, na.rm = TRUE)
-max_sp_def <- max(pokemon_table$sp_def, na.rm = TRUE)
+# Estadísticas descriptivas de Defensa Especial
+mean_sp_def <- mean(pokemon_monotipos$sp_def, na.rm = TRUE)
+sd_sp_def <- sd(pokemon_monotipos$sp_def, na.rm = TRUE)
+min_sp_def <- min(pokemon_monotipos$sp_def, na.rm = TRUE)
+max_sp_def <- max(pokemon_monotipos$sp_def, na.rm = TRUE)
 
-min_sp_def_pokemon <- pokemon_table %>% filter(sp_def == min_sp_def)
-max_sp_def_pokemon <- pokemon_table %>% filter(sp_def == max_sp_def)
+min_sp_def_pokemon <- pokemon_monotipos %>% filter(sp_def == min_sp_def)
+max_sp_def_pokemon <- pokemon_monotipos %>% filter(sp_def == max_sp_def)
 
-list(
-  min_sp_def = min_sp_def_pokemon,
-  max_sp_def = max_sp_def_pokemon
-)
+# Mostrar estadísticas
+cat("**Análisis de Defensa Especial:**\n")
+cat("Media de Defensa Especial:", mean_sp_def, "\n")
+cat("Desviación estándar de Defensa Especial:", sd_sp_def, "\n")
+cat("Pokémon con menor Defensa Especial:", min_sp_def_pokemon$name, "del tipo", min_sp_def_pokemon$type1, "\n")
+cat("Pokémon con mayor Defensa Especial:", max_sp_def_pokemon$name, "del tipo", max_sp_def_pokemon$type1, "\n")
 ```
+
+
 
 ### 2.5 Relación entre HP y Defensa
 
