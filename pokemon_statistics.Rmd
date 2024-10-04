@@ -293,7 +293,7 @@ ggplot(tipo_frecuencia, aes(x = reorder(Elemento, -Frecuencia), y = Frecuencia))
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 <br>
-Como se puede observar en el gráfico anterior, los tipos más frecuentes (en orden de mayor a menor) son el agua (water), normal (normal), planta (grass), pájaro (flying) y psíquico (psychic), mientras que los menos frecuentes son el tipo hielo (ice) y el hada (fairy). Cabe destacar que este es uno de los últimos introducidos en el videojuego.
+Como se puede observar en el gráfico anterior, los tipos más frecuentes (en orden de mayor a menor) son el agua (water), normal (normal), planta (grass), volador (flying) y psíquico (psychic), mientras que los menos frecuentes son el tipo hielo (ice) y el hada (fairy). Cabe destacar que este es uno de los últimos introducidos en el videojuego.
 
 <br>
 
