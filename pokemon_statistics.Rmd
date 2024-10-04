@@ -784,11 +784,11 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 - Los puntos están bastante dispersos en toda la gráfica sin una tendencia clara; los Pokémon, independientemente de su altura, cubren un rango similar de velocidades.
 
-- La mayoría de los Pokémon tienen velocidades entre 0 y 100, con casos poco comunes que alcanzan los 150.
+- La mayoría de los Pokémon tienen velocidades entre 0 y 100, con casos que superan el valor de 150 y pueden alcanzar 200.
 
-- La mayor parte de los Pokémon tienen alturas entre 0.1m y 1.0m, aunque algunos llegan a las 2m. Igualmente, no muestran una relación clara con velocidades más altas o bajas.
+- La mayor parte de los Pokémon tienen alturas entre 0.1m y 2.5m, aunque algunos llegan a los 20m. Igualmente, no muestran una relación clara con velocidades más altas o bajas.
 
-- Hay algunas densidades más altas alrededor de ciertas alturas (por ejemplo, en torno a 0.4 m y 1.0 m), pero estas no están asociadas con un rango específico de velocidades.
+- Hay algunas densidades más altas alrededor de ciertas alturas (por ejemplo, en torno a 0 m y 2.5 m), pero estas no están asociadas con un rango específico de velocidades, puesto que los puntos están dispersos a lo largo de las diferentes velocidades.
 
 Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no tienen una relación directa** entre si. Además, otros aspectos como el tipo de Pokémon, su peso o sus estadísticas individuales juegan un papel más importante en determinar la velocidad que la altura por sí sola.
 
