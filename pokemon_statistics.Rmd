@@ -267,7 +267,8 @@ En este caso, la desviación típica confirma la existencia de una amplia varied
 
 Los tipos elementales de los Pokémon son fundamentales para determinar sus fortalezas y debilidades en combate. Cada tipo interactúa de manera específica con otros tipos, lo que influye en la estrategia a seguir durante las batallas y en el desempeño general de cada Pokémon.
 
-En esta sección, realizaremos dos análisis distintos: primero, examinaremos la frecuencia de los tipos para ver cuál es el más común (contando primer y segundo tipo para el recuento). Posteriormente, llevaremos a cabo un análisis de los tipos combinados, que nos permitirá explorar la diversidad y las interacciones entre diferentes tipos en un solo Pokémon.
+En esta sección realizaremos dos análisis distintos: primero examinaremos la frecuencia de los tipos para ver cuál es el más común (contando primer y segundo tipo para el recuento). Posteriormente, llevaremos a cabo un análisis de los tipos combinados que nos permitirá explorar la diversidad y las interacciones entre diferentes tipos en un solo Pokémon.
+
 <br>
 
 #### **Tipos elementales**
@@ -292,38 +293,13 @@ ggplot(tipo_frecuencia, aes(x = reorder(Elemento, -Frecuencia), y = Frecuencia))
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 <br>
-Como podemos observar en el gráfico anterior, los tipos más frecuentes (en orden de mayor a menor) son el agua (water), normal, planta (grass), pájaro (flying) y psíquico (pshychic), mientras que los menos frecuentes son el tipo hielo y el hada (uno de los últimos introducidos en el videojuego).
-<br>
+Como se puede observar en el gráfico anterior, los tipos más frecuentes (en orden de mayor a menor) son el agua (water), normal (normal), planta (grass), pájaro (flying) y psíquico (psychic), mientras que los menos frecuentes son el tipo hielo (ice) y el hada (fairy). Cabe destacar que este es uno de los últimos introducidos en el videojuego.
+
 <br>
 
 #### **Tipos combinados**
 
-En este segundo gráfico, se han limitado las combinaciones de tipos a solo los diez más frecuentes. Esta decisión se tomó debido a la dificultad de manejar la gran cantidad de combinaciones que podría existir, lo que haría que la visualización fuera menos clara y más difícil de interpretar.
-
-
-```{r}
-# Filtrar los Pokémon que tienen un segundo tipo
-tipo_combinado <- pokemon_table %>%
-  filter(!is.na(type2) & type2 != "") %>%
-  group_by(type1, type2) %>%
-  summarise(Frecuencia = n(), .groups = 'drop') %>%
-  arrange(desc(Frecuencia))
-
-# Crear una tabla de frecuencias para el gráfico, limitando a los 10 más frecuentes
-tipo_combinado_summary <- tipo_combinado %>%
-  slice_head(n = 10)  # Seleccionar las 10 combinaciones más frecuentes
-
-# Gráfico de barras de los tipos combinados más frecuentes
-ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -Frecuencia), y = Frecuencia)) +
-  geom_bar(stat = "identity", fill = "steelblue", color = "black") +
-  labs(title = "Tipos Combinados más Frecuentes",
-       x = "Tipos Combinados",
-       y = "Frecuencia") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
-En la gráfica presentada arriba, se puede observar que los tipos combinados más frecuentes son normal/volador (normal/flying), planta/veneno (grass/poison), bicho/volador (bug/flying) y bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
+En este segundo análisis se han limitado las combinaciones de tipos a solo los diez más frecuentes. Esta decisión se tomó debido a la dificultad de manejar la gran cantidad de combinaciones que podrían existir, lo que haría que la visualización fuese menos clara y más difícil de interpretar.
 
 ```{r}
 # Filtrar los Pokémon que tienen un segundo tipo
@@ -359,8 +335,16 @@ discretizar_tipos <- function(type1, type2) {
     return("Hielo/Volador")
   } else if (type1 == "Electric" && type2 == "Flying") {
     return("Eléctrico/Volador")
+  } else if (type1 == "Steel" && type2 == "Psychic") {
+    return("Acero/Psíquico")
+  } else if (type1 == "Water" && type2 == "Flying") {
+    return("Agua/Volador")
+  } else if (type1 == "Bug" && type2 == "Grass") {
+    return("Bicho/planta")
+  } else if (type1 == "Dark" && type2 == "Flying") {
+    return("Siniestro/Volador")
   } else {
-    return(NA)  # Asignar NA si no está en las combinaciones más comunes
+    return(NA)  
   }
 }
 
@@ -371,6 +355,35 @@ tipo_combinado_summary <- tipo_combinado_summary %>%
 # Mostrar el resultado final
 print(tipo_combinado_summary)
 ```
+
+En esta discretización se pueden observar los diez tipos combinados más frecuentes en el mundo Pokémon, junto al número de Pokémon que hay de cada una de estas combinaciones.
+
+
+```{r}
+# Filtrar los Pokémon que tienen un segundo tipo
+tipo_combinado <- pokemon_table %>%
+  filter(!is.na(type2) & type2 != "") %>%
+  group_by(type1, type2) %>%
+  summarise(Frecuencia = n(), .groups = 'drop') %>%
+  arrange(desc(Frecuencia))
+
+# Crear una tabla de frecuencias para el gráfico, limitando a los 10 más frecuentes
+tipo_combinado_summary <- tipo_combinado %>%
+  slice_head(n = 10)  # Seleccionar las 10 combinaciones más frecuentes
+
+# Gráfico de barras de los tipos combinados más frecuentes
+ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -Frecuencia), y = Frecuencia)) +
+  geom_bar(stat = "identity", fill = "steelblue", color = "black") +
+  labs(title = "Tipos Combinados más Frecuentes",
+       x = "Tipos Combinados",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+En la gráfica presentada arriba se puede observar que los tipos combinados más frecuentes son: el normal/volador (normal/flying), el planta/veneno (grass/poison), el bicho/volador (bug/flying) y el bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
+
+
 ### 1.5 Número de Pokémon por Generación
 
 Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
@@ -532,25 +545,27 @@ Por todas estas conclusiones, se puede deducir que **la velocidad y la altura no
 pokemon_monotipos <- pokemon_table %>% filter(is.na(type2))
 ```
 
-En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). A continuación se presentan gráficos y análisis detallados para cada estadística de combate.
+En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. A continuación se presentan gráficos y análisis detallados para cada estadística de combate con el objetivo de determinar que tipos Pokémon están más especializados en una clase de combate u otro, ya sea un combate por ataques físicos o por ataques especiales.
+
+**Nota:** Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). 
 
 <br>
 
 #### 2.4.1 Health points
-Primero se analizará la relación entre los puntos de salud (hp) y los tipos elementales Pokémon:
+Primero se analizará la relación entre los puntos de salud (HP) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para HP
 ggplot(pokemon_monotipos, aes(x = type1, y = hp)) +
   geom_boxplot() +
-  labs(title = "Distribución de HP por Tipo de Pokémon Monotipo",
+  labs(title = "Distribución de puntos de salud por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
-       y = "HP") +
+       y = "Puntos de salud (HP)") +
   theme_minimal() +
   coord_flip()
 ```
 
-En este gráfico de caja, se pueden observar las diferencias en los valores de HP entre los distintos tipos de Pokémon. Aunque los valores de HP presentan cierta dispersión, no son excesivamente dispares, lo cual sugiere una variabilidad moderada entre los tipos elementales.
+En este gráfico de caja, se pueden observar las diferencias en los valores de HP entre los distintos tipos de Pokémon. Aunque los valores de HP presentan algunas diferencias (sobre todo con los tipos bicho y fantasma), estas no son demasiado pronunciadas, lo que sugiere que, en general, la mayoría de los Pokémon monotipos tienen valores de HP relativamente similares.
 
 ```{r}
 # Estadísticas descriptivas de HP
@@ -563,24 +578,26 @@ min_hp_pokemon <- pokemon_monotipos %>% filter(hp == min_hp)
 max_hp_pokemon <- pokemon_monotipos %>% filter(hp == max_hp)
 
 cat("Media de HP:", mean_hp, "\n")
+median_hp <- median(pokemon_monotipos$hp, na.rm = TRUE)
+cat("Mediana de HP:", median_hp, "\n")
 ```
-La media de los puntos de HP para los Pokémon monotipos es de 67.57715. Esto representa el valor promedio de vida que tienen los Pokémon con un solo tipo elemental.
+La media de los puntos de HP para los Pokémon monotipos es de 67.57715, mientras que la mediana es de 65, lo que indica que la distribución de valores es bastante uniforme.
 
 ```{r}
 cat("Desviación estándar de HP:", sd_hp, "\n")
 ```
-La desviación estándar es de 28.32747. Esto indica que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada, existe dispersión, pero no es extremadamente alta ni extremadamente baja. En otras palabras, hay cierta diversidad en los puntos de vida de los Pokémon monotipos, pero no es demasiado pronunciada
+La desviación estándar es de 28.32747. Esto indica que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada. Existe dispersión, pero no es ni extremadamente alta ni extremadamente baja.
 
 ```{r}
 cat("Pokémon con menor HP:", min_hp_pokemon$name, "del tipo", min_hp_pokemon$type1, "\n")
 cat("Pokémon con mayor HP:", max_hp_pokemon$name, "del tipo", max_hp_pokemon$type1, "\n")
 ```
-Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett de tipo agua. Por otro lado, el Pokémon con mayor HP es Blissey de tipo normal. Estos datos nos permiten identificar qué tipos de Pokémon tienen la menor y mayor capacidad de puntos de vida, lo cual puede ser un indicador de sus roles en el combate: Pokémon con alto HP suelen actuar como tanques, mientras que aquellos con bajo HP pueden ser más frágiles pero compensar en otras áreas como velocidad o ataque.
+Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett de tipo agua mientras que el Pokémon con mayor HP es Blissey de tipo normal. Salvo por Diglett, los valores de los otros dos concuerdan con la tendencia general del gráfico. 
 
 <br>
 
 #### 2.4.2 Ataque
-A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
+A continuación se analizará la relación entre el ataque (Attack) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Ataque
@@ -588,12 +605,12 @@ ggplot(pokemon_monotipos, aes(x = type1, y = attack)) +
   geom_boxplot() +
   labs(title = "Distribución de Ataque por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
-       y = "Ataque") +
+       y = "Ataque (Attack)") +
   theme_minimal() +
   coord_flip()
 ```
 
-En este gráfico de caja, se pueden observar las diferencias en los valores de Ataque entre los distintos tipos de Pokémon. La dispersión es notable, sugiriendo que algunos tipos tienen un mayor potencial ofensivo que otros.
+En el box-plot anterior, se pueden observar las diferencias en los valores de Ataque entre los distintos tipos de Pokémon. La dispersión entre los valores es más notable que en el caso de los HP, sugiriendo que algunos tipos tienen un mayor potencial ofensivo que otros, como los tipos lucha y roca.
 
 ```{r}
 # Estadísticas descriptivas de Ataque
@@ -606,27 +623,29 @@ min_attack_pokemon <- pokemon_monotipos %>% filter(attack == min_attack)
 max_attack_pokemon <- pokemon_monotipos %>% filter(attack == max_attack)
 
 cat("Media de Ataque:", mean_attack, "\n")
+median_attack <- median(pokemon_monotipos$attack, na.rm = TRUE)
+cat("Mediana de Ataque:", median_attack, "\n")
 ```
 
-La media del ataque para los Pokémon monotipos es de 73.66934. Esto representa el valor promedio de ataque que tienen los Pokémon con un solo tipo elemental.
+La media del ataque para los Pokémon monotipos es de 73.66934, mientras que el de la mediana es de 70, lo que de nuevo significa que no hay muchos valores atípicos.
 
 ```{r}
 cat("Desviación estándar de Ataque:", sd_attack, "\n")
 ```
 
-La desviación estándar es de 29.18733. Esto sugiere que hay una variabilidad considerable en el ataque de los Pokémon según su tipo. Es decir, algunos Pokémon tienen ataques muy por encima o por debajo del promedio, lo que refleja una diversidad en las capacidades ofensivas dependiendo de ello.
+La desviación estándar es de 29.18733. Esto sugiere que hay una variabilidad considerable en el ataque de los Pokémon según su tipo, es decir, algunos Pokémon tienen ataques muy por encima o por debajo del promedio, reflejando una diversidad en sus capacidades ofensivas.
 
 ```{r}
 cat("Pokémon con menor Ataque:", min_attack_pokemon$name, "del tipo", min_attack_pokemon$type1, "\n")
 cat("Pokémon con mayor Ataque:", max_attack_pokemon$name, "del tipo", max_attack_pokemon$type1, "\n")
 ```
 
-Los Pokémon con menores valores en su ataque son Chansey y Happiny, ambos de tipo normal y el Pokémon con mayor ataque es Rampardos de tipo roca, siendo este uno de los tipos de Pokémon con un ataque promedio más alto. Esto permite identificar qué tipos de Pokémon tienen mejor desempeño en el combate ofensivo.
+Los Pokémon con menores valores en su ataque son Chansey y Happiny, ambos de tipo normal (siendo estos valores atípicos) y el Pokémon con mayor ataque es Rampardos (tipo roca), que pertenece a uno de los tipos de Pokémon con un ataque promedio más alto.
 
 <br>
 
 #### 2.4.3 Defensa
-A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
+A continuación se analizará la relación entre la defensa (Defense) y los tipos elementales de Pokémon:
 
 ```{r}
 # Gráfico de caja para Defensa
@@ -634,12 +653,12 @@ ggplot(pokemon_monotipos, aes(x = type1, y = defense)) +
   geom_boxplot() +
   labs(title = "Distribución de Defensa por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
-       y = "Defensa") +
+       y = "Defensa (Defense)") +
   theme_minimal() +
   coord_flip()
 ```
 
-El gráfico de caja presenta la distribución de la defensa en relación a los tipos de Pokémon. La variabilidad de la defensa entre los diferentes tipos puede proporcionar información valiosa sobre su resistencia en combate.
+Este gráfico representa la distribución de la defensa en relación a los tipos de Pokémon. Los valores refejados en él son algo dispares, sobresaliendo los tipos roca y acero como aquellos con mayores estadísticas en este ámbito.
 
 
 ```{r}
@@ -653,15 +672,17 @@ min_defense_pokemon <- pokemon_monotipos %>% filter(defense == min_defense)
 max_defense_pokemon <- pokemon_monotipos %>% filter(defense == max_defense)
 
 cat("Media de Defensa:", mean_defense, "\n")
+median_defense <- median(pokemon_monotipos$defense, na.rm = TRUE)
+cat("Mediana de Defensa:", median_defense, "\n")
 ```
-La media de la defensa para los Pokémon monotipos es de r mean_defense. Esto refleja el valor promedio de defensa que tienen los Pokémon con un solo tipo elemental.
+La media de la defensa para los Pokémon monotipos es de 67.32064, mientras que el valor de la mediana es de 63. Esto refleja una uniformidad bastante evidente respecto al centro de la distribución, a excepción de algunos tipos de Pokémon.
 
 
 ```{r}
 cat("Desviación estándar de Defensa:", sd_defense, "\n")
 ```
 
-La desviación estándar es de r sd_defense. Esto indica que, en promedio, los valores de defensa se desvían de la media en aproximadamente X puntos (sustituir X por el valor calculado), lo que sugiere que hay diversidad en la defensa entre los Pokémon monotipos.
+La desviación estándar es de 27.11069, indicando que que hay una variabilidad notable entre los Pokémon, ya que la mayoría de sus valores van desde aproximadamente 40.21 hasta 94.43 puntos.
 
 
 ```{r}
@@ -669,13 +690,13 @@ cat("Pokémon con menor Defensa:", min_defense_pokemon$name, "del tipo", min_def
 cat("Pokémon con mayor Defensa:", max_defense_pokemon$name, "del tipo", max_defense_pokemon$type1, "\n")
 ```
 
-Los Pokémon con menores valores en su defensa son r min_defense_pokemon$name de tipo r min_defense_pokemon$type1, mientras que el Pokémon con mayor defensa es r max_defense_pokemon$name de tipo r max_defense_pokemon$type1. Esto destaca qué tipos de Pokémon son más efectivos en resistir ataques.
+Los Pokémon con menos defensa son Chansey y Happiny, ambos de tipo normal, mientras que el Pokémon con mayor defensa es Regirock de tipo roca, concordando con la tendencia observada de que los tipo roca y acero sean los que suelen tener unos mayores valores en este atributo.
 
 <br>
 
 #### 2.4.4 Ataque especial
 
-A continuación se analizará la relación entre el ataque especial (sp_atk) y los tipos elementales Pokémon:
+En este subapartado se analizará la relación entre el Ataque especial (sp_atk) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Ataque Especial
@@ -683,13 +704,13 @@ ggplot(pokemon_monotipos, aes(x = type1, y = sp_atk)) +
   geom_boxplot() +
   labs(title = "Distribución de Ataque Especial por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
-       y = "Ataque Especial") +
+       y = "Ataque especial (sp_atk)") +
   theme_minimal() +
   coord_flip()
   
 ```
 
-El gráfico de caja muestra la distribución del ataque especial entre los distintos tipos de Pokémon. La variabilidad en el ataque especial puede influir en el desempeño general en combate de los Pokémon que dependen de movimientos especiales.
+El análisis muestra la variación del ataque especial en los distintos tipos Pokémon. La distribución de los valores no es demasiado diferente entre estos, a excepción de cinco de ellos: los tipo roca, tierra, lucha y bicho (Pokémon débiles en su ataque especial) y el tipo psíquico (que tiene un gran ataque especial).
 
 
 ```{r}
@@ -703,29 +724,30 @@ min_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == min_sp_atk)
 max_sp_atk_pokemon <- pokemon_monotipos %>% filter(sp_atk == max_sp_atk)
 
 cat("Media de Ataque Especial:", mean_sp_atk, "\n")
+median_sp_atk <- median(pokemon_monotipos$sp_atk, na.rm = TRUE)
+cat("Mediana de Ataque Especial:", median_sp_atk, "\n")
 ```
 
-La media del ataque especial para los Pokémon monotipos es de r mean_sp_atk. Esto representa el valor promedio de ataque especial que tienen los Pokémon con un solo tipo elemental.
+La media del ataque especial para los Pokémon monotipos es de 64.75952, mientras la mediana es de 60, evidenciado valores muy similares entorno al centro de la distribución.
 
 
 ```{r}
 cat("Desviación estándar de Ataque Especial:", sd_sp_atk, "\n")
 ```
 
-La desviación estándar es de r sd_sp_atk. Esto indica que, en promedio, los valores de ataque especial se desvían de la media en aproximadamente X puntos (sustituir X por el valor calculado). Esta variabilidad sugiere que algunos Pokémon tienen capacidades especiales que pueden influir significativamente en el resultado de los combates.
+La desviación estándar es de 28.21935, lo cual indica, de nuevo, que la variabilidad del ataque es moderada, pero sin llegar a ser extrema.
 
 
 ```{r}
 cat("Pokémon con menor Ataque Especial:", min_sp_atk_pokemon$name, "del tipo", min_sp_atk_pokemon$type1, "\n")
 cat("Pokémon con mayor Ataque Especial:", max_sp_atk_pokemon$name, "del tipo", max_sp_atk_pokemon$type1, "\n")
 ```
-Los Pokémon con menores valores en su ataque especial son r min_sp_atk_pokemon$name de tipo r min_sp_atk_pokemon$type1, y el Pokémon con mayor ataque especial es r max_sp_atk_pokemon$name de tipo r max_sp_atk_pokemon$type1. Esto permite resaltar qué tipos de Pokémon son más eficaces utilizando movimientos especiales.
-
+Los Pokémon con menores valores en su ataque especial son Feebas y Bonsly, de tipo agua y roca respectivamente, a la vez que el Pokémon con mayor ataque especial es Xurkitree, de tipo eléctrico. Salvo Feebas (tipo agua), los otros dos Pokémon concuerdan con lo mostrado en el anterior gráfico, donde el tipo roca es uno de los más débiles en cuanto a ataque especial y el tipo psíquico es uno de los más fuertes. 
 
 <br>
 
 #### 2.4.5 Defensa especial
-A continuación se analizará la relación entre el ataque (attack) y los tipos elementales Pokémon:
+A continuación se analizará la relación entre la Defensa especial (sp_def) y los tipos elementales Pokémon:
 
 ```{r}
 # Gráfico de caja para Defensa Especial
@@ -733,10 +755,15 @@ ggplot(pokemon_monotipos, aes(x = type1, y = sp_def)) +
   geom_boxplot() +
   labs(title = "Distribución de Defensa Especial por Tipo de Pokémon Monotipo",
        x = "Tipo de Pokémon (type1)",
-       y = "Defensa Especial") +
+       y = "Defensa especial (sp_def)") +
   theme_minimal() +
   coord_flip()
+```
 
+En este Box-plot se observa la distribución de la defensa especial entre los tipos de Pokémon. Esta no presenta grandes diferencias entre cada una de ellos. Los únicos que destacan débilmente por sus valores son los tipos roca y bicho (con bajo puntuaje en defensa especial) y los tipos fantasma hada y psíquico (altos valores).
+
+
+```{r}
 # Estadísticas descriptivas de Defensa Especial
 mean_sp_def <- mean(pokemon_monotipos$sp_def, na.rm = TRUE)
 sd_sp_def <- sd(pokemon_monotipos$sp_def, na.rm = TRUE)
@@ -746,14 +773,31 @@ max_sp_def <- max(pokemon_monotipos$sp_def, na.rm = TRUE)
 min_sp_def_pokemon <- pokemon_monotipos %>% filter(sp_def == min_sp_def)
 max_sp_def_pokemon <- pokemon_monotipos %>% filter(sp_def == max_sp_def)
 
-# Mostrar estadísticas
-cat("**Análisis de Defensa Especial:**\n")
 cat("Media de Defensa Especial:", mean_sp_def, "\n")
+median_sp_def <- median(pokemon_monotipos$sp_def, na.rm = TRUE)
+cat("Mediana de Defensa Especial:", median_sp_def, "\n")
+```
+
+La media de la defensa especial para los Pokémon monotipos es de 65.98798, mientras que la mediana es de 60, por lo cual hay una considerable uniformidad de este atributo en torno al centro de la distribución.
+
+
+```{r}
 cat("Desviación estándar de Defensa Especial:", sd_sp_def, "\n")
+```
+
+La desviación estándar es de 25.9888, lo que implica una variablidad moderada, de lo que se deduce que, aunque los valores no estén muy dispersos, si hay cierto grado de diversidad entre las defensas especiales de los monotipos.
+
+
+```{r}
 cat("Pokémon con menor Defensa Especial:", min_sp_def_pokemon$name, "del tipo", min_sp_def_pokemon$type1, "\n")
 cat("Pokémon con mayor Defensa Especial:", max_sp_def_pokemon$name, "del tipo", max_sp_def_pokemon$type1, "\n")
 ```
 
+Los Pokémon con menores valores en su defensa especial son Caterpie, Magikarp y Stonjourner, de tipo bicho, agua y roca respectivamente (hecho que reafirma que los tipos roca y bicho sean los que menos defensa especial tengan), mientras que el Pokémon con mayor defensa especial es Regice, de tipo hielo.
+
+<br>
+
+En conlusión, se puede afirmar que existen ciertos tipos Pokémon especializados en un tipo de combate. Un buen ejemplo de esto son los tipos roca y acero que poseen valores muy elevados en su ataque y defensa física y valores algo más bajos en las mismas categorías de tipo especial. En contraposición, el tipo psíquico se caracteriza por su gran ataque y defensa especial. Además se puede identificar la existencia de Pokémon "tanques", Pokémon que no son fáciles de derrotar debido a su alta vida y sus atributos de defensa, aunque no tengan un gran poder de ataque.
 
 
 ### 2.5 Relación entre HP y Defensa
@@ -768,13 +812,13 @@ ggplot(pokemon_table, aes(x = hp, y = defense)) +
   geom_point(color = "blue") + 
   geom_smooth(method = "lm", se = FALSE, color = "red") + 
   labs(title = "Relación entre HP y Defensa con Línea de Tendencia",
-       x = "Puntos de Salud (HP)",
+       x = "Puntos de Salud (hp)",
        y = "Defensa") +
   theme_minimal()
 
 ```
 
-Podemos observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la anteriormente mencionada relación no es muy fuerte.
+Podemos observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
 
 Para contrastar este análisis se puede hallar el coeficiente de correlación para obtener datos cuantitativos:
 
