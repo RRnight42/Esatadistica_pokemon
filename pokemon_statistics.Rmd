@@ -100,6 +100,9 @@ Empezaremos con el primer objetivo de estudio, si el físico de los pokemon infl
 
 
 
+### HP (Puntos de salud)
+
+Esta estadística determina la cantidad de daño que un Pokémon puede recibir antes de desmayarse. Un HP alto es crucial para la supervivencia en combates, y su distribución puede revelar qué tan robustos son los Pokémon en el conjunto de datos.
 
 
 ```{r}
@@ -107,7 +110,7 @@ Empezaremos con el primer objetivo de estudio, si el físico de los pokemon infl
 
 # Gráfico de barras para HP
 ggplot(pokemon_table, aes(x = hp)) +
-  geom_histogram(fill = "skyblue", color = "black") +
+  geom_histogram(fill = "pink", color = "black") +
   labs(title = "Distribución de HP", x = "HP", y = "Frecuencia") +
   theme_minimal()
 ```
@@ -129,33 +132,138 @@ Como podemos observar , en la gráfica abundan los valores que poseen alrededor 
 
 **Bajos puntos de vida no implica que sea derrotado al momento**
 
+### Ataque
 
 
 
+```{r}
 
+# Gráfico de barras para Ataque
+ggplot(pokemon_table, aes(x = attack)) +
+  geom_histogram(fill = "orange", color = "black") +
+  labs(title = "Distribución de Ataque", x = "Ataque", y = "Frecuencia") +
+  theme_minimal()
+
+```
+
+
+Como podemos observar , el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/534.png){width=30% height=30%}
+
+### Conkeldurr Ataque : 140 
+
+**Este pokémon tiene muchas probabilidades de debilitar de un solo golpe al rival**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/113.png){width=30% height=30%}
+
+
+### Chansey Ataque : 5 
+
+**Hay ocasiones en las que hay que aprovechar otras estadísticas buenas para sacar provecho al pokémon**
+
+
+### Defensa
+
+Esta estadística indica la capacidad de un Pokémon para resistir ataques físicos. Es esencial para los Pokémon que juegan roles defensivos. La distribución de la defensa puede mostrar cómo se equilibran las capacidades ofensivas y defensivas en el grupo.
+
+```{r}
+
+# Gráfico de barras para  Defensa
+ggplot(pokemon_table, aes(x = defense)) +
+  geom_histogram(fill = "yellow", color = "black") +
+  labs(title = "Distribución de Defensa", x = "Defensa ", y = "Frecuencia") +
+  theme_minimal()
+
+```
+La defensa es una estadística que suele mantenerse entre 60 y 90 puntos, existen unos pokemon cuyos valores defensivos son extremadamente altos , debido a que juegan un papel mas defensivo en los combates y tienen estrategias de desgaste encajando los golpes del rival. 
+
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/377.png){width=30% height=30%}
+
+### Regirock Defensa : 200 
+
+**Este pokémon tiene muchas probabilidades de aguantar un ataque del rival**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/468.png){width=30% height=30%}
+
+
+### Togekiss Defensa : 50 
+
+**Este pokémon no tiene una buena defensa física, por lo que puede ser derrotado fácilmente**
+
+
+### Ataque Especial
+
+Similar al ataque, pero se refiere a la potencia de los movimientos especiales. Esto es relevante para los Pokémon que dependen de ataques de tipo elemental.
+
+```{r}
+
+# Gráfico de barras para Ataque Especial
+ggplot(pokemon_table, aes(x = sp_def)) +
+  geom_histogram(fill = "purple", color = "black") +
+  labs(title = "Distribución de Ataque Especial", x = "Ataque Especial", y = "Frecuencia") +
+  theme_minimal()
+
+```
+
+Como podemos ver , no se aleja mucho de otras estadisticas , no hay mucha variacion con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/796.png){width=30% height=30%}
+
+### Xurkitree Ataque Especial : 173 
+
+**Este pokémon tiene muchas probabilidades de golpear muy fuerte con sus ataques especiales**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/526.png){width=30% height=30%}
+
+
+### Gigalith Ataque Especial : 60 
+
+**Este pokemon sería inviable para invertir en este atributo **
+
+
+
+### Defensa Especial
+
+Mide la resistencia a ataques especiales. Junto con la defensa, es vital para determinar la durabilidad de un Pokémon ante distintos tipos de movimientos.
 
 
 ```{r}
 
 # Gráfico de barras para Special Defense
 ggplot(pokemon_table, aes(x = sp_def)) +
-  geom_histogram(fill = "lightgreen", color = "black") +
+  geom_histogram(fill = "skyblue", color = "black") +
   labs(title = "Distribución de Defensa Especial", x = "Defensa Especial", y = "Frecuencia") +
   theme_minimal()
 
 ```
 
+Como podemos ver , la defensa especial no es un atributo destacable por ser alto en los pokémon , la mayoría de sus valores se encuentran 40 y 80 , lo cual puede significar que el pokemon al recibir un Ataque especial , pueda recibir mucho daño , condicionado por los puntos de salud. 
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/671.png){width=30% height=30%}
+
+### Florges Defensa Especial : 140 
+
+**Este pokémon tiene muchas probabilidades de aguantar un ataque especial del rival**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/094.png){width=30% height=30%}
 
 
+### Gengar Defensa Especial : 75 
+
+**Al tener un deterioro en esta estadística , puede que tenga otras mejores**
+
+
+
+### Velocidad
 
 La velocidad en los combates Pokémon es un factor crucial, porque determina que pokemon tiene prioridad para atacar antes, existen combates donde se decide el resultado solo por la velocidad. Existen excepciones como ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
-
-Vamos a realizar un análisis de como se distribuye la velocidad 
 
 ```{r}
 
 ggplot(pokemon_table, aes(x = speed)) + 
-  geom_histogram(binwidth = 5, fill = "green", color = "black") + 
+  geom_histogram(fill = "green", color = "black") + 
   labs(title = "Distribución de la Velocidad", 
        x = "Velocidad (entero)", 
        y = "Pokémon con x velocidad") +
@@ -166,63 +274,94 @@ ggplot(pokemon_table, aes(x = speed)) +
 
 En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
 
-Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/805.png){width=30% height=30%}
+
+### Stakataka Velocidad : 13 
+
+**Una baja velocidad no implica necesariamente que el pokemon este en desventaja.**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/795.png){width=30% height=30%}
 
 
-```{r}
-media_speed <- mean(pokemon_table$speed, na.rm = TRUE)
+### Pheromosa Velocidad : 151 
 
-# Mediana de las velocidades
-mediana_speed <- median(pokemon_table$speed, na.rm = TRUE)
-
-# Moda de las velocidades (a veces no hay una función directa en R para la moda, pero podemos hacerla manualmente)
-moda_speed <- as.numeric(names(sort(table(pokemon_table$speed), decreasing=TRUE)[1]))
-
-# Desviación estándar de las velocidades
-de_speed <- sd(pokemon_table$speed, na.rm = TRUE)
+**Tener una velocidad alta no garantiza la victoria ante el rival.**
 
 
-```
+
+
+Para contrastar todos estos valores de los atributos de combate, se calculará la media , mediana , moda y desviación estándar.
 
 #### **Media**
-La **media** indica el valor promedio de las velociades teniendo en cuenta los valores extremos, tanto bajos como altos, y medios.
-
-```{r}
-media_speed <- round(media_speed, 0)
-media_speed
-
-```
-
+La **media** es una de las medidas de tendencia central más comunes y representa el promedio aritmético de un conjunto de datos. Se calcula sumando todos los valores en la muestra y dividiéndolos entre el número total de observaciones. En nuestro análisis, la media de cada estadística (como HP, ataque, defensa, etc.) nos proporciona una visión general del valor típico para esas características entre los Pokémon. Aunque es útil para resumir los datos, la media puede verse afectada por valores extremos o atípicos.
 
 #### **Mediana**
-La **mediana** de las velocidades indica el valor central de la distribución, contemplando el punto en el que la mitad de los Pokémon son más lentos y la otra mitad son más rápidos. Es decir, ofrece una visión más equilibrada de la velocidad típica.
 
-```{r}
-mediana_speed <- round(mediana_speed, 0)
-mediana_speed
+La **mediana** es otra medida de tendencia central que representa el valor medio de un conjunto de datos cuando se ordenan de menor a mayor. Es especialmente útil cuando los datos contienen valores atípicos o están distribuidos de manera desigual, ya que la mediana no se ve tan afectada por estos valores extremos. En el caso de las estadísticas de los Pokémon, la mediana nos muestra el valor "central" de cada estadística, dividiendo la mitad superior de la mitad inferior.
 
-```
+
 
 #### **Moda**
-La **moda** es la velocidad que se repite con más frecuencia entre los Pokémon. Puede indicar grupos de Pokémon con capacidades similares.
 
-```{r}
+La **moda** es el valor que aparece con mayor frecuencia en un conjunto de datos. A diferencia de la media y la mediana, la moda puede no ser única, ya que pueden existir varios valores que aparezcan con la misma frecuencia (esto se conoce como datos multimodales). En nuestro análisis, la moda para cada estadística nos señala los valores más comunes entre los Pokémon, lo que puede ser útil para identificar patrones recurrentes en las estadísticas.
 
-moda_speed <- round(moda_speed ,0)
-moda_speed
 
-```
-
-**Una moda de 50 es un problema porque hay un factor clave y es que al haber pokemon que son formas que evolucionan de otras especies , no se utilizan en el ambito competitivo del mundo Pokémon.Sin embargo, los tomamos en cuenta porque dentro del juego inevitablemente hay que usarlos en algun momento**
 
 #### **Desviación Estándar**
-La **desviación estándar** refleja cómo se distribuyen las velocidades en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con velocidades muy variadas, desde muy lentos hasta muy rápidos. Si es baja, las velocidades estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
+La **desviación estándar** mide la dispersión de los datos respecto a la media. En otras palabras, indica cuánto varían los valores de la media. Un valor bajo de desviación estándar sugiere que los datos están estrechamente agrupados alrededor de la media, mientras que un valor alto indica una mayor variabilidad entre los datos. En el contexto de las estadísticas de los Pokémon, la desviación estándar nos ayuda a entender si, por ejemplo, todos los Pokémon tienen un HP similar o si hay una gran variabilidad en esta estadística.
+
+
+
 
 ```{r}
-de_speed <- round(de_speed, 0)
-de_speed
+
+stats_tibble <- tibble(
+  Estadistica= c("HP", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"),
+  
+  Media = c(mean(pokemon_table$hp, na.rm = TRUE),
+           mean(pokemon_table$attack, na.rm = TRUE),
+           mean(pokemon_table$defense, na.rm = TRUE),
+           mean(pokemon_table$sp_atk, na.rm = TRUE),
+           mean(pokemon_table$sp_def, na.rm = TRUE),
+           mean(pokemon_table$speed, na.rm = TRUE)),
+  
+  Mediana = c(median(pokemon_table$hp, na.rm = TRUE),
+             median(pokemon_table$attack, na.rm = TRUE),
+             median(pokemon_table$defense, na.rm = TRUE),
+             median(pokemon_table$sp_atk, na.rm = TRUE),
+             median(pokemon_table$sp_def, na.rm = TRUE),
+             median(pokemon_table$speed, na.rm = TRUE)),
+  
+  Moda = c(as.numeric(names(sort(table(pokemon_table$hp), decreasing = TRUE)[1])),
+           as.numeric(names(sort(table(pokemon_table$attack), decreasing = TRUE)[1])),
+           as.numeric(names(sort(table(pokemon_table$defense), decreasing = TRUE)[1])),
+           as.numeric(names(sort(table(pokemon_table$sp_atk), decreasing = TRUE)[1])),
+           as.numeric(names(sort(table(pokemon_table$sp_def), decreasing = TRUE)[1])),
+           as.numeric(names(sort(table(pokemon_table$speed), decreasing = TRUE)[1]))),
+  
+  Desviacion_estandar = c(sd(pokemon_table$hp, na.rm = TRUE),
+         sd(pokemon_table$attack, na.rm = TRUE),
+         sd(pokemon_table$defense, na.rm = TRUE),
+         sd(pokemon_table$sp_atk, na.rm = TRUE),
+         sd(pokemon_table$sp_def, na.rm = TRUE),
+         sd(pokemon_table$speed, na.rm = TRUE))
+)
+
+# Mostrar la tibble
+print(stats_tibble)
+
 
 ```
+
+En esta tabla hemos recogido todas las medias , medianas, modas y desviaciones estándar. Como podemos observar , vemos que la estadistica media mas alta en los pokémon es el Ataque , con un 77.52, 
+
+En el área de las medianas , los valores oscilan entre 65 y 75 , con ligeras variaciones en sus resultados , al ser la media mas alta el Ataque , es normal que la mediana sea la mas alta.
+
+La moda tambien nos da una idea aproximada de los resultados vistos arriba , al haberse repetido muchas veces el 80 como Ataque de varios pokemon , eso ha influido de forma relativa en los resultados 
+La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos los 6 resultados , oscilando entre 26 y 30. En general , los resultados no se alejan mucho de la media, solo unos 30 puntos en el peor de los casos , exceptuando los casos extremos
+
+Es interesante recalcar el hecho de comparar Ataque especial y Velocidad , puesto que a pesar de que la Moda en la Velocidad es de 50 , es la media mas baja de todas. En contraposicion al Ataque Especial en la cual a pesar de no ser la media mas alta , su moda es de 40 , lo cual ha contrubuido a que en general su media sea baja con respecto a la media de Ataque, eso quiere decir que hay algunos pokémon en los cuales su estádistica de Ataque Especial es su estadistica mas alta , hay una gran diferencia con respecto a las otras. 
 
 ### 1.3 Distribución de los pesos
 
@@ -543,42 +682,51 @@ Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener géner
 
 
 ```{r}
-table(pokemon_table$percent_male, pokemon_table$percent_female)
-  
+pokemon_table$percent_male_label <- ifelse(is.na(pokemon_table$percent_male) | 
+                                           pokemon_table$percent_male < 0 | 
+                                           pokemon_table$percent_male > 100, 
+                                           "SIN GÉNERO", 
+                                           paste0(pokemon_table$percent_male, "%"))
+
+pokemon_table$percent_female_label <- ifelse(is.na(pokemon_table$percent_female) | 
+                                             pokemon_table$percent_female < 0 | 
+                                             pokemon_table$percent_female > 100, 
+                                             "", 
+                                             paste0(pokemon_table$percent_female, "%"))
+
+# Calcular la tabla de frecuencias con dplyr
+freq_table_df <- pokemon_table %>%
+  count(percent_male_label, percent_female_label)
+
+colnames(freq_table_df) <- c("Porcentaje Macho", "Porcentaje Hembra", "Frecuencia")
+
+
+# Mostrar la tabla de frecuencias
+print(freq_table_df)
 
 ```
 
-```{r}
-ggplot(pokemon_table, aes(x = percent_female)) +
-  geom_histogram(binwidth = 10, fill = "lightpink", color = "black", na.rm = TRUE) +
-  labs(title = "Distribución del Porcentaje de Pokémon Hembras",
-       x = "Porcentaje de Hembras",
-       y = "Frecuencia") +
-  theme_minimal()
-```
 
 
-Estas dos tablas estan intrínsicamente relacionadas , precisamente porque se compensan por cada especie de pokemon , por ejemplo , si un
+Estas tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción , por ejemplo, el pokémon polilla Mothim solo puede ser macho, mientras que el pokémon avispa Vespiquena solo puede ser hembra
 
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/414.png){width=30% height=30%}
 
-## Datos bivariantes
+### 414 Mothim 
+
+**Este pokémon solo puede ser macho**
+
+![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/416.png){width=30% height=30%}
+
+### 416 Vespiquen
+
+**Este pokémon solo puede ser hembra**
+
+# 2 Datos bivariantes
 
 ### 2.2 Velocidad vs Defensa
 
 Uno de los factores que se pueden ver influidos por la velocidad es la defensa, puesto que, generalmente, un Pokémon con altas defensas suele conllevar en si una velocidad baja, y viceversa.
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/805.png){width=30% height=30%}
-
-### Stakataka Velocidad : 13 
-
-**Una baja velocidad no implica necesariamente que el pokemon este en desventaja.**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/795.png){width=30% height=30%}
-
-
-### Pheromosa Velocidad : 151 
-
-**Tener una velocidad alta no garantiza la victoria ante el rival.**
 
 
 Para comprobar si las defensas y las velocidades estan correlacionadas, se realizará un gráfico de dispersión. 
