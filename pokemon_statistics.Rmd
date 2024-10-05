@@ -410,40 +410,31 @@ de_weight <- sd(filtered_weight, na.rm = TRUE)
 La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
 
 ```{r}
-media_weight <- round(media_weight, 0)
+media_weight <- round(media_weight, 1)
 media_weight
 
 ```
 
-Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 93kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
+Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 67kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
 
 
 #### **Mediana**
 La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más ligeros y la otra mitad son más pesados. Es decir, ofrece una visión más equilibrada del peso típico.
 
 ```{r}
-mediana_weight <- round(mediana_weight, 0)
+mediana_weight <- round(mediana_weight, 1)
 mediana_weight
 
 ```
 
-El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido, con lo cual al existir el fenómeno de la evolucion pokemon , pues los pokemon van ganando peso a medida que evolucionan a una fase superior. Por si sola , puede parecer no tener correlación con ninguna otra estadística 
-
-
-
-
-
-
-
-hecho cuya causa podría consistir en la necesidad de atraer al público joven al mundo de Pokémon y, por lo tanto, Nintendo recurriendo a la creación de seres de un tamaño y peso más reducido, más adorables o atractivos visualmente para una audiencia de temprana edad.
-
+El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido, con lo cual al existir el fenómeno de la evolucion pokemon , pues los pokemon van ganando peso a medida que evolucionan a una fase superior. Por si sola , puede parecer no tener correlación con ninguna otra estadística, -.
 
 #### **Moda**
 La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
 
 ```{r}
 
-moda_weight <- round(moda_weight ,0)
+moda_weight <- round(moda_weight, 1)
 moda_weight
 
 ```
@@ -451,17 +442,107 @@ moda_weight
 El resultado puede parecer algo inusual, pero considerando que todos los pesos están expresados con decimales, lo que provoca un mayor abarque de cantidades numéricas, unido a la inmensa cantidad de Pokémon de peso reducido, tiene lógica que el resultado de la moda sea un valor tan reducido como este.
 
 #### **Desviación Estándar**
-La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen velocidades similares.
+La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen pesos similares.
 
 ```{r}
-de_weight <- round(de_weight, 0)
+de_weight <- round(de_weight, 1)
 de_weight
 
 ```
 
 En este caso, la desviación típica confirma la existencia de una amplia variedad de pesos en el mundo de Pokémon.
 
-### 1.4 Frecuencia de los tipos elementales
+### 1.4 Distribución de las alturas
+
+Otro factor que puede resultar tan relevante como el peso es la altura, debido a que esta es uno de los factores influyentes en otras estadísticas como el peso para garantizar cierta verosimilitud, así como podría llegar a afectar, aunque sea parcialmente, a ciertas variables cuantitativas como la vida o la defensa.
+
+```{r}
+
+# Eliminar comas o espacios en blanco si existen
+# pokemon_table$height <- gsub(",", "", pokemon_table$height)
+# pokemon_table$height <- gsub(" ", "", pokemon_table$height)
+
+# Convertir a numérico
+pokemon_table$height <- as.numeric(pokemon_table$height)
+
+ggplot(pokemon_table[pokemon_table$height < 1000, ], aes(x = height)) + 
+  geom_histogram(binwidth = 1, fill = "green", color = "black") + 
+  labs(title = "Distribución de la Altura", x = "Altura (m)", y = "Frecuencia") +
+  theme_minimal()
+```
+
+La gráfica superior, una vez más, recopila la información de altura de todos los Pokémon, cuya gran mayoría se encuentra entre 0.1 y 5 metros de altura, con casos que alcanzan hasta los 20 metros.
+
+A continuación, seguiremos el mismo procedimiento que con el peso y analizaremos los resultados de media, mediana, moda y desviación estándar.
+
+
+```{r}
+# Filtrar los valores mayores a 20 para evitar errores
+filtered_height <- pokemon_table$height[pokemon_table$height <= 20]
+
+# Media de los pesos
+media_height <- mean(filtered_height, na.rm = TRUE)
+
+# Mediana de los pesos
+mediana_height <- median(filtered_height, na.rm = TRUE)
+
+# Moda de los pesos
+moda_height <- as.numeric(names(sort(table(filtered_height), decreasing=TRUE)[1]))
+
+# Desviación estándar de los pesos
+de_height <- sd(filtered_height, na.rm = TRUE)
+
+
+```
+
+#### **Media**
+La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
+
+```{r}
+media_height <- round(media_height, 2)
+media_height
+
+```
+
+Debido al valor reducido de la altura media, podemos señalar el hecho de que una gran parte de los Pokémon deben tener alturas bajas de tal manera que los valores más superiores o extremos sean menos ocasionales.
+
+
+#### **Mediana**
+La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más bajos y la otra mitad son más altos. Es decir, ofrece una visión más equilibrada de la altura típica.
+
+```{r}
+mediana_height <- round(mediana_height, 2)
+mediana_height
+
+```
+
+El resultado vuelve a apuntar a que la gran mayoría de los Pokémon tienen una altura reducida, menor o equivalente a 1 metro de altura, por lo que deducimos que Pokémon de tamaños y alturas considerablemente mayores resultan más inusuales.
+
+#### **Moda**
+La **moda** consiste en la altura que aparece con mayor frecuencia entre los Pokémon.
+
+```{r}
+
+moda_height <- round(moda_height, 2)
+moda_height
+
+```
+
+El resultado ayuda a sustentar de forma más efectiva la teoría que los valores de la media y mediana sugieren: la mayor parte de los Pokémon tienen alturas reducidas, y la moda nos indica que, concretamente, la mayor parte se encuentra alrededor de los 0,6m de altura.
+
+#### **Desviación Estándar**
+La **desviación estándar** muestra cómo se distribuyen las alturas en relación con la media, igual que con el peso. Si la desviación estándar es alta, significa que habrá Pokémon con alturas muy variadas. Por el contrario, si esta es baja, las alturas estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen alturas similares.
+
+```{r}
+de_height <- round(de_height, 2)
+de_height
+
+```
+
+A diferencia que con el peso, todas las pruebas apuntan a que la altura se encuentra mayoritariamente esparcida dentro de un rango concreto con otros valores que son más raros o incluso atípicos.
+
+
+### 1.5 Frecuencia de los tipos elementales
 
 Los tipos elementales de los Pokémon son fundamentales para determinar sus fortalezas y debilidades en combate. Cada tipo interactúa de manera específica con otros tipos, lo que influye en la estrategia a seguir durante las batallas y en el desempeño general de cada Pokémon.
 
@@ -582,7 +663,7 @@ ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -
 En la gráfica presentada arriba se puede observar que los tipos combinados más frecuentes son: el normal/volador (normal/flying), el planta/veneno (grass/poison), el bicho/volador (bug/flying) y el bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
 
 
-### 1.5 Número de Pokémon por Generación
+### 1.6 Número de Pokémon por Generación
 
 Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
 
