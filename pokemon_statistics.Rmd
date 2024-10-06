@@ -96,6 +96,114 @@ Empezaremos con el primer objetivo de estudio, si el físico de los pokemon infl
 
 ## Datos univariantes
 
+
+### 1.1 Suma de estadísticas
+
+
+bla bla bla 
+
+
+```{r}
+
+
+
+# Gráfico de barras para estdicticas totales
+ggplot(pokemon_table, aes(y = total)) +
+  geom_bar(fill = "gray", color = "black") +
+  labs(title = "Distribución de estadíscticas totales", x = "Frecuencia", y = "Estadísticas totales") +
+  theme_minimal()
+
+
+# Gráfico de barras para estdicticas totales
+ggplot(pokemon_table, aes(y = total)) +
+  geom_histogram(fill = "gray", color = "black") +
+  labs(title = "Distribución de estadíscticas totales", x = "Frecuencia", y = "Estadísticas totales") +
+  theme_minimal()
+
+
+
+
+```
+
+bla bla bla
+
+
+Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
+
+
+```{r}
+# Filtrar los valores mayores a 1000 para evitar errores
+filtered_total <- pokemon_table$total[pokemon_table$total <= 1000]
+
+# Media de las estadisticas totales
+media_total <- mean(filtered_total, na.rm = TRUE)
+
+# Mediana de los pesos
+mediana_total <- median(filtered_total, na.rm = TRUE)
+
+# Moda de las estadisticas totales
+moda_total <- as.numeric(names(sort(table(filtered_total), decreasing=TRUE)[1]))
+
+# Desviación estándar de las estadisticas totales
+de_total <- sd(filtered_total, na.rm = TRUE)
+
+
+```
+
+#### **Media**
+La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
+
+```{r}
+media_total <- round(media_total, 1)
+media_total
+
+```
+
+Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 67kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
+
+
+#### **Mediana**
+La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más ligeros y la otra mitad son más pesados. Es decir, ofrece una visión más equilibrada del peso típico.
+
+```{r}
+mediana_total <- round(mediana_total, 1)
+mediana_total
+
+```
+
+El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido, con lo cual al existir el fenómeno de la evolucion pokemon , pues los pokemon van ganando peso a medida que evolucionan a una fase superior. Por si sola , puede parecer no tener correlación con ninguna otra estadística, -.
+
+#### **Moda**
+La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
+
+```{r}
+
+moda_total <- round(moda_total, 1)
+moda_total
+
+```
+
+El resultado puede parecer algo inusual, pero considerando que todos los pesos están expresados con decimales, lo que provoca un mayor abarque de cantidades numéricas, unido a la inmensa cantidad de Pokémon de peso reducido, tiene lógica que el resultado de la moda sea un valor tan reducido como este.
+
+#### **Desviación Estándar**
+La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen pesos similares.
+
+```{r}
+de_total <- round(de_total, 1)
+de_total
+
+```
+
+
+
+
+conclusiones de Luis de las estadisticas
+
+
+
+
+
+
 ### 1.2 Estadisticas individuales de Pokémon
 
 
@@ -119,18 +227,6 @@ El gráfico de barras se utiliza para mostrar la frecuencia con la que aparecen 
 
 Como podemos observar , en la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud , curiosamente hay Pokémon que poseen mas de 200 puntos de vida, porque hay excepciones con caracteristicas extremas. 
 
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/799.png){width=30% height=30%}
-
-### Guzzlord HP : 223 
-
-**Vida alta no implica que sea un pokémon muy defensivo**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/213.png){width=30% height=30%}
-
-
-### Shuckle HP : 20 
-
-**Bajos puntos de vida no implica que sea derrotado al momento**
 
 ### Ataque
 
@@ -149,19 +245,6 @@ ggplot(pokemon_table, aes(x = attack)) +
 
 Como podemos observar , el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
 
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/534.png){width=30% height=30%}
-
-### Conkeldurr Ataque : 140 
-
-**Este pokémon tiene muchas probabilidades de debilitar de un solo golpe al rival**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/113.png){width=30% height=30%}
-
-
-### Chansey Ataque : 5 
-
-**Hay ocasiones en las que hay que aprovechar otras estadísticas buenas para sacar provecho al pokémon**
-
 
 ### Defensa
 
@@ -176,21 +259,9 @@ ggplot(pokemon_table, aes(x = defense)) +
   theme_minimal()
 
 ```
+
+
 La defensa es una estadística que suele mantenerse entre 60 y 90 puntos, existen unos pokemon cuyos valores defensivos son extremadamente altos , debido a que juegan un papel mas defensivo en los combates y tienen estrategias de desgaste encajando los golpes del rival. 
-
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/377.png){width=30% height=30%}
-
-### Regirock Defensa : 200 
-
-**Este pokémon tiene muchas probabilidades de aguantar un ataque del rival**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/468.png){width=30% height=30%}
-
-
-### Togekiss Defensa : 50 
-
-**Este pokémon no tiene una buena defensa física, por lo que puede ser derrotado fácilmente**
 
 
 ### Ataque Especial
@@ -208,20 +279,6 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 ```
 
 Como podemos ver , no se aleja mucho de otras estadisticas , no hay mucha variacion con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/796.png){width=30% height=30%}
-
-### Xurkitree Ataque Especial : 173 
-
-**Este pokémon tiene muchas probabilidades de golpear muy fuerte con sus ataques especiales**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/526.png){width=30% height=30%}
-
-
-### Gigalith Ataque Especial : 60 
-
-**Este pokemon sería inviable para invertir en este atributo **
-
 
 
 ### Defensa Especial
@@ -241,20 +298,6 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 
 Como podemos ver , la defensa especial no es un atributo destacable por ser alto en los pokémon , la mayoría de sus valores se encuentran 40 y 80 , lo cual puede significar que el pokemon al recibir un Ataque especial , pueda recibir mucho daño , condicionado por los puntos de salud. 
 
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/671.png){width=30% height=30%}
-
-### Florges Defensa Especial : 140 
-
-**Este pokémon tiene muchas probabilidades de aguantar un ataque especial del rival**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/094.png){width=30% height=30%}
-
-
-### Gengar Defensa Especial : 75 
-
-**Al tener un deterioro en esta estadística , puede que tenga otras mejores**
-
-
 
 ### Velocidad
 
@@ -273,22 +316,6 @@ ggplot(pokemon_table, aes(x = speed)) +
 ```
 
 En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
-
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/805.png){width=30% height=30%}
-
-### Stakataka Velocidad : 13 
-
-**Una baja velocidad no implica necesariamente que el pokemon este en desventaja.**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/795.png){width=30% height=30%}
-
-
-### Pheromosa Velocidad : 151 
-
-**Tener una velocidad alta no garantiza la victoria ante el rival.**
-
-
 
 
 Para contrastar todos estos valores de los atributos de combate, se calculará la media , mediana , moda y desviación estándar.
@@ -789,23 +816,12 @@ print(freq_table_df)
 
 
 
-Estas tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción , por ejemplo, el pokémon polilla Mothim solo puede ser macho, mientras que el pokémon avispa Vespiquena solo puede ser hembra
+Estas tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
 
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/414.png){width=30% height=30%}
-
-### 414 Mothim 
-
-**Este pokémon solo puede ser macho**
-
-![](https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/416.png){width=30% height=30%}
-
-### 416 Vespiquen
-
-**Este pokémon solo puede ser hembra**
 
 # 2 Datos bivariantes
 
-### 2.2 Velocidad vs Defensa
+### 2.2 Comparativa con velocidad
 
 Uno de los factores que se pueden ver influidos por la velocidad es la defensa, puesto que, generalmente, un Pokémon con altas defensas suele conllevar en si una velocidad baja, y viceversa.
 
@@ -845,7 +861,7 @@ summary()
 ```
 
 
-### 2.3 Altura VS Velocidad
+### 2.3 Altura VS Peso
 
 La altura de los Pokémon también resulta un factor digno de estudio en relación con la velocidad.
 
