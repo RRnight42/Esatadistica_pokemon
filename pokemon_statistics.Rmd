@@ -82,12 +82,38 @@ library(knitr)
 library(remotes)
 library(kableExtra)
 library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
 ```
 
 A continuación, leeremos los datos del documento.
 
 ```{r}
 pokemon_table <- read_csv("pokemon_data.csv")
+
+
+type_translation <- c(
+  "Fire" = "Fuego",
+  "Water" = "Agua",
+  "Grass" = "Planta",
+  "Electric" = "Eléctrico",
+  "Flying" = "Volador",
+  "Ice" = "Hielo",
+  "Dragon" = "Dragón",
+  "Rock" = "Roca",
+  "Ground" = "Tierra",
+  "Psychic" = "Psíquico",
+  "Bug" = "Bicho",
+  "Fighting" = "Lucha",
+  "Ghost" = "Fantasma",
+  "Dark" = "Siniestro",
+  "Steel" = "Acero",
+  "Fairy" = "Hada",
+  "Poison" = "Veneno",
+  "Normal" = "Normal"
+)
+
 ```
 
 # ANÁLISIS EXPLORATORIO DE DATOS
@@ -821,47 +847,426 @@ Estas tabla muestra que la mayoría de especies están controladas de forma que 
 
 # 2 Datos bivariantes
 
-### 2.2 Comparativa con velocidad
+## 2.2 Comparativas entre estadísticas en base a la Velocidad
 
-Uno de los factores que se pueden ver influidos por la velocidad es la defensa, puesto que, generalmente, un Pokémon con altas defensas suele conllevar en si una velocidad baja, y viceversa.
+En esta sección del análisis, nuestro objetivo es comparar las estadísticas de ataque físico y ataque especial en función de la velocidad de los Pokémon, para luego hacer lo mismo con las estadísticas de defensa física y defensa especial. La velocidad es una característica clave que influye en el orden de los turnos durante una batalla, y es interesante explorar cómo se relaciona con las capacidades ofensivas y defensivas de los Pokémon.
+
+Primero, analizaremos si existe una correlación entre la velocidad y las dos formas de ataque, para identificar si los Pokémon más rápidos tienden a tener un mayor ataque físico, ataque especial o si mantienen un equilibrio entre ambos. Después, realizaremos un análisis similar para la defensa física y la defensa especial, observando si los Pokémon rápidos muestran algún patrón en su capacidad de resistencia frente a ataques físicos o especiales.
+
+Finalmente, compararemos las rectas de regresión obtenidas en estos análisis, buscando identificar patrones que nos permitan sacar conclusiones sobre la relación entre estas estadísticas clave. Esto nos permitirá entender si hay tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera más independiente.
 
 
-Para comprobar si las defensas y las velocidades estan correlacionadas, se realizará un gráfico de dispersión. 
+### 2.2.1 La Velocidad en base al Ataque
+
+Primero compararemos el Ataque y el Ataque Especial :
 
 ```{r}
-ggplot(pokemon_table, aes(x = speed, y = defense)) +
+
+pokemon_long_attack <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, speed, attack) |>
+  # Cambiamos a un formato largo para combinar type1 y type2
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+# Ahora puedes graficar usando solo 'type'
+ggplot(pokemon_long_attack, aes(x = speed, y = attack)) +
   geom_point() +  
   geom_smooth(method = "lm", se = FALSE, color = "red") + 
-  facet_wrap("type1") +
-  labs(title = "Relación entre Velocidad y Defensa",
+  facet_wrap(~type) +
+  labs(title = "Relación entre Velocidad y Ataque",
        x = "Velocidad",
-       y = "Defensa") +
+       y = "Ataque") +
   theme_minimal()
 
 ```
+ 
+ 
+Ahora pondremos los coeficientes de correlación y covarianza : 
 
 ```{r}
-pokemon_table |> 
-    filter(
-      type1 == "Fairy") |> 
-  ggplot(aes(x = speed, y = defense)) +
+calculate_stats_by_type <- function(data, stat) {
+  data |>
+    group_by(type) |>
+    summarise(
+      Correlation = cor(speed, !!sym(stat), use = "complete.obs"),
+      Covariance = cov(speed, !!sym(stat), use = "complete.obs")
+    ) |>
+    arrange(type)  # Ordenar por tipo para una visualización más clara
+}
+
+# Filtrar Pokémon y reorganizar en formato largo
+pokemon_long <- pokemon_table |>
+  select(name, type1, type2, speed, attack, sp_atk, defense, sp_def) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type))  # Filtramos los NA
+
+# Crear las 4 tibbles para correlación y covarianza
+attack_stats <- calculate_stats_by_type(pokemon_long, "attack")
+sp_atk_stats <- calculate_stats_by_type(pokemon_long, "sp_atk")
+defense_stats <- calculate_stats_by_type(pokemon_long, "defense")
+sp_def_stats <- calculate_stats_by_type(pokemon_long, "sp_def")
+
+
+print(attack_stats)
+
+```
+
+Los tipos Hada (0.500), Psíquico (0.503), y Dragón (0.460) muestran una relación positiva entre velocidad y ataque, indicando que los Pokémon más rápidos de estos tipos tienden a tener un mayor ataque.
+
+Con respecto a las covarianzas , el tipo Hada (477) y Psíquico (455) presentan las mayores covarianzas, lo que refuerza la relación entre velocidad y ataque en estos tipos.
+ 
+ 
+```{r}
+
+pokemon_long_sp_atk <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, speed, sp_atk) |>
+  # Cambiamos a un formato largo para combinar type1 y type2
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+
+ggplot(pokemon_long_sp_atk, aes(x = speed, y = sp_atk)) +
   geom_point() +  
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_smooth(method = "lm", se = FALSE, color = "purple") + 
+  facet_wrap(~type) +
+  labs(title = "Relación entre Velocidad y Ataque Especial",
+       x = "Velocidad",
+       y = "Ataque Especial") +
+  theme_minimal()
+
+```
+
+
+
+Ahora pondremos los coeficientes de correlación y covarianza :
+
+
+```{r}
+
+print(sp_atk_stats)
+
+```
+ 
+ 
+Los tipos Lucha (0.604), Veneno (0.516), y Bicho (0.508) presentan las correlaciones más altas, lo que sugiere que la velocidad y el ataque especial están altamente relacionados en estos tipos.
+
+Con respecto a las covarianzas , el Bicho (481) y Psíquico (455) muestran alta variación conjunta entre velocidad y ataque especial.
+
+### 2.2.2 La Velocidad en base a la Defensa
+
+Ahora compararemos la Defensa y la Defensa Especial
+
+```{r}
+pokemon_long_defense <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, speed, defense) |>
+  # Cambiamos a un formato largo para combinar type1 y type2
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+# Ahora puedes graficar usando solo 'type'
+ggplot(pokemon_long_defense, aes(x = speed, y = defense)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "green") + 
+  facet_wrap(~type) +
   labs(title = "Relación entre Velocidad y Defensa",
        x = "Velocidad",
        y = "Defensa") +
   theme_minimal()
+
 ```
+
+Ahora pondremos los coeficientes de correlación y covarianza :
+
 
 ```{r}
 
-lm()
-summary()
+print(defense_stats)
 
 ```
 
 
-### 2.3 Altura VS Peso
+Los tipos con mejor correlación, aunque más débiles, son Hada (0.392), Normal (0.343), y Lucha (0.243).
+
+Con respecto a las covarianzas , Hada (355) y Normal (205) muestran las mayores covarianzas, pero la relación es más débil en comparación con el ataque.
+
+Un caso curioso es que el tipo Roca presenta una correlación negativa notable (-0.377) y la mayor covarianza negativa (-393), lo que sugiere que en este tipo, los Pokémon más rápidos tienden a tener una defensa más baja, lo cual es contrario a lo esperado en términos de relación velocidad-defensa.
+
+
+
+```{r}
+pokemon_long_sp_def <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, speed, sp_def) |>
+  # Cambiamos a un formato largo para combinar type1 y type2
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+# Ahora puedes graficar usando solo 'type'
+ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "lightblue") + 
+  facet_wrap(~type) +
+  labs(title = "Relación entre Velocidad y Defensa Especial",
+       x = "Velocidad",
+       y = "Defensa Especial") +
+  theme_minimal()
+
+```
+
+
+Ahora pondremos los coeficientes de correlación y covarianza :
+
+
+```{r}
+
+print(sp_def_stats)
+
+```
+
+
+Los tipos Dragón (0.406), Hada (0.398), y Fuego (0.404) destacan por una correlación positiva entre velocidad y defensa especial.
+
+Con respecto a las covarianzas , Hada (411) y Dragón (303) presentan las mayores covarianzas.
+
+Un caso curioso es que el tipo Acero presenta una correlación ligeramente negativa (-0.026) con la velocidad y la defensa especial, y una covarianza negativa (-19.2), lo cual indica que los Pokémon de tipo acero más rápidos no tienen necesariamente mejores defensas especiales.
+
+
+### 2.2.3 Conclusión
+
+Tras hacer las correspondientes comparaciones , podemos observar que algunas conclusiones interesantes sobre la velocidad acorde a algunos tipos : 
+
+
+Comparando todas las gráficas , podemos concluir que la mayoría de Pokémon invierten mas en Ataque en funcion de su Velocidad, debido a que es mas preferible , y tiene mas lógica que un Pokémon se mueva antes y pueda atacar con mayor cantidad. No es muy viable en general invertir en casos donde un pokemon rápido con buenas defensas , pero malos puntos de ataques. 
+
+Los atacantes especiales, en especial los de tipo Eléctrico poseen muy buena Velocidad. Lo cual nos da a suponer que es mas viable utilizar Pokémon rápidos y con buen Ataque Especial , porque si nos fijamos en las gráficas de Defensa Especial , la media se encuentra muy por debajo en comparación a la Defensa física
+
+
+
+```{r}
+
+
+# Introduce el tipo en inglés
+highlight_type_english <- "Electric"
+
+# Traducir al español usando el diccionario
+highlight_type <- type_translation[highlight_type_english]
+
+# Filtrar datos y crear gráficos
+
+# Gráfico de Velocidad vs Ataque
+pokemon_long_attack <- pokemon_table |>
+  select(name, type1, type2, speed, attack) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g1 <- ggplot(pokemon_long_attack, aes(x = speed, y = attack)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  labs(title = paste("Velocidad vs Ataque -", highlight_type),
+       x = "Velocidad", y = "Ataque") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Ataque Especial
+pokemon_long_sp_atk <- pokemon_table |>
+  select(name, type1, type2, speed, sp_atk) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g2 <- ggplot(pokemon_long_sp_atk, aes(x = speed, y = sp_atk)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "purple") + 
+  labs(title = paste("Velocidad vs Ataque Especial -", highlight_type),
+       x = "Velocidad", y = "Ataque Especial") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa
+pokemon_long_defense <- pokemon_table |>
+  select(name, type1, type2, speed, defense) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g3 <- ggplot(pokemon_long_defense, aes(x = speed, y = defense)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "green") + 
+  labs(title = paste("Velocidad vs Defensa -", highlight_type),
+       x = "Velocidad", y = "Defensa") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa Especial
+pokemon_long_sp_def <- pokemon_table |>
+  select(name, type1, type2, speed, sp_def) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "lightblue") + 
+  labs(title = paste("Velocidad vs Defensa Especial -", highlight_type),
+       x = "Velocidad", y = "Defensa Especial") +
+  theme_minimal()
+
+# Combinar las gráficas en un mismo layout
+grid.arrange(g1, g2, g3, g4, nrow = 2)
+```
+
+
+Analizando las gráficas del tipo Eléctrico , podemos observar que tienen mucho Ataque y Ataque Especial. Eso nos da a entender que este es uno de los tipos mas ofensivos a nivel de combate, y pueden hacer un muy buen daño neutro a muchos rivales con una velocidad aceptable. 
+
+
+Algunos tipos pueden tener una afinidad por sus estadísticas hacia el lado fisico mas que al especial , y viceversa. Es el caso del tipo Roca , gracias a la Velocidad podemos llegar a la conclusión de por su naturaleza mas robusta , los pokemon de tipo Roca son mas físicos que especiales. La defensa Especial no destaca por ser muy buena en estos(exclyuendo el extremo caso de Shuckle). 
+
+También nos da un dato crucial en los tipo Roca , por la parte física : A mayor velocidad , mayor Ataque , y menor capacidad de defensa , mientras que a menor velocidad , mayor capacidad de defender, pero puede ocasionar que el pokémon no pege con el daño que el usuario desea. 
+
+```{r}
+
+
+# Introduce el tipo en inglés
+highlight_type_english <- "Rock"
+
+# Traducir al español usando el diccionario
+highlight_type <- type_translation[highlight_type_english]
+
+# Filtrar datos y crear gráficos
+
+# Gráfico de Velocidad vs Ataque
+pokemon_long_attack <- pokemon_table |>
+  select(name, type1, type2, speed, attack) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g1 <- ggplot(pokemon_long_attack, aes(x = speed, y = attack)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  labs(title = paste("Velocidad vs Ataque -", highlight_type),
+       x = "Velocidad", y = "Ataque") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Ataque Especial
+pokemon_long_sp_atk <- pokemon_table |>
+  select(name, type1, type2, speed, sp_atk) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g2 <- ggplot(pokemon_long_sp_atk, aes(x = speed, y = sp_atk)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "purple") + 
+  labs(title = paste("Velocidad vs Ataque Especial -", highlight_type),
+       x = "Velocidad", y = "Ataque Especial") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa
+pokemon_long_defense <- pokemon_table |>
+  select(name, type1, type2, speed, defense) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g3 <- ggplot(pokemon_long_defense, aes(x = speed, y = defense)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "green") + 
+  labs(title = paste("Velocidad vs Defensa -", highlight_type),
+       x = "Velocidad", y = "Defensa") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa Especial
+pokemon_long_sp_def <- pokemon_table |>
+  select(name, type1, type2, speed, sp_def) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "lightblue") + 
+  labs(title = paste("Velocidad vs Defensa Especial -", highlight_type),
+       x = "Velocidad", y = "Defensa Especial") +
+  theme_minimal()
+
+# Combinar las gráficas en un mismo layout
+grid.arrange(g1, g2, g3, g4, nrow = 2)
+```
+
+Otro dato interesante a resaltar es que haya pokemon con mejores estadistica que la velocidad : el caso de los pokémon tipo Acero , hay buenas estadísticas a resaltar en las diferentes áreas , pero no destacan en velocidad. De hecho , no hay ningun pokémon de tipo Acero que supere los 110 puntos de velocidad. Con lo cual , es muy probable que la mayoría de pokemon que invierten en Velocidad se muevan antes que el tipo Acero. Pero a su vez , este tipo tiene versatilidad para ser utilizado como defensivo u ofensivo dependiendod el enfoque de sus estadisticas 
+
+
+```{r}
+
+
+# Introduce el tipo en inglés
+highlight_type_english <- "Steel"
+
+# Traducir al español usando el diccionario
+highlight_type <- type_translation[highlight_type_english]
+
+# Filtrar datos y crear gráficos
+
+# Gráfico de Velocidad vs Ataque
+pokemon_long_attack <- pokemon_table |>
+  select(name, type1, type2, speed, attack) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g1 <- ggplot(pokemon_long_attack, aes(x = speed, y = attack)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  labs(title = paste("Velocidad vs Ataque -", highlight_type),
+       x = "Velocidad", y = "Ataque") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Ataque Especial
+pokemon_long_sp_atk <- pokemon_table |>
+  select(name, type1, type2, speed, sp_atk) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g2 <- ggplot(pokemon_long_sp_atk, aes(x = speed, y = sp_atk)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "purple") + 
+  labs(title = paste("Velocidad vs Ataque Especial -", highlight_type),
+       x = "Velocidad", y = "Ataque Especial") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa
+pokemon_long_defense <- pokemon_table |>
+  select(name, type1, type2, speed, defense) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g3 <- ggplot(pokemon_long_defense, aes(x = speed, y = defense)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "green") + 
+  labs(title = paste("Velocidad vs Defensa -", highlight_type),
+       x = "Velocidad", y = "Defensa") +
+  theme_minimal()
+
+# Gráfico de Velocidad vs Defensa Especial
+pokemon_long_sp_def <- pokemon_table |>
+  select(name, type1, type2, speed, sp_def) |>
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  filter(!is.na(type), type == highlight_type_english)
+
+g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "lightblue") + 
+  labs(title = paste("Velocidad vs Defensa Especial -", highlight_type),
+       x = "Velocidad", y = "Defensa Especial") +
+  theme_minimal()
+
+# Combinar las gráficas en un mismo layout
+grid.arrange(g1, g2, g3, g4, nrow = 2)
+```
+
+Con respecto a los coeficientes de correlaciones y  covarianzas, los tipos Hada, Psíquico, y Dragón muestran una relación positiva significativa entre velocidad y sus estadísticas ofensivas y defensivas, destacando como los tipos con mayor consistencia en correlación y covarianza. 
+
+Sin embargo, tipos como Roca y Acero tienen patrones inversos que pueden parecer contraproducentes, especialmente en términos de defensa, donde la velocidad parece asociarse con menores estadísticas defensivas en estos casos.Ahi es donde se ve las correlaciones inversamente proporcionales y es lo interesante de comparar.
+
+
+## 2.3 Altura VS Peso
 
 La altura de los Pokémon también resulta un factor digno de estudio en relación con la velocidad.
 
@@ -1192,6 +1597,60 @@ Debido a que el coeficiente de correlación es 0.3, podemos corroborar que la re
 # Banco de pruebas
 
 ---SOLO PARA PRUEBAS ---
+
 ```{r}
 
+
+
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
