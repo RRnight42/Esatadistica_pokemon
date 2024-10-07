@@ -30,43 +30,43 @@ De esta manera, realizando diversos análisis univariantes y bivariantes, se pod
 # Diccionario de datos
 Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
 
-* **`dexnum:`** El número asociado a la Pokédex del Pokémon.
+* **`dexnum:`** El número asociado a la Pokédex del Pokémon. (Cuantitativa, Discreta)
 
-* **`name:`**  El nombre oficial del Pokémon.
+* **`name:`**  El nombre oficial del Pokémon.(Cualitativa, Nominal)
 
-* **`generation:`** La generación a la que corresponde el pokemon. Cada generación se caracteriza por la introducción de nuevas especies de Pokémon.
+* **`generation:`** La generación a la que corresponde el pokemon. Cada generación se caracteriza por la introducción de nuevas especies de Pokémon. (Cualitativa, Ordinal)
 
-* **`type1:`** La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Algunos pokémon pueden tener dos tipos.
+* **`type1:`** La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Algunos pokémon pueden tener dos tipos. (Cualitativa, Nominal)
 
-* **`type2:`** El segundo tipo del Pokémon en caso de que lo tenga.
+* **`type2:`** El segundo tipo del Pokémon en caso de que lo tenga. (Cualitativa, Nominal)
 
-* **`height:`** La altura oficial del Pokémon, generalmente en metros (Sistema Internacional).
+* **`height:`** La altura oficial del Pokémon, generalmente en metros (Sistema Internacional). (Cuantitativa, Continua)
 
-* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos(Sistema Internacional).
+* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos(Sistema Internacional). (Cuantitativa, Continua)
 
-* **`ability1:`** Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos.
+* **`ability1:`** Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos. (Cualitativa, Nominal)
 
-* **`ability2:`** Segunda habilidad especial del Pokémon en caso de que tenga más de una.
+* **`ability2:`** Segunda habilidad especial del Pokémon en caso de que tenga más de una. (Cualitativa, Nominal)
 
-* **`hidden_ability:`** Habilidad oculta del Pokémon que es diferente de sus habilidades normales que no siempre están disponibles en un Pokémon al ser capturado o al criarse de manera estándar. Suelen proporcionar ventajas estratégicas en combate.
+* **`hidden_ability:`** Habilidad oculta del Pokémon que es diferente de sus habilidades normales que no siempre están disponibles en un Pokémon al ser capturado o al criarse de manera estándar. Suelen proporcionar ventajas estratégicas en combate. (Cualitativa, Nominal)
 
-* **`hp (health points):`** La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate.
+* **`hp (health points):`** La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate. (Cuantitativa, Continua)
 
-* **`attack:`** La estadística que determina la potencia de los ataques físicos del Pokémon en combate.
+* **`attack:`** La estadística que determina la potencia de los ataques físicos del Pokémon en combate. (Cuantitativa, Continua)
 
-* **`defense:`** La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate.
+* **`defense:`** La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate. (Cuantitativa, Continua)
 
-* **`sp_atk (special attack):`** La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.).
+* **`sp_atk (special attack):`** La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.). (Cuantitativa, Continua)
 
-* **`sp_def (special defense):`** La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos).
+* **`sp_def (special defense):`** La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos). (Cuantitativa, Continua)
 
-* **`speed:`** La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos.
+* **`speed:`** La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos. (Cuantitativa, Continua)
 
-* **`total:`** La suma total de las principales estadísticas de combate del Pokémon, entre las que se incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense), Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad (speed). 
+* **`total:`** La suma total de las principales estadísticas de combate del Pokémon, entre las que se incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense), Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad (speed). (Cuantitativa, Continua)
 
-* **`percent_male:`** El porcentaje de probabilidades de que un Pokémon sea de género masculino. También se puede dar la posibilidad de que un Pokémon no tenga género.
+* **`percent_male:`** El porcentaje de probabilidades de que un Pokémon sea de género masculino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
 
-* **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género.
+* **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
 
 
 # Importación de datos y carga de paquetes
@@ -720,7 +720,7 @@ En la gráfica presentada arriba se puede observar que los tipos combinados más
 
 Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
 
-Analicemos primero la proporción de Pokémon por generación con una gráfica:
+Se analizará primero la proporción de Pokémon por generación con una gráfica:
 
 ```{r}
 ggplot(pokemon_table, aes(x = as.factor(generation))) + 
@@ -732,11 +732,11 @@ ggplot(pokemon_table, aes(x = as.factor(generation))) +
 
 ```
 
-Una vez observada la gráfica podemos determinar que la progresión no es lineal, no en las primeras 5 generaciones por lo menos, ya que, a partir de la sexta generación, podemos ver como el número de nuevos Pokémon aumenta en cada generación consecutivamente. Además, se puede observar que la generación en la que se introdujo un mayor número de Pokémon fue en la quinta generación, lo cual es lógico teniendo en cuenta que fue la única generación después de la primera en la que solo podías encontrar Pokémon naturalmente de esa generación específica hasta completar la historia principal.
+Una vez observada la gráfica se puede determinar que la progresión no es lineal, no en las primeras 5 generaciones por lo menos, ya que, a partir de la sexta generación, se puede ver como el número de nuevos Pokémon aumenta en cada generación consecutivamente. Además, se puede observar que la generación en la que se introdujo un mayor número de Pokémon fue en la quinta generación, lo cual es lógico teniendo en cuenta que fue la única generación después de la primera en la que solo se podían encontrar Pokémon naturalmente de esa generación específica hasta completar la historia principal.
 
 #### **Frecuencias absolutas y frecuencias relativas**
 
-Podemos hallar las frecuencias absolutas y relativas para observar con mayor detalle la cantidad de Pokémon que se introdujeron en cada generación y el porcentaje del total que corresponde:
+Se deben hallar las frecuencias absolutas y relativas para observar con mayor detalle la cantidad de Pokémon que se introdujeron en cada generación y el porcentaje del total que corresponde:
 
 ```{r}
 # Cálculo de frecuencias absolutas y relativas
@@ -755,7 +755,7 @@ print(tabla_frecuencias)
 
 ```
 
-Esto nos confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación con 156 nuevas criaturas. En el lado opuesto la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, podemos observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokedex, únicamente bajando del 10% del total la segunda generación, siendo igualemente mayor a la sexta, séptima y octava generación.
+Esto confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación con 156 nuevas criaturas. En el lado opuesto la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, es posible observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokédex, únicamente bajando del 10% del total la segunda generación, siendo igualmente mayor a la sexta, séptima y octava generación.
 
 Para poder verificar estas afirmaciones, se realizará la media y la moda.
 
@@ -773,7 +773,7 @@ de_gen <- sd(frecuencia_absoluta)
 ```
 
 #### **Media**
-La **media** nos da el número de Pokémon promedio que se incluyen por generación.
+La **media** da el número de Pokémon promedio que se incluyen por generación.
 
 ```{r}
 media_gen <- round(media_gen, 0)
@@ -781,11 +781,11 @@ media_gen
 
 ```
 
-Observando este resultado y comparándolo con las frecuencias absolutas, se puede observar que las generaciones con menor número de Pokémon están muy por debajo de lo habitual, especialmente en las mencionadas anteriormente. Incluso es sorprendente que la cuarta generación quede por debajo de la media siendo que no parecía tan por debajo de las demás en un primer momento, lo que nos demuestra la diferencia que hay entre generaciones.
+Observando este resultado y comparándolo con las frecuencias absolutas, se puede observar que las generaciones con menor número de Pokémon están muy por debajo de lo habitual, especialmente en las mencionadas anteriormente. Incluso es sorprendente que la cuarta generación quede por debajo de la media siendo que no parecía tan por debajo de las demás en un primer momento, lo que demuestra la diferencia que hay entre generaciones.
 
 
 #### **Moda**
-La **moda** nos dará la generación en la que más Pokémon se introdujeron.
+La **moda** dará la generación en la que más Pokémon se introdujeron.
 
 ```{r}
 
@@ -794,10 +794,10 @@ moda_gen
 
 ```
 
-Como era de esperar, la quinta generación es la que más Pokémon añadió tal y como se mencionó anteriormente, sin embargo este resultado lo termina de confirmar.
+Como era de esperar, la quinta generación es la que más Pokémon añadió tal y como se mencionó anteriormente, sin embargo, este resultado lo termina de confirmar.
 
 #### **Desviación Estándar**
-La **desviación estándar** nos mostrará la diferencia que hay entre generaciones con respecto a la media. Un número alto significará que hay poco equilibrio entre el número de Pokémon introducidos en cada generación y un número bajo significaría que hay bastante equilibrio.
+La **desviación estándar** mostrará la diferencia que hay entre generaciones con respecto a la media. Un número alto significará que hay poco equilibrio entre el número de Pokémon introducidos en cada generación y un número bajo significaría que hay bastante equilibrio.
 
 ```{r}
 de_gen <- round(de_gen, 0)
@@ -807,7 +807,7 @@ de_gen
 
 Como se puede ver, la desviación es algo alta respecto de la media, por lo que se puede afirmar que hay cierto desequilibrio entre generaciones.
 
-### 1.6 Género
+### 1.7 Género
 
 Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener género. En este caso se va a analizar individualmente la posibilidad de que en estado salvaje un Pokémon sea macho y la posibilidad de que sea hembra,para comprobar que genero es mas viable en combate, porque hay movimientos Pokémon en los cuales el ser de un genero u otro puede decidir un combate (ej. Atracción). 
 
@@ -839,7 +839,7 @@ print(freq_table_df)
 
 
 
-Estas tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
+Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
 
 
 # 2 Datos bivariantes
@@ -1565,32 +1565,34 @@ Los Pokémon con menores valores en su defensa especial son Caterpie, Magikarp y
 En conlusión, se puede afirmar que existen ciertos tipos Pokémon especializados en un tipo de combate. Un buen ejemplo de esto son los tipos roca y acero que poseen valores muy elevados en su ataque y defensa física y valores algo más bajos en las mismas categorías de tipo especial. En contraposición, el tipo psíquico se caracteriza por su gran ataque y defensa especial. Además se puede identificar la existencia de Pokémon "tanques", Pokémon que no son fáciles de derrotar debido a su alta vida y sus atributos de defensa, aunque no tengan un gran poder de ataque.
 
 
-### 2.5 Relación entre HP y Defensa
+### 2.5 Relación entre HP y Defensa / Defensa Especial
+
+#### 2.5.1 Defensa
 
 Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
 
-Comprobemos si esto es cierto con el siguiente gráfico de dispersión:
+Se debe comprobar si esto es cierto con el siguiente gráfico de dispersión:
 
 ```{r}
-# Gráfico de dispersión
+# Gráfico de dispersión para HP y Defensa física
 ggplot(pokemon_table, aes(x = hp, y = defense)) +
   geom_point(color = "blue") + 
   geom_smooth(method = "lm", se = FALSE, color = "red") + 
   labs(title = "Relación entre HP y Defensa con Línea de Tendencia",
-       x = "Puntos de Salud (hp)",
+       x = "Puntos de Salud (HP)",
        y = "Defensa") +
   theme_minimal()
 
 ```
 
-Podemos observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
+Se puede observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
 
-Para contrastar este análisis se puede hallar el coeficiente de correlación para obtener datos cuantitativos:
+Para contrastar este análisis se puede hallar el coeficiente de correlación y la covarianza para obtener datos cuantitativos:
 
 #### **Coeficiente de correlación**
 
 ```{r}
-# Calcular el coeficiente de correlación de Pearson entre HP y defensa
+# Calcular el coeficiente de correlación entre HP y Defensa física
 corhpdef <- cor(pokemon_table$hp, pokemon_table$defense)
 
 ```
@@ -1600,8 +1602,72 @@ corhpdef <- (round(corhpdef, 2))
 corhpdef
 ```
 
-Debido a que el coeficiente de correlación es 0.3, podemos corroborar que la relación entre HP y Defensa es débil pero no inexistente. En conclusión, un Pokémon con una alta Defensa no tiene por qué tener una alta estadística de HP, sin embargo, estas suelen estar relacionadas en algunos casos y no son del todo independientes.
+#### **Covarianza**
 
+```{r}
+# Calcular la covarianza entre HP y Defensa física
+covhpdef <- cov(pokemon_table$hp, pokemon_table$defense)
+
+```
+
+```{r}
+covhpdef <- (round(covhpdef, 2))
+covhpdef
+```
+
+Debido a que el coeficiente de correlación es 0.3 y que la covarianza nos da un valor positivo, se puede corroborar que la relación entre HP y Defensa es débil pero no inexistente. En conclusión, un Pokémon con una alta Defensa no tiene por qué tener una alta estadística de HP, sin embargo, estas suelen estar relacionadas en algunos casos y no son del todo independientes.
+
+#### 2.5.2 Defensa Especial
+
+A continuación, se realizará el mismo análisis, pero ahora con Defensa Especial en lugar de Defensa física. La Defensa especial mide la capacidad de un Pokémon para resistir ataques especiales, lo que puede dar información relevante sobre la similitud entre los dos tipos de defensa.
+
+Se comprobará esta relación con un gráfico de dispersión:
+
+```{r}
+# Gráfico de dispersión para HP y Defensa Especial
+ggplot(pokemon_table, aes(x = hp, y = sp_def)) +
+  geom_point(color = "green") + 
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  labs(title = "Relación entre HP y Defensa Especial con Línea de Tendencia",
+       x = "Puntos de Salud (HP)",
+       y = "Defensa Especial") +
+  theme_minimal()
+
+```
+
+Nuevamente se puede observar que existe una relación positiva débil entre Defensa Especial y HP de un Pokémon, ya que el gráfico de dispersión posee las mismas características que el de la Defensa física.
+
+Se procederá a calcular la covarianza y el coeficiente de correlación para verificar esta conclusión:
+
+#### **Coeficiente de correlación**
+
+```{r}
+# Calcular el coeficiente de correlación entre HP y Defensa Especial
+corhpspdef <- cor(pokemon_table$hp, pokemon_table$sp_def)
+
+```
+
+```{r}
+corhpspdef <- (round(corhpspdef, 2))
+corhpspdef
+```
+
+#### **Covarianza**
+
+```{r}
+# Calcular la covarianza entre HP y Defensa Especial
+covhpspdef <- cov(pokemon_table$hp, pokemon_table$sp_def)
+
+```
+
+```{r}
+covhpspdef <- (round(covhpspdef, 2))
+covhpspdef
+```
+
+Como era de esperar, se han obtenido unos resultados bastante similares a los de la Defensa física, lo que nos indica de igual forma que existe una relación positiva entre ambas estadísticas, pero esta relación es algo débil.
+
+En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran la defensa del enemigo para calcular su daño.
 
 # Banco de pruebas
 
