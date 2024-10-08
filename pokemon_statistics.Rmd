@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R
                       error = TRUE)
 ```
 
-# 1.Introducción y definición de objetivos
+# 0.Introducción y definición de objetivos
 
 En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor arco de jugadores posible. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
 
@@ -93,9 +93,43 @@ library(dplyr)
 library(tidyr)
 library(gridExtra)
 library(purrr)
+library(gt)
 ```
 
+**`library(stringr)`**
+
+**`library(tidyverse)`**
+
+**`library(summarytools)`**
+
+**`library(GGally)`**
+
+**`library(readxl)`**
+
+**`library(knitr)`**
+
+**`library(remotes)`**
+
+**`library(kableExtra)`**
+
+**`library(ggplot2)`**
+
+**`library(dplyr)`**
+
+**`library(tidyr)`**
+
+**`library(gridExtra)`**
+
+**`library(purrr)`**
+
+**`library(gt)`**
+
+
+
 A continuación, leeremos los datos del documento.
+
+
+**`pokemon_table <- read_csv("pokemon_data.csv")`**
 
 ```{r}
 pokemon_table <- read_csv("pokemon_data.csv")
@@ -124,9 +158,18 @@ type_translation <- c(
 
 ```
 
-## ANÁLISIS EXPLORATORIO DE DATOS
+## Muestra del dataset 
 
-Empezaremos con el primer objetivo de estudio, si el físico de los pokemon influye de sobremanera en los combates. 
+Mostramos el csv que vamos a analizar :
+
+```{r}
+
+pokemon_table |>
+  slice_head(n = 25) |>
+    gt()
+
+```
+
 
 # 1.Datos univariantes
 
