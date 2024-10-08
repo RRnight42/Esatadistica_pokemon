@@ -85,6 +85,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(gridExtra)
+library(purrr)
 ```
 
 A continuación, leeremos los datos del documento.
@@ -251,7 +252,7 @@ ggplot(pokemon_table, aes(x = hp)) +
 
 El gráfico de barras se utiliza para mostrar la frecuencia con la que aparecen diferentes valores de HP (puntos de salud) en los Pokémon. Cada barra representa la cantidad de Pokémon que tienen un determinado rango de HP. Este gráfico es útil para visualizar qué tan común es un cierto nivel de HP en nuestra muestra.
 
-Como podemos observar , en la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud , curiosamente hay Pokémon que poseen mas de 200 puntos de vida, porque hay excepciones con caracteristicas extremas. 
+En la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud , curiosamente hay Pokémon que poseen mas de 200 puntos de vida, porque hay excepciones con caracteristicas extremas. 
 
 
 ### Ataque
@@ -269,7 +270,7 @@ ggplot(pokemon_table, aes(x = attack)) +
 ```
 
 
-Como podemos observar , el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
+Como se puede apreciar, el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
 
 
 ### Defensa
@@ -304,7 +305,7 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 
 ```
 
-Como podemos ver , no se aleja mucho de otras estadisticas , no hay mucha variacion con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
+Como se puede ver, no se aleja mucho de otras estadisticas, no hay mucha variación con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
 
 
 ### Defensa Especial
@@ -322,12 +323,12 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 
 ```
 
-Como podemos ver , la defensa especial no es un atributo destacable por ser alto en los pokémon , la mayoría de sus valores se encuentran 40 y 80 , lo cual puede significar que el pokemon al recibir un Ataque especial , pueda recibir mucho daño , condicionado por los puntos de salud. 
+Como se puede ver, la defensa especial no es un atributo destacable por ser alto en los Pokémon; la mayoría de sus valores se encuentran 40 y 80, lo cual puede significar que el Pokémon al recibir un Ataque especial, pueda recibir mucho daño, condicionado por los puntos de salud. 
 
 
 ### Velocidad
 
-La velocidad en los combates Pokémon es un factor crucial, porque determina que pokemon tiene prioridad para atacar antes, existen combates donde se decide el resultado solo por la velocidad. Existen excepciones como ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
+La velocidad en los combates Pokémon es un factor crucial, porque determina que Pokémon tiene prioridad para atacar antes. Existen combates donde se decide el resultado solo por la velocidad, así como excepciones con ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
 
 ```{r}
 
@@ -341,10 +342,9 @@ ggplot(pokemon_table, aes(x = speed)) +
 
 ```
 
-En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
+En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como se puede observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
 
-
-Para contrastar todos estos valores de los atributos de combate, se calculará la media , mediana , moda y desviación estándar.
+Para contrastar todos estos valores de los atributos de combate, se calculará la media, mediana, moda y desviación estándar.
 
 #### **Media**
 La **media** es una de las medidas de tendencia central más comunes y representa el promedio aritmético de un conjunto de datos. Se calcula sumando todos los valores en la muestra y dividiéndolos entre el número total de observaciones. En nuestro análisis, la media de cada estadística (como HP, ataque, defensa, etc.) nos proporciona una visión general del valor típico para esas características entre los Pokémon. Aunque es útil para resumir los datos, la media puede verse afectada por valores extremos o atípicos.
@@ -407,14 +407,14 @@ print(stats_tibble)
 
 ```
 
-En esta tabla hemos recogido todas las medias , medianas, modas y desviaciones estándar. Como podemos observar , vemos que la estadistica media mas alta en los pokémon es el Ataque , con un 77.52, 
+En esta tabla se han recogido todas las medias, medianas, modas y desviaciones estándar. Como se indica en ella, la estadistica media más alta en los Pokémon es el Ataque, con un 77.52, 
 
-En el área de las medianas , los valores oscilan entre 65 y 75 , con ligeras variaciones en sus resultados , al ser la media mas alta el Ataque , es normal que la mediana sea la mas alta.
+En el área de las medianas, los valores oscilan entre 65 y 75, con ligeras variaciones en sus resultados. Debido a que el Ataque posee la media más alta, es comprensible que la mediana tenga el valor más elevado.
 
-La moda tambien nos da una idea aproximada de los resultados vistos arriba , al haberse repetido muchas veces el 80 como Ataque de varios pokemon , eso ha influido de forma relativa en los resultados 
-La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos los 6 resultados , oscilando entre 26 y 30. En general , los resultados no se alejan mucho de la media, solo unos 30 puntos en el peor de los casos , exceptuando los casos extremos
+La moda también da una idea aproximada de los resultados vistos arriba, al haberse repetido muchas veces el 80 como Ataque de varios Pokémon, eso ha influido de forma relativa en los resultados. 
+La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos los 6 resultados, oscilando entre 26 y 30. En general, los resultados no se alejan mucho de la media, solo unos 30 puntos en el peor de los casos, exceptuando los casos extremos.
 
-Es interesante recalcar el hecho de comparar Ataque especial y Velocidad , puesto que a pesar de que la Moda en la Velocidad es de 50 , es la media mas baja de todas. En contraposicion al Ataque Especial en la cual a pesar de no ser la media mas alta , su moda es de 40 , lo cual ha contrubuido a que en general su media sea baja con respecto a la media de Ataque, eso quiere decir que hay algunos pokémon en los cuales su estádistica de Ataque Especial es su estadistica mas alta , hay una gran diferencia con respecto a las otras. 
+Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto que a pesar de que la Moda en la Velocidad es de 50, es la media más baja de todas. Al contrario que con Ataque Especial, en la que, a pesar de no tener la media más alta, su moda es de 40, lo cual ha contribuido a que en general su media sea baja respecto a la media de Ataque. Eso quiere decir que hay algunos Pokémon en los cuales su estadística de Ataque Especial es su estadística más alta, hay una gran diferencia con respecto a las otras. 
 
 ### 1.3 Distribución de los pesos
 
@@ -438,7 +438,6 @@ ggplot(pokemon_table[pokemon_table$weight < 1000, ], aes(x = weight)) +
 En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
 
 Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
-
 
 ```{r}
 # Filtrar los valores mayores a 1000 para evitar errores
@@ -593,7 +592,6 @@ de_height
 ```
 
 A diferencia que con el peso, todas las pruebas apuntan a que la altura se encuentra mayoritariamente esparcida dentro de un rango concreto con otros valores que son más raros o incluso atípicos.
-
 
 ### 1.5 Frecuencia de los tipos elementales
 
@@ -1265,13 +1263,17 @@ Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resu
 
 ## 2.3 Altura VS Peso
 
+### 2.3.1 Altura y Peso para todos los Pokémon
+
 La altura de los Pokémon también resulta un factor digno de estudio en relación con el peso.
+
 **Covarianza**
 ```{r}
 # Cálculo de la covarianza entre altura y peso
 covarianza <- cov(pokemon_table$height, pokemon_table$weight, use = "complete.obs")
 covarianza
 ```
+
 **Correlación**
 ```{r}
 # Cálculo de la correlación entre altura y peso
@@ -1302,6 +1304,74 @@ De este gráfico, se pueden obtener diversas conclusiones:
 - En algunos casos, la masa de los Pokémon puede superar los 750 kg, mientras que la altura máxima se encuentra por debajo de los 15 m.
 
 A partir de este gráfico de dispersión, podemos concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
+
+### 2.3.2 Altura y Peso según el tipo de Pokémon
+
+A continuación, se analizará si existe alguna peculiaridad en la distribución de peso y altura en algún tipo concreto de Pokémon:
+
+```{r}
+
+pokemon_weight_height <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, weight, height) |>
+  # Cambiamos a un formato largo para combinar type1 y type2
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+# Ahora puedes graficar usando 'type' con weight y height
+ggplot(pokemon_weight_height, aes(x = weight, y = height)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE, color = "red") + 
+  facet_wrap(~type) +
+  labs(title = "Relación entre Peso y Altura",
+       x = "Peso",
+       y = "Altura") +
+  theme_minimal()
+
+```
+
+Cada tipo de Pokémon muestra una relación diferente entre peso y altura.
+
+- En tipos como Volador, Tierra, Veneno, y Agua, parece haber una relación positiva más clara (a mayor peso, mayor altura).
+
+- Algunos tipos como Bicho, Hada, y Fantasma tienen una dispersión mayor, lo que sugiere que el peso y la altura no están tan relacionados.
+
+- Otros tipos tienen Pokémon con un rango de pesos mucho mayor (por ejemplo, Dragón, Veneno, Agua), mientras que otros tienen un rango mucho más estrecho (como Bicho o Hada).
+
+Debido a la forma en la que están distribuidos los datos en las gráficas, podemos calcular sus rectas de regresión:
+
+```{r}
+# Agrupamos por tipo y aplicamos lm() por cada grupo correctamente
+regresion_equations <- pokemon_weight_height |>
+  group_by(type) |>
+  summarise(
+    intercept = round(coef(lm(height ~ weight))[1], 2),    # Coeficiente del intercepto
+    slope = round(coef(lm(height ~ weight))[2], 2)         # Coeficiente de la pendiente
+  )
+
+# Añadimos la ecuación como texto legible
+regresion_equations <- regresion_equations |>
+  mutate(equation = paste0("Altura = ", intercept, " + ", slope, " * Peso"))
+
+# Mostrar las ecuaciones con el nombre del tipo
+print(regresion_equations)
+
+```
+
+De estas ecuaciones se pueden obtener diversas conclusiones:
+
+- Para muchos de los tipos de Pokémon, un aumento significativo en peso genera apenas un pequeño incremento en altura, debido a la pendiente de 0,01 y, en el caso del tipo Agua, de 0,02. En algunos casos, es prácticamente nula.
+
+- El intercepto (la altura cuando el peso es cero) también varía entre los tipos. Algunos tipos, como Tierra (1.04) y Psíquico (1.01), tienen un intercepto relativamente alto, lo que sugiere que incluso Pokémon de ese tipo con pesos bajos tienden a ser relativamente más altos que los de otros tipos. Por otro lado, tipos como Agua (0.37) y Hada (0.54) tienen interceptos más bajos, lo que implica que los Pokémon con pesos pequeños tienden a ser más bajos.
+
+- Hay tipos donde la pendiente es cero, como en Oscuro y Tierra, lo cual indica que, para esos tipos, la altura es prácticamente independiente del peso. Esto puede sugerir que hay poca variación en la altura para los Pokémon de esos tipos, sin importar cuánto pesen.
+
+- Los tipos Agua y Veneno tienen pendientes más notables, lo que implica que en estos tipos hay una relación un poco más marcada entre el peso y la altura en comparación con otros tipos. El tipo Tierra, a pesar de tener el intercepto más alto, tiene una pendiente cero, sugiriendo que los Pokémon de tipo Ground son, en promedio, más altos, pero no varían en altura respecto al peso.
+
+Para la mayoría de los tipos, **el peso tiene un efecto muy leve en la altura de los Pokémon, excepto por algunos casos como Agua y Veneno**.
+Los interceptos sugieren que los Pokémon de ciertos tipos, como Tierra y Psíquico, tienden a ser más altos incluso a bajos pesos, mientras que otros tipos, como Hada y Agua, tienden a ser más bajos en comparación.
+Las pendientes cercanas a cero en muchos tipos pueden indicar que otros factores aparte del peso influyen mucho más en la altura de los Pokémon.
 
 ## 2.4 Comparación entre Tipo Elemental y las estadísticas de combate del Pokémon
 
