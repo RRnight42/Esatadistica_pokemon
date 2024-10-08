@@ -3,8 +3,15 @@ title: "PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA: ANÁLISIS DE ESTADÍSTICAS POKEMON
 author: "GRUPO_6 : *Daniel Mazo*, *Miguel Amado*, *Luis Prieto*, *Alejandro Marín*, *Roberto Rojas*"
 date: "Estadística Curso 2024-25"
 
-output: html_document
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+
 ---
+
+
+
 
 ```{r setup, include=FALSE, purl=FALSE}
 knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R.
@@ -14,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R
                       error = TRUE)
 ```
 
-# Introducción y definición de objetivos
+# 1.Introducción y definición de objetivos
 
 En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor arco de jugadores posible. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
 
@@ -27,7 +34,7 @@ De esta manera, realizando diversos análisis univariantes y bivariantes, se pod
 **NOTA : Algunas estadísticas de esta base de datos no influyen en el objetivo , por lo que no serán tomadas en cuenta para el análisis. (ability1 , ability2 , hidden_ability , dexnum) , estas variables son irrepetibles o informativas**
 
 
-# Diccionario de datos
+## Diccionario de datos
 Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
 
 * **`dexnum:`** El número asociado a la Pokédex del Pokémon. (Cuantitativa, Discreta)
@@ -69,7 +76,7 @@ Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon 
 * **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
 
 
-# Importación de datos y carga de paquetes
+## Importación de datos y carga de paquetes
 En primer lugar, cargaremos las librerías con las que trabajaremos.
 
 ```{r}
@@ -117,14 +124,14 @@ type_translation <- c(
 
 ```
 
-# ANÁLISIS EXPLORATORIO DE DATOS
+## ANÁLISIS EXPLORATORIO DE DATOS
 
 Empezaremos con el primer objetivo de estudio, si el físico de los pokemon influye de sobremanera en los combates. 
 
-## Datos univariantes
+# 1.Datos univariantes
 
 
-### 1.1 Suma de estadísticas
+## 1.1 Suma de estadísticas
 
 
 bla bla bla 
@@ -231,7 +238,7 @@ conclusiones de Luis de las estadisticas
 
 
 
-### 1.2 Estadisticas individuales de Pokémon
+## 1.2 Estadisticas individuales de Pokémon
 
 
 
@@ -416,7 +423,7 @@ La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos 
 
 Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto que a pesar de que la Moda en la Velocidad es de 50, es la media más baja de todas. Al contrario que con Ataque Especial, en la que, a pesar de no tener la media más alta, su moda es de 40, lo cual ha contribuido a que en general su media sea baja respecto a la media de Ataque. Eso quiere decir que hay algunos Pokémon en los cuales su estadística de Ataque Especial es su estadística más alta, hay una gran diferencia con respecto a las otras. 
 
-### 1.3 Distribución de los pesos
+## 1.3 Distribución de los pesos
 
 El peso es uno de los factores más influyentes a la hora de garantizar un cierto grado de verosimilitud en un videojuego. Concretamente, en el caso del análisis, permite observar cómo este afectará a otros datos estadísticos como la velocidad, defensa, entre otros. Por lo tanto, se analizará primero de manera univariante para, posteriormente, poder relacionarla con otras estadísticas comprendiendo su forma de ser en el mundo de Pokémon.
 
@@ -504,7 +511,7 @@ de_weight
 
 En este caso, la desviación típica confirma la existencia de una amplia variedad de pesos en el mundo de Pokémon.
 
-### 1.4 Distribución de las alturas
+## 1.4 Distribución de las alturas
 
 Otro factor que puede resultar tan relevante como el peso es la altura, debido a que esta es uno de los factores influyentes en otras estadísticas como el peso para garantizar cierta verosimilitud, así como podría llegar a afectar, aunque sea parcialmente, a ciertas variables cuantitativas como la vida o la defensa.
 
@@ -593,7 +600,7 @@ de_height
 
 A diferencia que con el peso, todas las pruebas apuntan a que la altura se encuentra mayoritariamente esparcida dentro de un rango concreto con otros valores que son más raros o incluso atípicos.
 
-### 1.5 Frecuencia de los tipos elementales
+## 1.5 Frecuencia de los tipos elementales
 
 Los tipos elementales de los Pokémon son fundamentales para determinar sus fortalezas y debilidades en combate. Cada tipo interactúa de manera específica con otros tipos, lo que influye en la estrategia a seguir durante las batallas y en el desempeño general de cada Pokémon.
 
@@ -714,7 +721,7 @@ ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -
 En la gráfica presentada arriba se puede observar que los tipos combinados más frecuentes son: el normal/volador (normal/flying), el planta/veneno (grass/poison), el bicho/volador (bug/flying) y el bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
 
 
-### 1.6 Número de Pokémon por Generación
+## 1.6 Número de Pokémon por Generación
 
 Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
 
@@ -805,7 +812,7 @@ de_gen
 
 Como se puede ver, la desviación es algo alta respecto de la media, por lo que se puede afirmar que hay cierto desequilibrio entre generaciones.
 
-### 1.7 Género
+## 1.7 Género
 
 Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener género. En este caso se va a analizar individualmente la posibilidad de que en estado salvaje un Pokémon sea macho y la posibilidad de que sea hembra,para comprobar que genero es mas viable en combate, porque hay movimientos Pokémon en los cuales el ser de un genero u otro puede decidir un combate (ej. Atracción). 
 
@@ -1431,7 +1438,7 @@ Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett d
 
 <br>
 
-#### 2.4.2 Ataque
+### 2.4.2 Ataque
 A continuación se analizará la relación entre el ataque (Attack) y los tipos elementales Pokémon:
 
 ```{r}
@@ -1479,7 +1486,7 @@ Los Pokémon con menores valores en su ataque son Chansey y Happiny, ambos de ti
 
 <br>
 
-#### 2.4.3 Defensa
+### 2.4.3 Defensa
 A continuación se analizará la relación entre la defensa (Defense) y los tipos elementales de Pokémon:
 
 ```{r}
@@ -1529,7 +1536,7 @@ Los Pokémon con menos defensa son Chansey y Happiny, ambos de tipo normal, mien
 
 <br>
 
-#### 2.4.4 Ataque especial
+### 2.4.4 Ataque especial
 
 En este subapartado se analizará la relación entre el Ataque especial (sp_atk) y los tipos elementales Pokémon:
 
@@ -1581,7 +1588,7 @@ Los Pokémon con menores valores en su ataque especial son Feebas y Bonsly, de t
 
 <br>
 
-#### 2.4.5 Defensa especial
+### 2.4.5 Defensa especial
 A continuación se analizará la relación entre la Defensa especial (sp_def) y los tipos elementales Pokémon:
 
 ```{r}
@@ -1635,9 +1642,9 @@ Los Pokémon con menores valores en su defensa especial son Caterpie, Magikarp y
 En conlusión, se puede afirmar que existen ciertos tipos Pokémon especializados en un tipo de combate. Un buen ejemplo de esto son los tipos roca y acero que poseen valores muy elevados en su ataque y defensa física y valores algo más bajos en las mismas categorías de tipo especial. En contraposición, el tipo psíquico se caracteriza por su gran ataque y defensa especial. Además se puede identificar la existencia de Pokémon "tanques", Pokémon que no son fáciles de derrotar debido a su alta vida y sus atributos de defensa, aunque no tengan un gran poder de ataque.
 
 
-### 2.5 Relación entre HP y Defensa / Defensa Especial
+## 2.5 Relación entre HP y Defensa / Defensa Especial
 
-#### 2.5.1 Defensa
+### 2.5.1 Defensa
 
 Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
 
@@ -1687,7 +1694,7 @@ covhpdef
 
 Debido a que el coeficiente de correlación es 0.3 y que la covarianza nos da un valor positivo, se puede corroborar que la relación entre HP y Defensa es débil pero no inexistente. En conclusión, un Pokémon con una alta Defensa no tiene por qué tener una alta estadística de HP, sin embargo, estas suelen estar relacionadas en algunos casos y no son del todo independientes.
 
-#### 2.5.2 Defensa Especial
+### 2.5.2 Defensa Especial
 
 A continuación, se realizará el mismo análisis, pero ahora con Defensa Especial en lugar de Defensa física. La Defensa especial mide la capacidad de un Pokémon para resistir ataques especiales, lo que puede dar información relevante sobre la similitud entre los dos tipos de defensa.
 
@@ -1739,15 +1746,6 @@ Como era de esperar, se han obtenido unos resultados bastante similares a los de
 
 En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran la defensa del enemigo para calcular su daño.
 
-# Banco de pruebas
-
----SOLO PARA PRUEBAS ---
-
-```{r}
-
-
-
-```
 
 
 
