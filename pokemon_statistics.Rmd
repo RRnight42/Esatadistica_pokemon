@@ -1288,7 +1288,7 @@ A continuación, observaremos su relación de forma más visual mediante un grá
 ```{r}
 # Filtrar valores irreales
 filtered_pokemon <- pokemon_table %>%
-  filter(height <= 20, weight <= 900)
+  filter(height <= 21, weight <= 1000)
 
 # Crear el gráfico ajustado
 ggplot(filtered_pokemon, aes(x = height, y = weight)) + 
@@ -1301,7 +1301,7 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 - Los puntos están bastante dispersos en toda la gráfica con una tendencia clara; existe una densidad muy elevada de Pokémon que se encuentran entre los 0,1 y 250 kg y los 0,1 y 2,5m de altura.
 
-- En algunos casos, la masa de los Pokémon puede superar los 750 kg, mientras que la altura máxima se encuentra por debajo de los 15 m.
+- En algunos casos, la masa de los Pokémon puede llegar a los 999 kg, mientras que la altura máxima se encuentra en 20 m, como es el caso de Eternatus , el pokemon mas grande actualmente.
 
 A partir de este gráfico de dispersión, podemos concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
 
@@ -1365,7 +1365,7 @@ De estas ecuaciones se pueden obtener diversas conclusiones:
 
 - El intercepto (la altura cuando el peso es cero) también varía entre los tipos. Algunos tipos, como Tierra (1.04) y Psíquico (1.01), tienen un intercepto relativamente alto, lo que sugiere que incluso Pokémon de ese tipo con pesos bajos tienden a ser relativamente más altos que los de otros tipos. Por otro lado, tipos como Agua (0.37) y Hada (0.54) tienen interceptos más bajos, lo que implica que los Pokémon con pesos pequeños tienden a ser más bajos.
 
-- Hay tipos donde la pendiente es cero, como en Oscuro y Tierra, lo cual indica que, para esos tipos, la altura es prácticamente independiente del peso. Esto puede sugerir que hay poca variación en la altura para los Pokémon de esos tipos, sin importar cuánto pesen.
+- Hay tipos donde la pendiente es cero, como en Siniestro y Tierra, lo cual indica que, para esos tipos, la altura es prácticamente independiente del peso. Esto puede sugerir que hay poca variación en la altura para los Pokémon de esos tipos, sin importar cuánto pesen.
 
 - Los tipos Agua y Veneno tienen pendientes más notables, lo que implica que en estos tipos hay una relación un poco más marcada entre el peso y la altura en comparación con otros tipos. El tipo Tierra, a pesar de tener el intercepto más alto, tiene una pendiente cero, sugiriendo que los Pokémon de tipo Ground son, en promedio, más altos, pero no varían en altura respecto al peso.
 
