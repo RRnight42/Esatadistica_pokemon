@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R
                       error = TRUE)
 ```
 
-# 0.Introducción y definición de objetivos
+# 1.Introducción y definición de objetivos
 
 En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor arco de jugadores posible. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
 
@@ -34,7 +34,7 @@ De esta manera, realizando diversos análisis univariantes y bivariantes, se pod
 **NOTA : Algunas estadísticas de esta base de datos no influyen en el objetivo , por lo que no serán tomadas en cuenta para el análisis. (ability1 , ability2 , hidden_ability , dexnum) , estas variables son irrepetibles o informativas**
 
 
-## Diccionario de datos
+# 2.Diccionario de datos
 Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
 
 * **`dexnum:`** El número asociado a la Pokédex del Pokémon. (Cuantitativa, Discreta)
@@ -76,7 +76,7 @@ Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon 
 * **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
 
 
-## Importación de datos y carga de paquetes
+# 3.Importación y carga de paquetes
 En primer lugar, cargaremos las librerías con las que trabajaremos.
 
 ```{r}
@@ -158,7 +158,7 @@ type_translation <- c(
 
 ```
 
-## Muestra del dataset 
+# 4.Muestra del dataset 
 
 Mostramos el csv que vamos a analizar :
 
@@ -171,18 +171,16 @@ pokemon_table |>
 ```
 
 
-# 1.Datos univariantes
+# 5.Datos univariantes
 
 
-## 1.1 Suma de estadísticas
+## 5.1 Suma de estadísticas
 
 
-bla bla bla 
+La suma de estadísticas nos aporta informacion crucial sobre cuan bueno es el pokemon a nivel competitivo , hemos recogido los datos de todos los pokemon y los hemos puesto en un gráfico de barras :
 
 
 ```{r}
-
-
 
 # Gráfico de barras para estdicticas totales
 ggplot(pokemon_table, aes(y = total)) +
@@ -191,19 +189,7 @@ ggplot(pokemon_table, aes(y = total)) +
   theme_minimal()
 
 
-# Gráfico de barras para estdicticas totales
-ggplot(pokemon_table, aes(y = total)) +
-  geom_histogram(fill = "gray", color = "black") +
-  labs(title = "Distribución de estadíscticas totales", x = "Frecuencia", y = "Estadísticas totales") +
-  theme_minimal()
-
-
-
-
 ```
-
-bla bla bla
-
 
 Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
 
@@ -228,7 +214,7 @@ de_total <- sd(filtered_total, na.rm = TRUE)
 ```
 
 #### **Media**
-La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
+La **media** señala el valor promedio de las sumas considerando los valores extremos y medios.
 
 ```{r}
 media_total <- round(media_total, 1)
@@ -236,11 +222,9 @@ media_total
 
 ```
 
-Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 67kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
-
 
 #### **Mediana**
-La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más ligeros y la otra mitad son más pesados. Es decir, ofrece una visión más equilibrada del peso típico.
+La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que unos pokemon tienen mayor suma o menor suma.
 
 ```{r}
 mediana_total <- round(mediana_total, 1)
@@ -248,10 +232,9 @@ mediana_total
 
 ```
 
-El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido, con lo cual al existir el fenómeno de la evolucion pokemon , pues los pokemon van ganando peso a medida que evolucionan a una fase superior. Por si sola , puede parecer no tener correlación con ninguna otra estadística, -.
 
 #### **Moda**
-La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
+La **moda** consiste en la suma total que aparece con mayor frecuencia entre los Pokémon.
 
 ```{r}
 
@@ -260,10 +243,10 @@ moda_total
 
 ```
 
-El resultado puede parecer algo inusual, pero considerando que todos los pesos están expresados con decimales, lo que provoca un mayor abarque de cantidades numéricas, unido a la inmensa cantidad de Pokémon de peso reducido, tiene lógica que el resultado de la moda sea un valor tan reducido como este.
+
 
 #### **Desviación Estándar**
-La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen pesos similares.
+La **desviación estándar** muestra cuanto varían las sumas de estadísticas con respecto a la media.
 
 ```{r}
 de_total <- round(de_total, 1)
@@ -273,19 +256,19 @@ de_total
 
 
 
+Como podemos observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de pokemon con tantos puntos de combate:
 
-conclusiones de Luis de las estadisticas
+Por una parte podemos ver tres picos de concentración en los puntos 200, 300 y 500. Estos puntos destacan sobre los demás ya que como sabemos la mayor parte de los pokemons tienen tres etapas evolutivas y cada uno de estos picos se centra en una de estas etapas, la primera etapa corresponde al pico de 200 puntos, la segunda al pico de 300 y la tercera al pico de 500, ya que un pokemon a medida que evoluciona se hace más fuerte progresivamente
 
-
-
-
-
-
-## 1.2 Estadisticas individuales de Pokémon
+Y por otra parte podemos ver que hay un pequeño grupo de pokemons que tienen una suma total de puntos mayor a 600. Este grupo corresponde al grupo de los pokemons legendarios, ya que estos poseen un gran poder.
 
 
 
-### HP (Puntos de salud)
+## 5.2 Estadisticas individuales de Pokémon
+
+
+
+### 5.2.1 HP (Puntos de salud)
 
 Esta estadística determina la cantidad de daño que un Pokémon puede recibir antes de desmayarse. Un HP alto es crucial para la supervivencia en combates, y su distribución puede revelar qué tan robustos son los Pokémon en el conjunto de datos.
 
@@ -305,7 +288,7 @@ El gráfico de barras se utiliza para mostrar la frecuencia con la que aparecen 
 En la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud , curiosamente hay Pokémon que poseen mas de 200 puntos de vida, porque hay excepciones con caracteristicas extremas. 
 
 
-### Ataque
+### 5.2.2 Ataque
 
 
 
@@ -323,7 +306,7 @@ ggplot(pokemon_table, aes(x = attack)) +
 Como se puede apreciar, el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
 
 
-### Defensa
+### 5.2.3 Defensa
 
 Esta estadística indica la capacidad de un Pokémon para resistir ataques físicos. Es esencial para los Pokémon que juegan roles defensivos. La distribución de la defensa puede mostrar cómo se equilibran las capacidades ofensivas y defensivas en el grupo.
 
@@ -341,7 +324,7 @@ ggplot(pokemon_table, aes(x = defense)) +
 La defensa es una estadística que suele mantenerse entre 60 y 90 puntos, existen unos pokemon cuyos valores defensivos son extremadamente altos , debido a que juegan un papel mas defensivo en los combates y tienen estrategias de desgaste encajando los golpes del rival. 
 
 
-### Ataque Especial
+### 5.2.4 Ataque Especial
 
 Similar al ataque, pero se refiere a la potencia de los movimientos especiales. Esto es relevante para los Pokémon que dependen de ataques de tipo elemental.
 
@@ -358,7 +341,7 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 Como se puede ver, no se aleja mucho de otras estadisticas, no hay mucha variación con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
 
 
-### Defensa Especial
+### 5.2.5 Defensa Especial
 
 Mide la resistencia a ataques especiales. Junto con la defensa, es vital para determinar la durabilidad de un Pokémon ante distintos tipos de movimientos.
 
@@ -376,7 +359,7 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 Como se puede ver, la defensa especial no es un atributo destacable por ser alto en los Pokémon; la mayoría de sus valores se encuentran 40 y 80, lo cual puede significar que el Pokémon al recibir un Ataque especial, pueda recibir mucho daño, condicionado por los puntos de salud. 
 
 
-### Velocidad
+### 5.2.6 Velocidad
 
 La velocidad en los combates Pokémon es un factor crucial, porque determina que Pokémon tiene prioridad para atacar antes. Existen combates donde se decide el resultado solo por la velocidad, así como excepciones con ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
 
@@ -452,7 +435,7 @@ stats_tibble <- tibble(
 )
 
 # Mostrar la tibble
-print(stats_tibble)
+kable(stats_tibble)
 
 
 ```
@@ -466,7 +449,7 @@ La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos 
 
 Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto que a pesar de que la Moda en la Velocidad es de 50, es la media más baja de todas. Al contrario que con Ataque Especial, en la que, a pesar de no tener la media más alta, su moda es de 40, lo cual ha contribuido a que en general su media sea baja respecto a la media de Ataque. Eso quiere decir que hay algunos Pokémon en los cuales su estadística de Ataque Especial es su estadística más alta, hay una gran diferencia con respecto a las otras. 
 
-## 1.3 Distribución de los pesos
+## 5.3 Distribución de los pesos
 
 El peso es uno de los factores más influyentes a la hora de garantizar un cierto grado de verosimilitud en un videojuego. Concretamente, en el caso del análisis, permite observar cómo este afectará a otros datos estadísticos como la velocidad, defensa, entre otros. Por lo tanto, se analizará primero de manera univariante para, posteriormente, poder relacionarla con otras estadísticas comprendiendo su forma de ser en el mundo de Pokémon.
 
@@ -554,7 +537,7 @@ de_weight
 
 En este caso, la desviación típica confirma la existencia de una amplia variedad de pesos en el mundo de Pokémon.
 
-## 1.4 Distribución de las alturas
+## 5.4 Distribución de las alturas
 
 Otro factor que puede resultar tan relevante como el peso es la altura, debido a que esta es uno de los factores influyentes en otras estadísticas como el peso para garantizar cierta verosimilitud, así como podría llegar a afectar, aunque sea parcialmente, a ciertas variables cuantitativas como la vida o la defensa.
 
@@ -643,7 +626,7 @@ de_height
 
 A diferencia que con el peso, todas las pruebas apuntan a que la altura se encuentra mayoritariamente esparcida dentro de un rango concreto con otros valores que son más raros o incluso atípicos.
 
-## 1.5 Frecuencia de los tipos elementales
+## 5.5 Frecuencia de los tipos elementales
 
 Los tipos elementales de los Pokémon son fundamentales para determinar sus fortalezas y debilidades en combate. Cada tipo interactúa de manera específica con otros tipos, lo que influye en la estrategia a seguir durante las batallas y en el desempeño general de cada Pokémon.
 
@@ -733,7 +716,7 @@ tipo_combinado_summary <- tipo_combinado_summary %>%
   mutate(tipo_discretizado = mapply(discretizar_tipos, type1, type2))
 
 # Mostrar el resultado final
-print(tipo_combinado_summary)
+kable(tipo_combinado_summary)
 ```
 
 En esta discretización se pueden observar los diez tipos combinados más frecuentes en el mundo Pokémon, junto al número de Pokémon que hay de cada una de estas combinaciones.
@@ -764,7 +747,7 @@ ggplot(tipo_combinado_summary, aes(x = reorder(paste(type1, type2, sep = "/"), -
 En la gráfica presentada arriba se puede observar que los tipos combinados más frecuentes son: el normal/volador (normal/flying), el planta/veneno (grass/poison), el bicho/volador (bug/flying) y el bicho/veneno (bug/poison). Es importante destacar que, dentro de los diez tipos combinados más frecuentes, el tipo volador aparece en cuatro ocasiones y el tipo bicho en tres.
 
 
-## 1.6 Número de Pokémon por Generación
+## 5.6 Número de Pokémon por Generación
 
 Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
 
@@ -799,7 +782,7 @@ tabla_frecuencias <- data.frame(
 )
 
 # Mostrar la tabla
-print(tabla_frecuencias)
+kable(tabla_frecuencias)
 
 ```
 
@@ -855,7 +838,7 @@ de_gen
 
 Como se puede ver, la desviación es algo alta respecto de la media, por lo que se puede afirmar que hay cierto desequilibrio entre generaciones.
 
-## 1.7 Género
+## 5.7 Género
 
 Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener género. En este caso se va a analizar individualmente la posibilidad de que en estado salvaje un Pokémon sea macho y la posibilidad de que sea hembra,para comprobar que genero es mas viable en combate, porque hay movimientos Pokémon en los cuales el ser de un genero u otro puede decidir un combate (ej. Atracción). 
 
@@ -881,7 +864,7 @@ colnames(freq_table_df) <- c("Porcentaje Macho", "Porcentaje Hembra", "Frecuenci
 
 
 # Mostrar la tabla de frecuencias
-print(freq_table_df)
+kable(freq_table_df)
 
 ```
 
@@ -890,9 +873,50 @@ print(freq_table_df)
 Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
 
 
-# 2 Datos bivariantes
+# 6.Datos bivariantes
 
-## 2.2 Comparativas entre estadísticas en base a la Velocidad
+## 6.1 Estadisticas totales vs tipos de pokemon
+
+Como sabemos la funcion en combate de un pokemon viene determinada por sus estadísticas y el reparto de las mismas. Y a su vez estas estadísticas vienen determinadas por varios factores, como la etapa evolutiva, la rareza del pokemon (normal, legendario, singular, etc), o los posibles tipos del pokemon.
+
+Estos tipos representan elementos o entidades en la vida real, como el tipo fantasma representa a los fantasmas o lo espiritual, o como el tipo volador representa a los pájaros que nos podríamos encontrar por la calle. Esta representación no solo se ve reflejada en el diseño visual del pokemon, si no también en el reparto y cantidad de sus estadísticas, lo cual nos lleva a ver que (por lo general) un pokemon con tipo bicho suele ser más débil que un pokemon de tipo dragón.
+
+
+```{r}
+
+# Filtrar y transformar los datos combinando type1 y type2 en una sola columna
+pokemon_filter_type <- pokemon_table |>
+  # Seleccionamos solo las columnas relevantes
+  select(name, type1, type2, total) |>
+  # Cambiamos a formato largo para combinar type1 y type2 en una sola columna
+  pivot_longer(cols = c(type1, type2), names_to = "type_origin", values_to = "type") |>
+  # Filtramos para no incluir los NA de type2
+  filter(!is.na(type))
+
+# Crear el boxplot de puntos totales por tipo
+ggplot(pokemon_filter_type, aes(x = type, y = total)) +
+  geom_boxplot() +  # Generar el boxplot
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "gray") +  # Mostrar la media en rojo
+  labs(title = "Distribución de Puntos Totales por Tipo de Pokémon",
+       x = "Tipo de Pokémon",
+       y = "Puntos Totales") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotar etiquetas del eje X para mejor visualización
+
+
+```
+
+Con respecto a los tipos con mayor rendimiento , el tipo Dragón es el tipo con la mayor mediana de puntos totales, lo cual es consistente con el hecho de que este tipo tiende a estar asociado a Pokémon poderosos y legendarios como Rayquaza o Dialga, que suelen tener estadísticas base muy altas.(680 ambos)
+Acero también se presenta con una alta mediana y un rango amplio. Esto refleja que muchos Pokémon tipo Acero, como Metagross y Aegislash, son reconocidos por sus grandes defensas y estadística global sólida. Los legendarios de este tipo, como Solgaleo, también refuerzan esta tendencia.
+Hada es otro tipo que presenta una mediana alta. Desde su introducción en la sexta generación, este tipo ha incluido Pokémon de alta gama como Xerneas y Tapu Koko, que justifican su buena posición en el gráfico.
+
+Por el contrario , el tipo Bicho es el tipo con los puntos totales más bajos con una notable diferencia, con excepciones como Volcarona o Genesect.
+
+Planta y Veneno también presentan medianas más bajas y rangos menos amplios, lo que refleja que estos tipos suelen estar dominados por Pokémon con estadísticas más equilibradas o incluso bajas, a excepción de algunos legendarios como Nihilego.
+
+El gráfico resalta cómo ciertos tipos, particularmente Dragón, Acero, y Hada, dominan en términos de puntos totales, lo cual es consistente con su reputación dentro del universo pokémon. La presencia de pokémon legendarios dentro de estos tipos claramente eleva las estadísticas. Por otro lado, tipos como Bicho y Planta parecen ser menos competitivos, lo que también coincide con las tendencias en los juegos, donde estos tipos a menudo se ven eclipsados por otros más fuertes.
+
+## 6.2 Comparativas entre estadísticas en base a la Velocidad
 
 El objetivo de esta sección es comparar las estadísticas de ataque físico y ataque especial en función de la velocidad de los Pokémon, seguido de un análisis similar con las estadísticas de defensa física y defensa especial. La velocidad es una característica clave que determina el orden de los turnos en una batalla, y resulta relevante explorar su relación con las capacidades ofensivas y defensivas de los Pokémon.
 
@@ -901,7 +925,7 @@ En primer lugar, se examinará la correlación entre la velocidad y las dos form
 Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
 
 
-### 2.2.1 La Velocidad en base al Ataque
+### 6.2.1 La Velocidad en base al Ataque
 
 Primero compararemos el Ataque y el Ataque Especial:
 
@@ -954,7 +978,7 @@ defense_stats <- calculate_stats_by_type(pokemon_long, "defense")
 sp_def_stats <- calculate_stats_by_type(pokemon_long, "sp_def")
 
 
-print(attack_stats)
+kable(attack_stats)
 
 ```
 
@@ -991,7 +1015,7 @@ Ahora se colocarán los coeficientes de correlación y covarianza:
 
 ```{r}
 
-print(sp_atk_stats)
+kable(sp_atk_stats)
 
 ```
  
@@ -1000,7 +1024,7 @@ Los tipos Lucha (0.604), Veneno (0.516), y Bicho (0.508) presentan las correlaci
 
 Con respecto a las covarianzas, el Bicho (481) y Psíquico (455) muestran alta variación conjunta entre velocidad y ataque especial.
 
-### 2.2.2 La Velocidad en base a la Defensa
+### 6.2.2 La Velocidad en base a la Defensa
 
 A continuación, se compararán la Defensa y la Defensa Especial:
 
@@ -1030,7 +1054,7 @@ Posteriormente, se pondrán los coeficientes de correlación y covarianza:
 
 ```{r}
 
-print(defense_stats)
+kable(defense_stats)
 
 ```
 
@@ -1069,7 +1093,7 @@ De nuevo, se escribirán los coeficientes de correlación y covarianza:
 
 ```{r}
 
-print(sp_def_stats)
+kable(sp_def_stats)
 
 ```
 
@@ -1081,7 +1105,7 @@ En términos de covarianza, los tipos Hada (411) y Dragón (303) presentan los v
 Un caso particular es el del tipo Acero, que muestra una correlación ligeramente negativa (-0.026) entre velocidad y defensa especial, acompañada de una covarianza negativa (-19.2). Esto sugiere que los Pokémon de tipo Acero más rápidos no presentan necesariamente mejores defensas especiales.
 
 
-### 2.2.3 Conclusión
+### 6.2.3 Conclusión
 
 
 Tras realizar las comparaciones correspondientes, se pueden extraer algunas conclusiones relevantes sobre la relación entre la velocidad y ciertos tipos de Pokémon:
@@ -1311,9 +1335,9 @@ En relación con los coeficientes de correlación y covarianzas, los tipos Hada,
 Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resultar contraproducentes, especialmente en lo que respecta a la defensa. En estos casos, la velocidad parece asociarse con menores estadísticas defensivas. Esta discrepancia es un aspecto notable, ya que permite observar las correlaciones inversamente proporcionales, lo cual resulta particularmente interesante en el análisis comparativo de estas estadísticas.
 
 
-## 2.3 Altura VS Peso
+## 6.3 Altura VS Peso
 
-### 2.3.1 Altura y Peso para todos los Pokémon
+### 6.3.1 Altura y Peso para todos los Pokémon
 
 La altura de los Pokémon también resulta un factor digno de estudio en relación con el peso.
 
@@ -1355,7 +1379,7 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 A partir de este gráfico de dispersión, podemos concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
 
-### 2.3.2 Altura y Peso según el tipo de Pokémon
+### 6.3.2 Altura y Peso según el tipo de Pokémon
 
 A continuación, se analizará si existe alguna peculiaridad en la distribución de peso y altura en algún tipo concreto de Pokémon:
 
@@ -1405,7 +1429,7 @@ regresion_equations <- regresion_equations |>
   mutate(equation = paste0("Altura = ", intercept, " + ", slope, " * Peso"))
 
 # Mostrar las ecuaciones con el nombre del tipo
-print(regresion_equations)
+kable(regresion_equations)
 
 ```
 
@@ -1423,7 +1447,7 @@ Para la mayoría de los tipos, **el peso tiene un efecto muy leve en la altura d
 Los interceptos sugieren que los Pokémon de ciertos tipos, como Tierra y Psíquico, tienden a ser más altos incluso a bajos pesos, mientras que otros tipos, como Hada y Agua, tienden a ser más bajos en comparación.
 Las pendientes cercanas a cero en muchos tipos pueden indicar que otros factores aparte del peso influyen mucho más en la altura de los Pokémon.
 
-## 2.4 Comparación entre Tipo Elemental y las estadísticas de combate del Pokémon
+## 6.4 Comparación entre Tipo Elemental y las estadísticas de combate del Pokémon
 
 ```{r}
 # Filtrar solo los Pokémon monotipos (type2 es NA)
@@ -1436,7 +1460,7 @@ En esta sección, se examinará la relación entre los tipos elementales y las s
 
 <br>
 
-#### 2.4.1 Health points
+#### 6.4.1 Health points
 Primero se analizará la relación entre los puntos de salud (HP) y los tipos elementales Pokémon:
 
 ```{r}
@@ -1481,7 +1505,7 @@ Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett d
 
 <br>
 
-### 2.4.2 Ataque
+### 6.4.2 Ataque
 A continuación se analizará la relación entre el ataque (Attack) y los tipos elementales Pokémon:
 
 ```{r}
@@ -1529,7 +1553,7 @@ Los Pokémon con menores valores en su ataque son Chansey y Happiny, ambos de ti
 
 <br>
 
-### 2.4.3 Defensa
+### 6.4.3 Defensa
 A continuación se analizará la relación entre la defensa (Defense) y los tipos elementales de Pokémon:
 
 ```{r}
@@ -1579,7 +1603,7 @@ Los Pokémon con menos defensa son Chansey y Happiny, ambos de tipo normal, mien
 
 <br>
 
-### 2.4.4 Ataque especial
+### 6.4.4 Ataque especial
 
 En este subapartado se analizará la relación entre el Ataque especial (sp_atk) y los tipos elementales Pokémon:
 
@@ -1631,7 +1655,7 @@ Los Pokémon con menores valores en su ataque especial son Feebas y Bonsly, de t
 
 <br>
 
-### 2.4.5 Defensa especial
+### 6.4.5 Defensa especial
 A continuación se analizará la relación entre la Defensa especial (sp_def) y los tipos elementales Pokémon:
 
 ```{r}
@@ -1685,9 +1709,9 @@ Los Pokémon con menores valores en su defensa especial son Caterpie, Magikarp y
 En conlusión, se puede afirmar que existen ciertos tipos Pokémon especializados en un tipo de combate. Un buen ejemplo de esto son los tipos roca y acero que poseen valores muy elevados en su ataque y defensa física y valores algo más bajos en las mismas categorías de tipo especial. En contraposición, el tipo psíquico se caracteriza por su gran ataque y defensa especial. Además se puede identificar la existencia de Pokémon "tanques", Pokémon que no son fáciles de derrotar debido a su alta vida y sus atributos de defensa, aunque no tengan un gran poder de ataque.
 
 
-## 2.5 Relación entre HP y Defensa / Defensa Especial
+## 6.5 Relación entre HP y Defensa / Defensa Especial
 
-### 2.5.1 Defensa
+### 6.5.1 Defensa
 
 Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
 
@@ -1737,7 +1761,7 @@ covhpdef
 
 Debido a que el coeficiente de correlación es 0.3 y que la covarianza nos da un valor positivo, se puede corroborar que la relación entre HP y Defensa es débil pero no inexistente. En conclusión, un Pokémon con una alta Defensa no tiene por qué tener una alta estadística de HP, sin embargo, estas suelen estar relacionadas en algunos casos y no son del todo independientes.
 
-### 2.5.2 Defensa Especial
+### 6.5.2 Defensa Especial
 
 A continuación, se realizará el mismo análisis, pero ahora con Defensa Especial en lugar de Defensa física. La Defensa especial mide la capacidad de un Pokémon para resistir ataques especiales, lo que puede dar información relevante sobre la similitud entre los dos tipos de defensa.
 
