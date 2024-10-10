@@ -1512,9 +1512,16 @@ características influyen en su efectividad y utilidad en el juego.</p>
 bivariantes, se podrá alcanzar una conclusion de qué tan equilibrado
 está en realidad el mundo de Pokémon.</p>
 <p><strong>NOTA : Algunas estadísticas de esta base de datos no influyen
-en el objetivo , por lo que no serán tomadas en cuenta para el análisis.
-(ability1 , ability2 , hidden_ability , dexnum) , estas variables son
-irrepetibles o informativas</strong></p>
+en el objetivo , por lo que no serán tomadas en cuenta para el
+análisis:</strong></p>
+<ul>
+<li><p><strong>ability1, ability2 y hidden_ability no se tendrán en
+cuenta porque son muy variadas y no tienen relación con el resto de
+variables del análisis. </strong></p></li>
+<li><p><strong>dexnum no se tendrá en cuenta al ser una mera varibale
+informativa de la posición que ocupa el Pokémon en la Pokédex (no aporta
+ningún tipo de valor al análisis.</strong></p></li>
+</ul>
 </div>
 <div id="diccionario-de-datos" class="section level1">
 <h1>2.Diccionario de datos</h1>
@@ -1610,20 +1617,20 @@ trabajaremos.</p>
 <div id="muestra-del-dataset" class="section level1">
 <h1>4.Muestra del dataset</h1>
 <p>Mostramos el csv que vamos a analizar :</p>
-<div id="lnvyomngxg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lnvyomngxg table {
+<div id="xbouoyfycg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xbouoyfycg table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#lnvyomngxg thead, #lnvyomngxg tbody, #lnvyomngxg tfoot, #lnvyomngxg tr, #lnvyomngxg td, #lnvyomngxg th {
+#xbouoyfycg thead, #xbouoyfycg tbody, #xbouoyfycg tfoot, #xbouoyfycg tr, #xbouoyfycg td, #xbouoyfycg th {
 border-style: none;
 }
-#lnvyomngxg p {
+#xbouoyfycg p {
 margin: 0;
 padding: 0;
 }
-#lnvyomngxg .gt_table {
+#xbouoyfycg .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -1648,11 +1655,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#lnvyomngxg .gt_caption {
+#xbouoyfycg .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#lnvyomngxg .gt_title {
+#xbouoyfycg .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -1663,7 +1670,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#lnvyomngxg .gt_subtitle {
+#xbouoyfycg .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -1674,7 +1681,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#lnvyomngxg .gt_heading {
+#xbouoyfycg .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -1685,12 +1692,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#lnvyomngxg .gt_bottom_border {
+#xbouoyfycg .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lnvyomngxg .gt_col_headings {
+#xbouoyfycg .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -1704,7 +1711,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#lnvyomngxg .gt_col_heading {
+#xbouoyfycg .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1723,7 +1730,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#lnvyomngxg .gt_column_spanner_outer {
+#xbouoyfycg .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1734,13 +1741,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#lnvyomngxg .gt_column_spanner_outer:first-child {
+#xbouoyfycg .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#lnvyomngxg .gt_column_spanner_outer:last-child {
+#xbouoyfycg .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#lnvyomngxg .gt_column_spanner {
+#xbouoyfycg .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -1751,10 +1758,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#lnvyomngxg .gt_spanner_row {
+#xbouoyfycg .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#lnvyomngxg .gt_group_heading {
+#xbouoyfycg .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1779,7 +1786,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#lnvyomngxg .gt_empty_group_heading {
+#xbouoyfycg .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -1793,13 +1800,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#lnvyomngxg .gt_from_md > :first-child {
+#xbouoyfycg .gt_from_md > :first-child {
 margin-top: 0;
 }
-#lnvyomngxg .gt_from_md > :last-child {
+#xbouoyfycg .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#lnvyomngxg .gt_row {
+#xbouoyfycg .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1817,7 +1824,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#lnvyomngxg .gt_stub {
+#xbouoyfycg .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1829,7 +1836,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lnvyomngxg .gt_stub_row_group {
+#xbouoyfycg .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1842,13 +1849,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#lnvyomngxg .gt_row_group_first td {
+#xbouoyfycg .gt_row_group_first td {
 border-top-width: 2px;
 }
-#lnvyomngxg .gt_row_group_first th {
+#xbouoyfycg .gt_row_group_first th {
 border-top-width: 2px;
 }
-#lnvyomngxg .gt_summary_row {
+#xbouoyfycg .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -1857,14 +1864,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lnvyomngxg .gt_first_summary_row {
+#xbouoyfycg .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#lnvyomngxg .gt_first_summary_row.thick {
+#xbouoyfycg .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#lnvyomngxg .gt_last_summary_row {
+#xbouoyfycg .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1873,7 +1880,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lnvyomngxg .gt_grand_summary_row {
+#xbouoyfycg .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -1882,7 +1889,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lnvyomngxg .gt_first_grand_summary_row {
+#xbouoyfycg .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1891,7 +1898,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#lnvyomngxg .gt_last_grand_summary_row_top {
+#xbouoyfycg .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1900,10 +1907,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#lnvyomngxg .gt_striped {
+#xbouoyfycg .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#lnvyomngxg .gt_table_body {
+#xbouoyfycg .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -1911,7 +1918,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#lnvyomngxg .gt_footnotes {
+#xbouoyfycg .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -1924,7 +1931,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#lnvyomngxg .gt_footnote {
+#xbouoyfycg .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -1932,7 +1939,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lnvyomngxg .gt_sourcenotes {
+#xbouoyfycg .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -1945,64 +1952,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#lnvyomngxg .gt_sourcenote {
+#xbouoyfycg .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#lnvyomngxg .gt_left {
+#xbouoyfycg .gt_left {
 text-align: left;
 }
-#lnvyomngxg .gt_center {
+#xbouoyfycg .gt_center {
 text-align: center;
 }
-#lnvyomngxg .gt_right {
+#xbouoyfycg .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#lnvyomngxg .gt_font_normal {
+#xbouoyfycg .gt_font_normal {
 font-weight: normal;
 }
-#lnvyomngxg .gt_font_bold {
+#xbouoyfycg .gt_font_bold {
 font-weight: bold;
 }
-#lnvyomngxg .gt_font_italic {
+#xbouoyfycg .gt_font_italic {
 font-style: italic;
 }
-#lnvyomngxg .gt_super {
+#xbouoyfycg .gt_super {
 font-size: 65%;
 }
-#lnvyomngxg .gt_footnote_marks {
+#xbouoyfycg .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#lnvyomngxg .gt_asterisk {
+#xbouoyfycg .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#lnvyomngxg .gt_indent_1 {
+#xbouoyfycg .gt_indent_1 {
 text-indent: 5px;
 }
-#lnvyomngxg .gt_indent_2 {
+#xbouoyfycg .gt_indent_2 {
 text-indent: 10px;
 }
-#lnvyomngxg .gt_indent_3 {
+#xbouoyfycg .gt_indent_3 {
 text-indent: 15px;
 }
-#lnvyomngxg .gt_indent_4 {
+#xbouoyfycg .gt_indent_4 {
 text-indent: 20px;
 }
-#lnvyomngxg .gt_indent_5 {
+#xbouoyfycg .gt_indent_5 {
 text-indent: 25px;
 }
-#lnvyomngxg .katex-display {
+#xbouoyfycg .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#lnvyomngxg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xbouoyfycg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3994,7 +4001,7 @@ del Pokémon</h2>
 y las siguientes estadísticas de combate: hp, attack, special_attack,
 defense, y special_defense. A continuación se presentan gráficos y
 análisis detallados para cada estadística de combate con el objetivo de
-determinar que tipos Pokémon están más especializados en una clase de
+determinar qué tipos Pokémon están más especializados en una clase de
 combate u otro, ya sea un combate por ataques físicos o por ataques
 especiales.</p>
 <p><strong>Nota:</strong> Los Pokémon considerados en el análisis son
@@ -4221,6 +4228,7 @@ en todos los casos por lo que no se debe concluir en que un Pokémon es
 capaz de aguantar bien cualquier golpe al tener alguna de estas
 estadísticas altas, puesto que hay movimientos que ignoran la defensa
 del enemigo para calcular su daño.</p>
+<p>#7. Conclusiones</p>
 </div>
 </div>
 </div>

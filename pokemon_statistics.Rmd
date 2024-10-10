@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R
 
 # 1.Introducción y definición de objetivos
 
-En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor arco de jugadores posible. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
+En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor rango de jugadores posibles. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros, puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
 
 Por esta razón, en este análisis se tratará la saga de Pokémon, altamente reconocible e influyente en el mundo de los videojuegos de la actualidad, con un alto grado de matemática y estadística en sus mecánicas, consiguiendo que la estrategia y el cálculo mental tengan una gran relevancia, mas allá de ser un juego con una paleta de colores amigable, diseñada para atraer a la audiencia más joven. 
 
@@ -31,7 +31,11 @@ El objetivo principal de este estudio consiste en que, mediante de la comparaci�
 
 De esta manera, realizando diversos análisis univariantes y bivariantes, se podrá alcanzar una conclusion de qué tan equilibrado está en realidad el mundo de Pokémon. 
 
-**NOTA : Algunas estadísticas de esta base de datos no influyen en el objetivo , por lo que no serán tomadas en cuenta para el análisis. (ability1 , ability2 , hidden_ability , dexnum) , estas variables son irrepetibles o informativas**
+**NOTA : Algunas estadísticas de esta base de datos no influyen en el objetivo , por lo que no serán tomadas en cuenta para el análisis:**
+
+* **ability1, ability2 y hidden_ability  no se tendrán en cuenta porque son muy variadas y no tienen relación con el resto de variables del análisis. **
+
+* **dexnum no se tendrá en cuenta al ser una mera varibale informativa de la posición que ocupa el Pokémon en la Pokédex (no aporta ningún tipo de valor al análisis.**
 
 
 # 2.Diccionario de datos
@@ -1454,7 +1458,7 @@ Las pendientes cercanas a cero en muchos tipos pueden indicar que otros factores
 pokemon_monotipos <- pokemon_table %>% filter(is.na(type2))
 ```
 
-En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. A continuación se presentan gráficos y análisis detallados para cada estadística de combate con el objetivo de determinar que tipos Pokémon están más especializados en una clase de combate u otro, ya sea un combate por ataques físicos o por ataques especiales.
+En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. A continuación se presentan gráficos y análisis detallados para cada estadística de combate con el objetivo de determinar qué tipos Pokémon están más especializados en una clase de combate u otro, ya sea un combate por ataques físicos o por ataques especiales.
 
 **Nota:** Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). 
 
@@ -1814,7 +1818,7 @@ Como era de esperar, se han obtenido unos resultados bastante similares a los de
 En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran la defensa del enemigo para calcular su daño.
 
 
-
+#7. Conclusiones
 
 
 
