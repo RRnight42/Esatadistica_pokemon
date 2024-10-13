@@ -890,7 +890,7 @@ kable(freq_table_df)
 
 
 
-Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
+Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
 
 
 # 6.Datos bivariantes
@@ -1230,7 +1230,7 @@ filtered_pokemon <- pokemon_table %>%
 
 # Crear el gráfico ajustado
 ggplot(filtered_pokemon, aes(x = height, y = weight)) + 
-  geom_point(color = "green", alpha = 0.6, width = 0.3, height = 0.1) +  # Añade jitter para dispersar puntos
+  geom_point(color = "darkgreen", alpha = 0.6, width = 0.3, height = 0.1) +  # Añade jitter para dispersar puntos
   labs(title = "Relación entre Altura y Peso", x = "Altura (m)", y = "Peso (kg)") +
   theme_minimal()
 ```
@@ -1319,6 +1319,35 @@ En primer lugar, se examinará la correlación entre la velocidad y las dos form
 
 Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
 
+Como dato adicional , calcularemos los coeficientes de determinación (R-square) , la cual es una herramienta que nos ayuda a entender como un modelo de regresión se adapta a los datos:
+
+```{r}
+# R² entre speed y attack
+r_squared_attack <- pokemon_table |>
+  lm(attack ~ speed, data = _) |>
+  summary() |>
+  (\(x) x$r.squared)()  # Extraer R² para ataque
+
+# R² entre speed y sp_atk
+r_squared_sp_atk <- pokemon_table |>
+  lm(sp_atk ~ speed, data = _) |>
+  summary() |>
+  (\(x) x$r.squared)()  # Extraer R² para ataque especial
+
+# R² entre speed y defense
+r_squared_defense <- pokemon_table |>
+  lm(defense ~ speed, data = _) |>
+  summary() |>
+  (\(x) x$r.squared)()  # Extraer R² para defensa
+
+# R² entre speed y sp_def
+r_squared_sp_def <- pokemon_table |>
+  lm(sp_def ~ speed, data = _) |>
+  summary() |>
+  (\(x) x$r.squared)()  # Extraer R² para defensa especial
+
+```
+
 
 ### 6.4.1 La Velocidad en base al Ataque
 
@@ -1382,6 +1411,14 @@ Los tipos Hada (0.500), Psíquico (0.503) y Dragón (0.460) exhiben una relació
 En cuanto a las covarianzas, los tipos Hada (477) y Psíquico (455) presentan los valores más altos, lo que refuerza la correlación observada entre velocidad y ataque en estas categorías.
  
  
+#### R-squared : 
+
+```{r}
+
+cat("R² de Velocidad y Ataque:", r_squared_attack, "\n")
+
+``` 
+ 
 ```{r}
 
 pokemon_long_sp_atk <- pokemon_table |>
@@ -1418,6 +1455,16 @@ kable(sp_atk_stats)
 Los tipos Lucha (0.604), Veneno (0.516), y Bicho (0.508) presentan las correlaciones más altas, lo que sugiere que la velocidad y el ataque especial están altamente relacionados en estos tipos.
 
 Con respecto a las covarianzas, el Bicho (481) y Psíquico (455) muestran alta variación conjunta entre velocidad y ataque especial.
+
+#### R-squared : 
+
+```{r}
+
+cat("R² de Velocidad y Ataque Especial:", r_squared_sp_atk, "\n")
+
+```
+
+La relación entre la velocidad y el ataque especial es un poco más fuerte que la relación con el ataque físico, con un R² de 0.179. Esto indica que el 17.9% de la variabilidad en el ataque especial puede explicarse por la velocidad. Aunque esta relación es mayor que con el ataque, sigue siendo relativamente débil. Sin embargo, es notable que los Pokémon con mayor velocidad tienden a tener un ataque especial algo más alto en comparación con el ataque físico.
 
 ### 6.4.2 La Velocidad en base a la Defensa
 
@@ -1461,6 +1508,18 @@ En cuanto a las covarianzas, los tipos Hada (355) y Normal (205) presentan los v
 Un caso notable es el del tipo Roca, que presenta una correlación negativa significativa (-0.377) y la mayor covarianza negativa (-393). Este resultado sugiere que, en este tipo, los Pokémon más rápidos tienden a tener una defensa más baja, lo que contradice las expectativas tradicionales sobre la relación entre velocidad y defensa.
 
 
+#### R-squared : 
+
+```{r}
+
+cat("R² de Velocidad y Defensa:", r_squared_defense, "\n")
+
+```
+
+
+En este caso, el R² es prácticamente nulo (0.00006), lo que indica que no hay prácticamente ninguna relación entre la velocidad y la defensa. Esto sugiere que la capacidad defensiva de un Pokémon es independiente de su velocidad. Es decir, un Pokémon rápido no necesariamente tiene una defensa alta o baja.
+
+
 ```{r}
 pokemon_long_sp_def <- pokemon_table |>
   # Seleccionamos solo las columnas relevantes
@@ -1499,6 +1558,15 @@ En términos de covarianza, los tipos Hada (411) y Dragón (303) presentan los v
 
 Un caso particular es el del tipo Acero, que muestra una correlación ligeramente negativa (-0.026) entre velocidad y defensa especial, acompañada de una covarianza negativa (-19.2). Esto sugiere que los Pokémon de tipo Acero más rápidos no presentan necesariamente mejores defensas especiales.
 
+#### R-squared : 
+
+```{r}
+
+cat("R² de Velocidad y Defensa Especial:", r_squared_sp_def, "\n")
+
+```
+
+La relación entre la velocidad y la defensa especial es también muy baja, con un R² de 0.046. Solo el 4.6% de la variabilidad en la defensa especial puede explicarse por la velocidad. Al igual que con la defensa física, esto implica que los Pokémon rápidos no tienen una ventaja o desventaja clara en términos de defensa especial.
 
 ### 6.4.3 Conclusión
 
@@ -1510,6 +1578,7 @@ Al analizar las gráficas, se observa que la mayoría de los Pokémon tienden a 
 En cuanto a los atacantes especiales, los Pokémon de tipo Eléctrico destacan por su alta velocidad. Esto sugiere que es más viable optar por Pokémon con un buen Ataque Especial y velocidad elevada, ya que, al comparar las gráficas de Defensa Especial, se observa que su media es considerablemente inferior en comparación con la Defensa Física.
 
 A continuación, se presentan una serie de gráficas que comparan Velocidad con Ataque, Defensa, Ataque Especial y Defensa Especial de los Pokémon de tipo Eléctrico:
+
 
 
 
@@ -1728,8 +1797,6 @@ grid.arrange(g1, g2, g3, g4, nrow = 2)
 En relación con los coeficientes de correlación y covarianzas, los tipos Hada, Psíquico y Dragón presentan una relación positiva significativa entre velocidad y sus estadísticas ofensivas y defensivas, destacándose como los tipos con mayor consistencia en estas métricas.
 
 Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resultar contraproducentes, especialmente en lo que respecta a la defensa. En estos casos, la velocidad parece asociarse con menores estadísticas defensivas. Esta discrepancia es un aspecto notable, ya que permite observar las correlaciones inversamente proporcionales, lo cual resulta particularmente interesante en el análisis comparativo de estas estadísticas.
-
-
 
 
 ## 6.5 Relación entre HP y Defensa / Defensa Especial
