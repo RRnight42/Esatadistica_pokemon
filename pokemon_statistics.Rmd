@@ -1312,7 +1312,7 @@ En primer lugar, se examinará la correlación entre la velocidad y las dos form
 
 Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
 
-Como dato adicional , calcularemos los coeficientes de determinación (R-square) , la cual es una herramienta que nos ayuda a entender como un modelo de regresión se adapta a los datos:
+Como dato adicional, calcularemos los coeficientes de determinación (R-square), los cuales son una herramienta que nos ayuda a entender cómo un modelo de regresión se adapta a los datos:
 
 ```{r}
 # R² entre speed y attack
