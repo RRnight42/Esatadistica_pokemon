@@ -1,6 +1,6 @@
 ---
 title: "PRÁCTICA 1 ESTADÍSTICA DESCRIPTIVA: ANÁLISIS DE ESTADÍSTICAS POKEMON"
-author: "GRUPO_6 : *Daniel Mazo*, *Miguel Amado*, *Luis Prieto*, *Alejandro Marín*, *Roberto Rojas*"
+author: "GRUPO_6: *Daniel Mazo*, *Miguel Amado*, *Luis Prieto*, *Alejandro Marín*, *Roberto Rojas*"
 date: "Estadística Curso 2024-25"
 
 output: 
@@ -21,67 +21,67 @@ knitr::opts_chunk$set(echo = FALSE, # Poner a TRUE si se quiere ver el código R
                       error = TRUE)
 ```
 
-# 1.Introducción y definición de objetivos
+# 1. Introducción y definición de objetivos
 
-En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor rango de jugadores posibles. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros, puede causar preferencia de estos personajes o desagrado. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de si mismo.
+En la actualidad, el equilibrio en los videojuegos resulta un factor esencial para asegurar una experiencia de juego satisfactoria para el mayor rango de jugadores posibles. La presencia de desequilibrio en el mundo de juego, ya sea debido a que los personajes tengan ciertas ventajas sobre otros o no, puede causar preferencia de los primeros o desagrado de los segundos. Sin embargo, el mundo de Pokémon es ampliamente conocido por buscar un sistema de ventaja-desventaja cuyo equilibrio depende de sí mismo.
 
-Por esta razón, en este análisis se tratará la saga de Pokémon, altamente reconocible e influyente en el mundo de los videojuegos de la actualidad, con un alto grado de matemática y estadística en sus mecánicas, consiguiendo que la estrategia y el cálculo mental tengan una gran relevancia, mas allá de ser un juego con una paleta de colores amigable, diseñada para atraer a la audiencia más joven. 
+Por esta razón, en este análisis se tratará la saga de Pokémon, altamente reconocible e influyente en el mundo de los videojuegos de la actualidad, con un alto grado de matemática y estadística en sus mecánicas, consiguiendo que la estrategia y el cálculo mental tengan una gran relevancia más allá de ser un juego con una paleta de colores amigable, diseñada para atraer a la audiencia más joven. 
 
 El objetivo principal de este estudio consiste en que, mediante de la comparación entre las estadísticas físicas y de combate de los Pokémon, se buscará identificar patrones que determinen cómo estas características influyen en su efectividad y utilidad en el juego.
 
-De esta manera, realizando diversos análisis univariantes y bivariantes, se podrá alcanzar una conclusion de qué tan equilibrado está en realidad el mundo de Pokémon. 
+De esta manera, realizando diversos análisis univariantes y bivariantes, se podrá alcanzar una conclusión de qué tan equilibrado está en realidad el mundo de Pokémon. 
 
-**NOTA : Algunas estadísticas de esta base de datos no influyen en el objetivo , por lo que no serán tomadas en cuenta para el análisis:**
+**NOTA: Algunas estadísticas de esta base de datos no influyen en el objetivo, por lo que no serán tomadas en cuenta para el análisis:**
 
-* **ability1, ability2 y hidden_ability  no se tendrán en cuenta porque son muy variadas y no tienen relación con el resto de variables del análisis. **
+* **ability1, ability2 y hidden_ability no se tendrán en cuenta porque son muy variadas y no tienen relación con el resto de variables del análisis. **
 
-* **dexnum no se tendrá en cuenta al ser una mera varibale informativa de la posición que ocupa el Pokémon en la Pokédex (no aporta ningún tipo de valor al análisis.**
-
-
-# 2.Diccionario de datos
-Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 pokemon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
-
-* **`dexnum:`** El número asociado a la Pokédex del Pokémon. (Cuantitativa, Discreta)
-
-* **`name:`**  El nombre oficial del Pokémon.(Cualitativa, Nominal)
-
-* **`generation:`** La generación a la que corresponde el pokemon. Cada generación se caracteriza por la introducción de nuevas especies de Pokémon. (Cualitativa, Ordinal)
-
-* **`type1:`** La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Algunos pokémon pueden tener dos tipos. (Cualitativa, Nominal)
-
-* **`type2:`** El segundo tipo del Pokémon en caso de que lo tenga. (Cualitativa, Nominal)
-
-* **`height:`** La altura oficial del Pokémon, generalmente en metros (Sistema Internacional). (Cuantitativa, Continua)
-
-* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos(Sistema Internacional). (Cuantitativa, Continua)
-
-* **`ability1:`** Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos. (Cualitativa, Nominal)
-
-* **`ability2:`** Segunda habilidad especial del Pokémon en caso de que tenga más de una. (Cualitativa, Nominal)
-
-* **`hidden_ability:`** Habilidad oculta del Pokémon que es diferente de sus habilidades normales que no siempre están disponibles en un Pokémon al ser capturado o al criarse de manera estándar. Suelen proporcionar ventajas estratégicas en combate. (Cualitativa, Nominal)
-
-* **`hp (health points):`** La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate. (Cuantitativa, Continua)
-
-* **`attack:`** La estadística que determina la potencia de los ataques físicos del Pokémon en combate. (Cuantitativa, Continua)
-
-* **`defense:`** La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate. (Cuantitativa, Continua)
-
-* **`sp_atk (special attack):`** La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.). (Cuantitativa, Continua)
-
-* **`sp_def (special defense):`** La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos). (Cuantitativa, Continua)
-
-* **`speed:`** La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos. (Cuantitativa, Continua)
-
-* **`total:`** La suma total de las principales estadísticas de combate del Pokémon, entre las que se incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense), Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad (speed). (Cuantitativa, Continua)
-
-* **`percent_male:`** El porcentaje de probabilidades de que un Pokémon sea de género masculino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
-
-* **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua)
+* **dexnum no se tendrá en cuenta al ser una mera variable informativa de la posición que ocupa el Pokémon en la Pokédex (no aporta ningún tipo de valor al análisis).**
 
 
-# 3.Importación y carga de paquetes
-En primer lugar, cargaremos las librerías con las que trabajaremos.
+# 2. Diccionario de datos
+Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 Pokémon disponibles desde 1995 hasta la fecha, como se muestra a continuación.
+
+* **`dexnum:`** El número asociado a la Pokédex del Pokémon. (Cuantitativa, Discreta).
+
+* **`name:`**  El nombre oficial del Pokémon. (Cualitativa, Nominal).
+
+* **`generation:`** La generación a la que corresponde el Pokémon. Cada generación se caracteriza por la introducción de nuevas especies de Pokémon. (Cualitativa, Ordinal).
+
+* **`type1:`** La clasificación elemental del Pokémon, que determina sus fortalezas y debilidades en combate. Algunos Pokémon pueden tener dos tipos. (Cualitativa, Nominal).
+
+* **`type2:`** El segundo tipo del Pokémon en caso de que lo tenga. (Cualitativa, Nominal).
+
+* **`height:`** La altura oficial del Pokémon, generalmente en metros (Sistema Internacional). (Cuantitativa, Continua).
+
+* **`weight:`** El peso oficial del Pokémon, generalmente en kilogramos(Sistema Internacional). (Cuantitativa, Continua).
+
+* **`ability1:`** Habilidad especiales o innata del Pokémon, que pueden influir en el combate o proporcionar efectos únicos. (Cualitativa, Nominal).
+
+* **`ability2:`** Segunda habilidad especial del Pokémon en caso de que tenga más de una. (Cualitativa, Nominal).
+
+* **`hidden_ability:`** Habilidad oculta del Pokémon, la cual  es diferente de sus habilidades normales que no siempre están disponibles en un Pokémon al ser capturado o al criarse de manera estándar. Suelen proporcionar ventajas estratégicas en combate. (Cualitativa, Nominal).
+
+* **`hp (health points):`** La cantidad de puntos de salud del Pokémon, que determina cuánto daño puede recibir antes de desmayarse en combate. (Cuantitativa, Continua).
+
+* **`attack:`** La estadística que determina la potencia de los ataques físicos del Pokémon en combate. (Cuantitativa, Continua).
+
+* **`defense:`** La estadística que mide la capacidad del Pokémon para resistir ataques físicos en combate. (Cuantitativa, Continua).
+
+* **`sp_atk (special attack):`** La estadística que mide la potencia de los ataques especiales del Pokémon, como ataques de tipo elemental (fuego, agua, etc.). (Cuantitativa, Continua).
+
+* **`sp_def (special defense):`** La estadística que mide la capacidad del Pokémon para resistir ataques especiales (movimientos no físicos). (Cuantitativa, Continua).
+
+* **`speed:`** La estadística que determina qué tan rápido actúa el Pokémon en combate, lo que influye en el orden de los turnos. (Cuantitativa, Continua).
+
+* **`total:`** La suma total de las principales estadísticas de combate del Pokémon, entre las que se incluyen: Puntos de Salud (hp), Ataque (attack), Defensa (defense), Ataque Especial (sp_atk), Defensa Especial (sp_def), y Velocidad (speed). (Cuantitativa, Continua).
+
+* **`percent_male:`** El porcentaje de probabilidades de que un Pokémon sea de género masculino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua).
+
+* **`percent_female:`** El porcentaje de probabilidades de que un Pokémon sea de género femenino. También se puede dar la posibilidad de que un Pokémon no tenga género. (Cuantitativa, Continua).
+
+
+# 3. Importación y carga de paquetes
+En primer lugar, cargaremos las librerías con las que trabajaremos:
 
 ```{r}
 library(stringr)
@@ -162,9 +162,9 @@ type_translation <- c(
 
 ```
 
-# 4.Muestra del dataset 
+# 4. Muestra del dataset 
 
-Mostramos el csv que vamos a analizar :
+Mostramos el csv que vamos a analizar:
 
 ```{r}
 
@@ -176,25 +176,25 @@ pokemon_table |>
 
 
 
-**Tenemos algunos casos donde en el dataset se muestra NA :**
+**Tenemos algunos casos donde en el dataset se muestra NA:**
 
-* En  **`type2:`**, algunos Pokémon no tienen tipo secundario
+* En **`type2:`**, algunos Pokémon no tienen tipo secundario.
 
-* En   **`ability2:`** y  **`hidden_ability:`**, algunos Pokémon no poseen segunda habilidad o habilidad oculta 
+* En **`ability2:`** y **`hidden_ability:`**, algunos Pokémon no poseen segunda habilidad o habilidad oculta .
 
-* En   **`percent_male:`** y **`percent_female:`**, los pokemon que no poseen dato de pocentaje de hembra o macho , son Pokémon sin género
-
-
-# 5.Datos univariantes
+* En **`percent_male:`** y **`percent_female:`**, los Pokémon que no poseen dato de porcentaje de hembra o macho, son Pokémon sin género.
 
 
-## 5.1 Estadisticas individuales de Pokémon
+# 5. Datos univariantes
+
+
+## 5.1 Estadísticas individuales de Pokémon
 
 
 
 ### 5.1.1 HP (Puntos de salud)
 
-Esta estadística determina la cantidad de daño que un Pokémon puede recibir antes de desmayarse. Un HP alto es crucial para la supervivencia en combates, y su distribución puede revelar qué tan robustos son los Pokémon en el conjunto de datos.
+Esta estadística determina la cantidad de daño que un Pokémon puede recibir antes de desmayarse. Un HP alto es crucial para la supervivencia en combate y su distribución puede revelar qué tan robustos son los Pokémon en el conjunto de datos.
 
 
 ```{r}
@@ -209,7 +209,7 @@ ggplot(pokemon_table, aes(x = hp)) +
 
 El gráfico de barras se utiliza para mostrar la frecuencia con la que aparecen diferentes valores de HP (puntos de salud) en los Pokémon. Cada barra representa la cantidad de Pokémon que tienen un determinado rango de HP. Este gráfico es útil para visualizar qué tan común es un cierto nivel de HP en nuestra muestra.
 
-En la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud , curiosamente hay Pokémon que poseen mas de 200 puntos de vida, porque hay excepciones con caracteristicas extremas. 
+En la gráfica abundan los valores que poseen alrededor de 50 o 80 puntos de salud, aunque curiosamente hay Pokémon que poseen más de 200 puntos de vida debido a que hay excepciones con características extremas. 
 
 
 ### 5.1.2 Ataque
@@ -227,7 +227,7 @@ ggplot(pokemon_table, aes(x = attack)) +
 ```
 
 
-Como se puede apreciar, el ataque es un atributo que la mayoría de sus pokemon tienen muy positiva. Hay muy pocos pokemon con un ataque menor de 60. Con lo cual es una estádistica interesante de analizar.
+Como se puede apreciar, el ataque es un atributo que la mayoría de los Pokémon tienen muy alto. Hay muy pocos Pokémon con un ataque menor de 60, con lo cual es una estadística interesante de analizar.
 
 
 ### 5.1.3 Defensa
@@ -236,7 +236,7 @@ Esta estadística indica la capacidad de un Pokémon para resistir ataques físi
 
 ```{r}
 
-# Gráfico de barras para  Defensa
+# Gráfico de barras para Defensa
 ggplot(pokemon_table, aes(x = defense)) +
   geom_histogram(fill = "yellow", color = "black") +
   labs(title = "Distribución de Defensa", x = "Defensa ", y = "Frecuencia") +
@@ -245,7 +245,7 @@ ggplot(pokemon_table, aes(x = defense)) +
 ```
 
 
-La defensa es una estadística que suele mantenerse entre 60 y 90 puntos, existen unos pokemon cuyos valores defensivos son extremadamente altos , debido a que juegan un papel mas defensivo en los combates y tienen estrategias de desgaste encajando los golpes del rival. 
+La defensa es una estadística que suele mantenerse entre 60 y 90 puntos. Existen unos Pokémon cuyos valores defensivos son extremadamente altos, debido a que juegan un papel más defensivo en los combates y tienen estrategias de desgaste encajando los golpes del rival. 
 
 
 ### 5.1.4 Ataque Especial
@@ -262,7 +262,7 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 
 ```
 
-Como se puede ver, no se aleja mucho de otras estadisticas, no hay mucha variación con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos mas altos de esta estadística.
+Como se puede ver, no se aleja mucho de otras estadísticas, por lo que no hay mucha variación con respecto a las otras. Su promedio se encuentra entre los 55 y 70 puntos. Ahí se encuentran los picos más altos de esta estadística.
 
 
 ### 5.1.5 Defensa Especial
@@ -280,20 +280,20 @@ ggplot(pokemon_table, aes(x = sp_def)) +
 
 ```
 
-Como se puede ver, la defensa especial no es un atributo destacable por ser alto en los Pokémon; la mayoría de sus valores se encuentran 40 y 80, lo cual puede significar que el Pokémon al recibir un Ataque especial, pueda recibir mucho daño, condicionado por los puntos de salud. 
+Como se puede ver, la defensa especial no es un atributo destacable por ser alto en los Pokémon; la mayoría de sus valores se encuentran entre 40 y 80, lo cual puede significar que el Pokémon al recibir un Ataque especial pueda recibir mucho daño, hecho que está condicionado por los valores en los puntos de salud. 
 
 
 ### 5.1.6 Velocidad
 
-La velocidad en los combates Pokémon es un factor crucial, porque determina que Pokémon tiene prioridad para atacar antes. Existen combates donde se decide el resultado solo por la velocidad, así como excepciones con ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
+La velocidad en los combates Pokémon es un factor crucial porque determina qué Pokémon tiene prioridad para atacar antes. Existen combates donde se decide el resultado solo por la velocidad, así como excepciones con ciertos movimientos que permiten atacar antes ignorando la comparación de velocidades o ciertas habilidades.
 
 ```{r}
 
 ggplot(pokemon_table, aes(x = speed)) + 
   geom_histogram(fill = "green", color = "black") + 
   labs(title = "Distribución de la Velocidad", 
-       x = "Velocidad (entero)", 
-       y = "Pokémon con x velocidad") +
+       x = "Velocidad", 
+       y = "Frecuencia") +
   theme_minimal()
 
 
