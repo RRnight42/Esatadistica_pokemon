@@ -448,17 +448,11 @@ de_total
 
 
 
-Como podemos observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de pokemon con tantos puntos de combate:
+Como podemos observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de Pokémon con tantos puntos de combate:
 
-Por una parte podemos ver tres picos de concentración en los puntos 200, 300 y 500. Estos puntos destacan sobre los demás ya que como sabemos la mayor parte de los pokemons tienen tres etapas evolutivas y cada uno de estos picos se centra en una de estas etapas, la primera etapa corresponde al pico de 200 puntos, la segunda al pico de 300 y la tercera al pico de 500, ya que un pokemon a medida que evoluciona se hace más fuerte progresivamente
+Por una parte, podemos ver tres picos de concentración en los puntos 200, 300 y 500. Estos puntos destacan sobre los demás ya que como sabemos la mayor parte de los Pokémon tienen tres etapas evolutivas y cada uno de estos picos se centra en una de estas etapas, la primera etapa corresponde al pico de 200 puntos, la segunda al pico de 300 y la tercera al pico de 500, ya que un Pokémon a medida que evoluciona se hace más fuerte progresivamente
 
-Y por otra parte podemos ver que hay un pequeño grupo de pokemons que tienen una suma total de puntos mayor a 600. Este grupo corresponde al grupo de los pokemons legendarios, ya que estos poseen un gran poder.
-
-
-
-
-
-
+Por otra parte, podemos ver que hay un pequeño grupo de Pokémon que tienen una suma total de puntos mayor a 600. Este grupo corresponde al grupo de los Pokémon legendarios, ya que estos poseen un gran poder.
 
 
 ## 5.3 Distribución de los pesos
@@ -480,9 +474,9 @@ ggplot(pokemon_table[pokemon_table$weight < 1000, ], aes(x = weight)) +
   theme_minimal()
 ```
 
-En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
+En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como podemos observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies, evoluciones o naturaleza interna de los Pokémon.
 
-Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
+Para contrastar estos valores, se calculará la media, mediana, moda y desviación estándar.
 
 ```{r}
 # Filtrar los valores mayores a 1000 para evitar errores
@@ -524,7 +518,7 @@ mediana_weight
 
 ```
 
-El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido. Además, al existir el fenómeno de la evolución Pokémon, estos van ganando peso a medida que evolucionan a una fase superior. Por si sola, puede parecer no tener correlación con ninguna otra estadística, pero posteriormente veremos cómo se relaciona con la altura en un análisis bivariante.
+El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido. Además, al existir el fenómeno de la evolución Pokémon, estos van ganando peso a medida que evolucionan a una fase superior. Por si sola, puede parecer no tener correlación con ninguna otra estadística, pero posteriormente veremos cómo se relaciona con la altura en el análisis bivariante.
 
 #### **Moda**
 La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
@@ -536,7 +530,7 @@ moda_weight
 
 ```
 
-El resultado puede parecer algo inusual, pero considerando que todos los pesos están expresados con decimales, lo que provoca un mayor abarque de cantidades numéricas, unido a la inmensa cantidad de Pokémon de peso reducido, tiene lógica que el resultado de la moda sea un valor tan reducido como este.
+El resultado puede parecer inusual, pero al considerar que todos los pesos están expresados en decimales, esto permite un mayor rango de cantidades numéricas. Además, dado el gran número de Pokémon de peso reducido, es lógico que la moda sea un valor tan bajo.
 
 #### **Desviación Estándar**
 La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen pesos similares.
