@@ -299,29 +299,9 @@ ggplot(pokemon_table, aes(x = speed)) +
 
 ```
 
-En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como se puede observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies,  evoluciones o naturaleza interna de los Pokémon.
+En la gráfica superior se ha recogido mediante un histograma todos los Pokémon. Como se puede observar, la mayoría de los valores oscilan entre 30 y 100, factor que puede estar influenciado por las especies, evoluciones o naturaleza interna de los Pokémon.
 
-Para contrastar todos estos valores de los atributos de combate, se calculará la media, mediana, moda y desviación estándar.
-
-#### **Media**
-La **media** es una de las medidas de tendencia central más comunes y representa el promedio aritmético de un conjunto de datos. Se calcula sumando todos los valores en la muestra y dividiéndolos entre el número total de observaciones. En nuestro análisis, la media de cada estadística (como HP, ataque, defensa, etc.) nos proporciona una visión general del valor típico para esas características entre los Pokémon. Aunque es útil para resumir los datos, la media puede verse afectada por valores extremos o atípicos.
-
-#### **Mediana**
-
-La **mediana** es otra medida de tendencia central que representa el valor medio de un conjunto de datos cuando se ordenan de menor a mayor. Es especialmente útil cuando los datos contienen valores atípicos o están distribuidos de manera desigual, ya que la mediana no se ve tan afectada por estos valores extremos. En el caso de las estadísticas de los Pokémon, la mediana nos muestra el valor "central" de cada estadística, dividiendo la mitad superior de la mitad inferior.
-
-
-
-#### **Moda**
-
-La **moda** es el valor que aparece con mayor frecuencia en un conjunto de datos. A diferencia de la media y la mediana, la moda puede no ser única, ya que pueden existir varios valores que aparezcan con la misma frecuencia (esto se conoce como datos multimodales). En nuestro análisis, la moda para cada estadística nos señala los valores más comunes entre los Pokémon, lo que puede ser útil para identificar patrones recurrentes en las estadísticas.
-
-
-
-#### **Desviación Estándar**
-La **desviación estándar** mide la dispersión de los datos respecto a la media. En otras palabras, indica cuánto varían los valores de la media. Un valor bajo de desviación estándar sugiere que los datos están estrechamente agrupados alrededor de la media, mientras que un valor alto indica una mayor variabilidad entre los datos. En el contexto de las estadísticas de los Pokémon, la desviación estándar nos ayuda a entender si, por ejemplo, todos los Pokémon tienen un HP similar o si hay una gran variabilidad en esta estadística.
-
-
+Para contrastar todos estos valores de los atributos de combate se calculará la media, mediana, moda y desviación estándar.
 
 
 ```{r}
@@ -361,23 +341,35 @@ stats_tibble <- tibble(
 # Mostrar la tibble
 kable(stats_tibble)
 
-
 ```
 
-En esta tabla se han recogido todas las medias, medianas, modas y desviaciones estándar. Como se indica en ella, la estadistica media más alta en los Pokémon es el Ataque, con un 77.52, 
 
-En el área de las medianas, los valores oscilan entre 65 y 75, con ligeras variaciones en sus resultados. Debido a que el Ataque posee la media más alta, es comprensible que la mediana tenga el valor más elevado.
+#### **Media**
+La **media** más alta en los Pokémon es el Ataque, con un 77.52, representando el valor que más predomina en estos.
 
-La moda también da una idea aproximada de los resultados vistos arriba, al haberse repetido muchas veces el 80 como Ataque de varios Pokémon, eso ha influido de forma relativa en los resultados. 
-La parte mas interesante se encuentra en las desviaciones, siendo muy parecidos los 6 resultados, oscilando entre 26 y 30. En general, los resultados no se alejan mucho de la media, solo unos 30 puntos en el peor de los casos, exceptuando los casos extremos.
 
-Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto que a pesar de que la Moda en la Velocidad es de 50, es la media más baja de todas. Al contrario que con Ataque Especial, en la que, a pesar de no tener la media más alta, su moda es de 40, lo cual ha contribuido a que en general su media sea baja respecto a la media de Ataque. Eso quiere decir que hay algunos Pokémon en los cuales su estadística de Ataque Especial es su estadística más alta, hay una gran diferencia con respecto a las otras. 
+#### **Mediana**
+La **mediana** oscilan entre 65 y 75, con ligeras variaciones en sus resultados. Debido a que el Ataque posee la media más alta, es comprensible que la mediana tenga el valor más elevado.
+
+
+#### **Moda**
+
+La **moda** también da una idea aproximada de los resultados vistos arriba, al haberse repetido muchas veces el 80 como Ataque de varios Pokémon, eso ha influido de forma relativa en los resultados. 
+
+
+
+#### **Desviación Estándar**
+La parte más interesante se encuentra en las **desviaciones estándar**, siendo muy parecidos los 6 resultados oscilando entre 26 y 30. En general, los resultados no se alejan mucho de la media, solo unos 30 puntos en el peor de los casos, exceptuando los casos extremos.
+
+
+
+Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto que a pesar de que la Moda en la Velocidad es de 50, es la media más baja de todas. Al contrario que con Ataque Especial, en la que, a pesar de no tener la media más alta, su moda es de 40, lo cual ha contribuido a que en general, su media sea baja respecto a la media de Ataque. Eso quiere decir que hay algunos Pokémon en los cuales su estadística de Ataque Especial es su estadística más alta, habiendo una gran diferencia con respecto a las otras. 
 
 
 ## 5.2 Suma de estadísticas
 
 
-La suma de estadísticas nos aporta informacion crucial sobre cuan bueno es el pokemon a nivel competitivo , hemos recogido los datos de todos los pokemon y los hemos puesto en un gráfico de barras :
+La suma de estadísticas nos aporta información crucial sobre cuán bueno es el Pokémon a nivel competitivo. Para ello, hemos recogido los datos de todos los Pokémon y los hemos puesto en un gráfico de barras:
 
 
 ```{r}
@@ -391,30 +383,30 @@ ggplot(pokemon_table, aes(y = total)) +
 
 ```
 
-Para contrastar estos valores, se calculará la media , mediana , moda y desviación estándar.
+Para contrastar estos valores, se calculará la media, mediana, moda y desviación estándar.
 
 
 ```{r}
 # Filtrar los valores mayores a 1000 para evitar errores
 filtered_total <- pokemon_table$total[pokemon_table$total <= 1000]
 
-# Media de las estadisticas totales
+# Media de las estadísticas totales
 media_total <- mean(filtered_total, na.rm = TRUE)
 
 # Mediana de los pesos
 mediana_total <- median(filtered_total, na.rm = TRUE)
 
-# Moda de las estadisticas totales
+# Moda de las estadísticas totales
 moda_total <- as.numeric(names(sort(table(filtered_total), decreasing=TRUE)[1]))
 
-# Desviación estándar de las estadisticas totales
+# Desviación estándar de las estadísticas totales
 de_total <- sd(filtered_total, na.rm = TRUE)
 
 
 ```
 
 #### **Media**
-La **media** señala el valor promedio de las sumas considerando los valores extremos y medios.
+La **media** señala el valor promedio de las sumas, considerando los valores extremos y medios.
 
 ```{r}
 media_total <- round(media_total, 1)
@@ -424,7 +416,7 @@ media_total
 
 
 #### **Mediana**
-La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que unos pokemon tienen mayor suma o menor suma.
+La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que unos Pokémon tienen mayor suma o menor suma.
 
 ```{r}
 mediana_total <- round(mediana_total, 1)
