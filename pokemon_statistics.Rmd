@@ -841,7 +841,7 @@ kable(freq_table_df)
 Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra, sin embargo, existen especies las cuales hay una pequeña variación en su porcentaje. Por ejemplo, hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un Pokémon de diferente género con el movimiento Atracción.
 
 
-# 6.Datos bivariantes
+# 6. Datos bivariantes
 
 
 ## 6.1 Comparación entre Tipo Elemental y las estadísticas de combate del Pokémon
@@ -1917,22 +1917,16 @@ Como era de esperar, se han obtenido unos resultados bastante similares a los de
 En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
 
 
-# 7.Conclusiones
+# 7. Conclusiones
 
-A lo largo de este análisis, hemos profundizado en las estadísticas de combate y características físicas de los Pokémon, con el objetivo de evaluar si el mundo Pokémon está balanceado en cuanto a la distribución de poder entre los distintos tipos.
-
-Hemos utilizado técnicas estadísticas como correlaciones, covarianzas y diversas representaciones gráficas (boxplots, gráficos de dispersión, etc.), y hemos obtenido una visión más clara sobre la distribución y relación de las estadísticas en cada tipo de Pokémon.
+A lo largo de este análisis, hemos profundizado en las estadísticas de combate y características físicas de los Pokémon, con el objetivo de evaluar si el mundo Pokémon está balanceado en cuanto a la distribución de poder entre los distintos tipos. Para ello hemos utilizado técnicas estadísticas como correlaciones, covarianzas y diversas representaciones gráficas (boxplots, gráficos de dispersión, etc.), obteniendo una visión más clara sobre la distribución y relación de las estadísticas en cada tipo de Pokémon.
 
 
-Tipos como Dragón, Acero y Hada destacan por su potencia global: Estos tipos de Pokémon presentan las estadísticas globales más altas y son consistentes en cuanto a su poder en combate.
-
-En contraste, los tipos Bicho y Normal son los que tienden a tener las estadísticas más bajas en términos generales. Aunque algunos Pokémon individuales dentro de estos tipos son competitivos. La mayoría presenta un rendimiento estadístico menor, lo que podría indicar un desequilibrio en el balance del juego en cuanto a estos tipos.
+Tipos como Dragón, Acero y Hada destacan por su potencia global: estos tipos de Pokémon presentan las estadísticas globales más altas y son consistentes en cuanto a su poder en combate. En contraste, los tipos Bicho y Normal son los que tienden a tener las estadísticas más bajas en términos generale, aunque algunos Pokémon individuales dentro de estos tipos son competitivos. La mayoría presenta un rendimiento estadístico menor, lo que podría indicar un desequilibrio en el balance del juego en cuanto a estos tipos.
 
 El análisis de las distribuciones (boxplots) nos mostró que algunos tipos tienen mucha más varianza que otros. Ejemplos como Dragón y Psíquico presentan un rango muy amplio de puntos totales, lo que refleja tanto la presencia de Pokémon comunes como la de Pokémon legendarios con estadísticas extremadamente altas.
 
-En el análisis de las correlaciones entre la velocidad y otras estadísticas clave (ataque, ataque especial, defensa y defensa especial), vimos que ciertos tipos como Psíquico, Hada y Lucha tienden a tener una alta correlación positiva. Esto indica que estos tipos de Pokémon no solo son rápidos, sino que también tienden a ser poderosos en términos de ataque o defensa.
-
-Sin embargo, en algunos tipos específicos, observamos correlaciones negativas o muy bajas, como en el tipo Roca, donde la correlación entre la velocidad y la defensa es baja o incluso negativa. 
+En el análisis de las correlaciones entre la velocidad y otras estadísticas clave (ataque, ataque especial, defensa y defensa especial), vimos que ciertos tipos como Psíquico, Hada y Lucha tienden a tener una alta correlación positiva. Esto indica que estos tipos de Pokémon no solo son rápidos, sino que también tienden a ser poderosos en términos de ataque o defensa. Sin embargo, en algunos tipos específicos, observamos correlaciones negativas o muy bajas, como en el tipo Roca, donde la correlación entre la velocidad y la defensa es baja o incluso negativa. 
 
 Este tipo de hallazgos sugiere que hay una mayor variabilidad en el diseño de los Pokémon dentro de ciertos tipos, lo que podría estar asociado a roles estratégicos más especializados, como el caso de los Pokémon Roca, que tienden a ser más lentos pero defensivos.
 
