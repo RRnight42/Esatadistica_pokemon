@@ -720,7 +720,7 @@ De este modo se puede visualizar que los tipos combinados más frecuentes son: e
 
 ## 5.6 Número de Pokémon por Generación
 
-Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies de estos nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
+Cada nueva generación de Pokémon trae consigo, además de muchas otras novedades, nuevas especies nunca vistas anteriormente. Saber la proporción de nuevos Pokémon añadidos en cada una puede reflejar muchos aspectos de la respectiva región en la que ocurre cada juego.
 
 Se analizará primero la proporción de Pokémon por generación con una gráfica:
 
@@ -734,7 +734,7 @@ ggplot(pokemon_table, aes(x = as.factor(generation))) +
 
 ```
 
-Una vez observada la gráfica se puede determinar que la progresión no es lineal, no en las primeras 5 generaciones por lo menos, ya que, a partir de la sexta generación, se puede ver como el número de nuevos Pokémon aumenta en cada generación consecutivamente. Además, se puede observar que la generación en la que se introdujo un mayor número de Pokémon fue en la quinta generación, lo cual es lógico teniendo en cuenta que fue la única generación después de la primera en la que solo se podían encontrar Pokémon naturalmente de esa generación específica hasta completar la historia principal.
+Una vez observada la gráfica se puede determinar que la progresión no es lineal, no en las primeras 5 generaciones por lo menos, ya que, a partir de la sexta generación, se puede ver cómo el número de nuevos Pokémon aumenta en cada generación consecutivamente. Además, se puede observar que la generación en la que se introdujo un mayor número de Pokémon fue en la quinta generación, lo cual es lógico, teniendo en cuenta que fue la única generación, después de la primera, en la que solo se podían encontrar Pokémon naturalmente de esa generación específica hasta completar la historia principal.
 
 #### **Frecuencias absolutas y frecuencias relativas**
 
@@ -757,7 +757,7 @@ kable(tabla_frecuencias)
 
 ```
 
-Esto confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación con 156 nuevas criaturas. En el lado opuesto la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, es posible observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokédex, únicamente bajando del 10% del total la segunda generación, siendo igualmente mayor a la sexta, séptima y octava generación.
+Esto confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación, con 156 nuevas criaturas. En el lado opuesto, la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, es posible observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokédex, únicamente bajando del 10% del total la segunda generación, siendo igualmente mayor a la sexta, séptima y octava generación.
 
 Para poder verificar estas afirmaciones, se realizará la media y la moda.
 
@@ -808,7 +808,7 @@ Como se puede ver, la desviación es algo alta respecto de la media, por lo que 
 
 ## 5.7 Género
 
-Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener género. En este caso se va a analizar individualmente la posibilidad de que en estado salvaje un Pokémon sea macho y la posibilidad de que sea hembra,para comprobar que genero es mas viable en combate, porque hay movimientos Pokémon en los cuales el ser de un genero u otro puede decidir un combate (ej. Atracción). 
+Los Pokémon tienen la capacidad de ser machos, hembras o pueden no tener género. En este caso se va a analizar individualmente la posibilidad de que en estado salvaje un Pokémon sea macho y la posibilidad de que sea hembra, para comprobar qué género es más viable en combate, porque hay movimientos Pokémon en los cuales el ser de un género u otro puede decidir un combate (ej. Atracción). 
 
 
 ```{r}
@@ -838,7 +838,7 @@ kable(freq_table_df)
 
 
 
-Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra , sin embargo , existen especies las cuales hay una pequeña variacion en su porcentaje , por ejemplo , hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un pokémon de diferente sexo con el movimiento Atracción.
+Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra, sin embargo, existen especies las cuales hay una pequeña variación en su porcentaje. Por ejemplo, hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un Pokémon de diferente género con el movimiento Atracción.
 
 
 # 6.Datos bivariantes
@@ -1816,7 +1816,7 @@ Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resu
 
 ### 6.5.1 Defensa
 
-Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
+Las estadísticas  de HP (Puntos de vida) y Defensa podrían considerarse algo similar ya que ambas indican el aguante ante los golpes del enemigo, sin embargo, no son lo mismo y existen casos en los que un Pokémon puede tener mucha HP y una defensa deplorable como es el caso de Chansey (Aunque esto lo ve compensado con una buena Defensa Especial).
 
 Se debe comprobar si esto es cierto con el siguiente gráfico de dispersión:
 
@@ -1832,7 +1832,7 @@ ggplot(pokemon_table, aes(x = hp, y = defense)) +
 
 ```
 
-Se puede observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea asi en la mayoría de casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
+Se puede observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea así en la mayoría de los casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
 
 Para contrastar este análisis se puede hallar el coeficiente de correlación y la covarianza para obtener datos cuantitativos:
 
@@ -1914,7 +1914,7 @@ covhpspdef
 
 Como era de esperar, se han obtenido unos resultados bastante similares a los de la Defensa física, lo que nos indica de igual forma que existe una relación positiva entre ambas estadísticas, pero esta relación es algo débil.
 
-En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran la defensa del enemigo para calcular su daño.
+En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
 
 
 # 7.Conclusiones
