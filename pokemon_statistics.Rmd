@@ -176,7 +176,7 @@ pokemon_table |>
 
 
 
-**Tenemos algunos casos donde en el dataset se muestra NA:**
+**Hay algunos casos donde en el dataset se muestra NA:**
 
 * En **`type2:`**, algunos Pokémon no tienen tipo secundario.
 
@@ -406,7 +406,6 @@ de_total <- sd(filtered_total, na.rm = TRUE)
 ```
 
 #### **Media**
-La **media** señala el valor promedio de las sumas, considerando los valores extremos y medios.
 
 ```{r}
 media_total <- round(media_total, 1)
@@ -416,7 +415,6 @@ media_total
 
 
 #### **Mediana**
-La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que unos Pokémon tienen mayor suma o menor suma.
 
 ```{r}
 mediana_total <- round(mediana_total, 1)
@@ -426,7 +424,6 @@ mediana_total
 
 
 #### **Moda**
-La **moda** consiste en la suma total que aparece con mayor frecuencia entre los Pokémon.
 
 ```{r}
 
@@ -438,15 +435,12 @@ moda_total
 
 
 #### **Desviación Estándar**
-La **desviación estándar** muestra cuanto varían las sumas de estadísticas con respecto a la media.
 
 ```{r}
 de_total <- round(de_total, 1)
 de_total
 
 ```
-
-
 
 Como podemos observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de Pokémon con tantos puntos de combate:
 
@@ -498,7 +492,6 @@ de_weight <- sd(filtered_weight, na.rm = TRUE)
 ```
 
 #### **Media**
-La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
 
 ```{r}
 media_weight <- round(media_weight, 1)
@@ -510,7 +503,7 @@ Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alreded
 
 
 #### **Mediana**
-La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más ligeros y la otra mitad son más pesados. Es decir, ofrece una visión más equilibrada del peso típico.
+
 
 ```{r}
 mediana_weight <- round(mediana_weight, 1)
@@ -521,7 +514,6 @@ mediana_weight
 El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido. Además, al existir el fenómeno de la evolución Pokémon, estos van ganando peso a medida que evolucionan a una fase superior. Por si sola, puede parecer no tener correlación con ninguna otra estadística, pero posteriormente veremos cómo se relaciona con la altura en el análisis bivariante.
 
 #### **Moda**
-La **moda** consiste en el peso que aparece con mayor frecuencia entre los Pokémon.
 
 ```{r}
 
@@ -533,7 +525,6 @@ moda_weight
 El resultado puede parecer inusual, pero al considerar que todos los pesos están expresados en decimales, esto permite un mayor rango de cantidades numéricas. Además, dado el gran número de Pokémon de peso reducido, es lógico que la moda sea un valor tan bajo.
 
 #### **Desviación Estándar**
-La **desviación estándar** muestra cómo se distribuyen los pesos en relación con la media. Si la desviación estándar es alta, significa que habrá Pokémon con pesos muy variados, dejando lugar a un abanico más amplio de posisiblidades de distribución de estadísticas tanto de combate como la velocidad y defensa, así como otras más secundarias como el tamaño del Pokémon. Si es baja, los pesos estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen pesos similares.
 
 ```{r}
 de_weight <- round(de_weight, 1)
@@ -587,7 +578,6 @@ de_height <- sd(filtered_height, na.rm = TRUE)
 ```
 
 #### **Media**
-La **media** señala el valor promedio de los pesos considerando los valores extremos y medios.
 
 ```{r}
 media_height <- round(media_height, 2)
@@ -599,7 +589,6 @@ Debido al valor reducido de la altura media, podemos señalar el hecho de que un
 
 
 #### **Mediana**
-La **mediana** de los pesos indica el valor central de la distribución, enseñando el punto en el que una mitad de los Pokémon son más bajos y la otra mitad son más altos. Es decir, ofrece una visión más equilibrada de la altura típica.
 
 ```{r}
 mediana_height <- round(mediana_height, 2)
@@ -610,7 +599,6 @@ mediana_height
 El resultado vuelve a apuntar a que la gran mayoría de los Pokémon tienen una altura reducida, menor o equivalente a 1 metro de altura, por lo que deducimos que Pokémon de tamaños y alturas considerablemente mayores resultan más inusuales.
 
 #### **Moda**
-La **moda** consiste en la altura que aparece con mayor frecuencia entre los Pokémon.
 
 ```{r}
 
@@ -622,7 +610,6 @@ moda_height
 El resultado ayuda a sustentar de forma más efectiva la teoría que los valores de la media y mediana sugieren: la mayor parte de los Pokémon tienen alturas reducidas, y la moda nos indica que, concretamente, la mayor parte se encuentra alrededor de los 0,6m de altura.
 
 #### **Desviación Estándar**
-La **desviación estándar** muestra cómo se distribuyen las alturas en relación con la media, igual que con el peso. Si la desviación estándar es alta, significa que habrá Pokémon con alturas muy variadas. Por el contrario, si esta es baja, las alturas estarán más concentradas alrededor de la media, lo que indica que la mayoría de los Pokémon tienen alturas similares.
 
 ```{r}
 de_height <- round(de_height, 2)
@@ -810,7 +797,6 @@ de_gen <- sd(frecuencia_absoluta)
 ```
 
 #### **Media**
-La **media** da el número de Pokémon promedio que se incluyen por generación.
 
 ```{r}
 media_gen <- round(media_gen, 0)
@@ -822,7 +808,6 @@ Observando este resultado y comparándolo con las frecuencias absolutas, se pued
 
 
 #### **Moda**
-La **moda** dará la generación en la que más Pokémon se introdujeron.
 
 ```{r}
 
@@ -834,7 +819,6 @@ moda_gen
 Como era de esperar, la quinta generación es la que más Pokémon añadió tal y como se mencionó anteriormente, sin embargo, este resultado lo termina de confirmar.
 
 #### **Desviación Estándar**
-La **desviación estándar** mostrará la diferencia que hay entre generaciones con respecto a la media. Un número alto significará que hay poco equilibrio entre el número de Pokémon introducidos en cada generación y un número bajo significaría que hay bastante equilibrio.
 
 ```{r}
 de_gen <- round(de_gen, 0)
@@ -893,7 +877,7 @@ En esta sección, se examinará la relación entre los tipos elementales y las s
 
 **Nota:** Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). 
 
-<br>
+
 
 #### 6.1.1 Health points
 Primero se analizará la relación entre los puntos de salud (HP) y los tipos elementales Pokémon:
@@ -921,16 +905,39 @@ max_hp <- max(pokemon_monotipos$hp, na.rm = TRUE)
 min_hp_pokemon <- pokemon_monotipos %>% filter(hp == min_hp)
 max_hp_pokemon <- pokemon_monotipos %>% filter(hp == max_hp)
 
-cat("Media de HP:", mean_hp, "\n")
+
 median_hp <- median(pokemon_monotipos$hp, na.rm = TRUE)
-cat("Mediana de HP:", median_hp, "\n")
+
 ```
-La media de los puntos de HP para los Pokémon monotipos es de 67.57715, mientras que la mediana es de 65, lo que indica que la distribución de valores es bastante uniforme.
+
+
+#### Media de HP
 
 ```{r}
-cat("Desviación estándar de HP:", sd_hp, "\n")
+
+mean_hp
+
+```
+
+#### Mediana de HP
+
+```{r}
+
+median_hp
+
+```
+
+La media de los puntos de HP para los Pokémon monotipos es de 67.57715, mientras que la mediana es de 65, lo que indica que la distribución de valores es bastante uniforme.
+
+#### Desviación estándar de HP
+
+```{r}
+sd_hp
 ```
 La desviación estándar es de 28.32747. Esto indica que la variabilidad de los valores de HP entre los diferentes Pokémon monotipos es moderada. Existe dispersión, pero no es ni extremadamente alta ni extremadamente baja.
+
+
+#### Mínimos y Máximos
 
 ```{r}
 cat("Pokémon con menor HP:", min_hp_pokemon$name, "del tipo", min_hp_pokemon$type1, "\n")
@@ -938,7 +945,7 @@ cat("Pokémon con mayor HP:", max_hp_pokemon$name, "del tipo", max_hp_pokemon$ty
 ```
 Los Pokémon con menores valores en su HP son Diglett de tipo tierra y Wiglett de tipo agua mientras que el Pokémon con mayor HP es Blissey de tipo normal. Salvo por Diglett, los valores de los otros dos concuerdan con la tendencia general del gráfico. 
 
-<br>
+
 
 ### 6.1.2 Ataque
 A continuación se analizará la relación entre el ataque (Attack) y los tipos elementales Pokémon:
