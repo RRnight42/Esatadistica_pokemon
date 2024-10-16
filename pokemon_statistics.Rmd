@@ -81,7 +81,7 @@ Para lograr ese objetivo, hemos recogido una serie de datos de los 1025 Pokémon
 
 
 # 3. Importación y carga de paquetes
-En primer lugar, cargaremos las librerías con las que trabajaremos:
+En primer lugar, se cargarán las librerías con las que se trabajarán a lo largo de este informe:
 
 ```{r}
 library(stringr)
@@ -130,7 +130,7 @@ library(gt)
 
 
 
-A continuación, leeremos los datos del documento.
+A continuación, se leerán los datos del documento.
 
 
 **`pokemon_table <- read_csv("pokemon_data.csv")`**
@@ -164,7 +164,7 @@ type_translation <- c(
 
 # 4. Muestra del dataset 
 
-Mostramos el csv que vamos a analizar:
+Este es el documento csv que se analizará:
 
 ```{r}
 
@@ -353,7 +353,6 @@ La **mediana** oscilan entre 65 y 75, con ligeras variaciones en sus resultados.
 
 
 #### **Moda**
-
 La **moda** también da una idea aproximada de los resultados vistos arriba, al haberse repetido muchas veces el 80 como Ataque de varios Pokémon, eso ha influido de forma relativa en los resultados. 
 
 
@@ -369,7 +368,7 @@ Es interesante recalcar el hecho de comparar Ataque especial y Velocidad, puesto
 ## 5.2 Suma de estadísticas
 
 
-La suma de estadísticas nos aporta información crucial sobre cuán bueno es el Pokémon a nivel competitivo. Para ello, hemos recogido los datos de todos los Pokémon y los hemos puesto en un gráfico de barras:
+La suma de estadísticas aporta información crucial sobre cuán bueno es el Pokémon a nivel competitivo. Para ello, hemos recogido los datos de todos los Pokémon y los hemos puesto en un gráfico de barras:
 
 
 ```{r}
@@ -442,11 +441,11 @@ de_total
 
 ```
 
-Como podemos observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de Pokémon con tantos puntos de combate:
+Como se puede observar a lo largo del aumento de los puntos de estadísticas hay cuatro puntos de interés donde se concentran una mayor cantidad de Pokémon con tantos puntos de combate:
 
-Por una parte, podemos ver tres picos de concentración en los puntos 200, 300 y 500. Estos puntos destacan sobre los demás ya que como sabemos la mayor parte de los Pokémon tienen tres etapas evolutivas y cada uno de estos picos se centra en una de estas etapas, la primera etapa corresponde al pico de 200 puntos, la segunda al pico de 300 y la tercera al pico de 500, ya que un Pokémon a medida que evoluciona se hace más fuerte progresivamente
+Por una parte, se ven tres picos de concentración en los puntos 200, 300 y 500. Estos puntos destacan sobre los demás puesto que la mayor parte de los Pokémon tienen tres etapas evolutivas y cada uno de estos picos se centra en una de estas etapas: la primera etapa corresponde al pico de 200 puntos, la segunda al pico de 300 y la tercera al pico de 500, ya que un Pokémon a medida que evoluciona se hace más fuerte progresivamente.
 
-Por otra parte, podemos ver que hay un pequeño grupo de Pokémon que tienen una suma total de puntos mayor a 600. Este grupo corresponde al grupo de los Pokémon legendarios, ya que estos poseen un gran poder.
+Por otra parte, hay un pequeño grupo de Pokémon que tienen una suma total de puntos mayor a 600. Este grupo corresponde al grupo de los Pokémon legendarios, debido a que estos poseen un gran poder.
 
 
 ## 5.3 Distribución de los pesos
@@ -499,7 +498,7 @@ media_weight
 
 ```
 
-Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 67kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando hasta los 1000kg.
+Por lo que se puede ver en el resultado, los Pokémon suelen tener pesos alrededor de los 67kg (utilizando medidas de masa), aunque existen una gran variedad de estos seres con peso menor y una cantidad bastante más reducida con pesos mayores, alcanzando valores atípicos de hasta 1000kg.
 
 
 #### **Mediana**
@@ -511,7 +510,7 @@ mediana_weight
 
 ```
 
-El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido. Además, al existir el fenómeno de la evolución Pokémon, estos van ganando peso a medida que evolucionan a una fase superior. Por si sola, puede parecer no tener correlación con ninguna otra estadística, pero posteriormente veremos cómo se relaciona con la altura en el análisis bivariante.
+El resultado confirma que la gran mayoría de los Pokémon tienen un peso reducido. Además, al existir el fenómeno de la evolución Pokémon, estos van ganando peso a medida que evolucionan a una fase superior. Por si sola, puede parecer no tener correlación con ninguna otra estadística, pero posteriormente se verá cómo se relaciona con la altura en el análisis bivariante.
 
 #### **Moda**
 
@@ -553,9 +552,9 @@ ggplot(pokemon_table[pokemon_table$height < 1000, ], aes(x = height)) +
   theme_minimal()
 ```
 
-La gráfica superior, una vez más, recopila la información de altura de todos los Pokémon, cuya gran mayoría se encuentra entre 0.1 y 5 metros de altura, con casos que alcanzan hasta los 20 metros.
+La gráfica superior, una vez más, recopila la información de altura de todos los Pokémon, cuya gran mayoría se encuentra entre 0.1 y 5 metros de altura, con casos atípicos que alcanzan hasta los 20 metros.
 
-A continuación, seguiremos el mismo procedimiento que con el peso y analizaremos los resultados de media, mediana, moda y desviación estándar.
+A continuación, se seguirá el mismo procedimiento que con el peso y analizaremos los resultados de media, mediana, moda y desviación estándar.
 
 
 ```{r}
@@ -585,7 +584,7 @@ media_height
 
 ```
 
-Debido al valor reducido de la altura media, podemos señalar el hecho de que una gran parte de los Pokémon deben tener alturas bajas de tal manera que los valores más superiores o extremos sean menos ocasionales.
+Debido al valor reducido de la altura media, se puede señalar el hecho de que una gran parte de los Pokémon deben tener alturas bajas de tal manera que los valores más superiores o extremos sean menos ocasionales.
 
 
 #### **Mediana**
@@ -759,7 +758,7 @@ kable(tabla_frecuencias)
 
 Esto confirma que la generación con mayor número de Pokémon introducidos fue la quinta generación, con 156 nuevas criaturas. En el lado opuesto, la generación que menos Pokémon introdujo fue la sexta con solo 72 nuevos monstruos de bolsillo. Además, es posible observar que durante las primeras generaciones hubo mayor número de incorporaciones a la Pokédex, únicamente bajando del 10% del total la segunda generación, siendo igualmente mayor a la sexta, séptima y octava generación.
 
-Para poder verificar estas afirmaciones, se realizará la media y la moda.
+Para poder verificar estas afirmaciones, se realizarán la media y la moda.
 
 
 ```{r}
@@ -838,7 +837,7 @@ kable(freq_table_df)
 
 
 
-Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra, sin embargo, existen especies las cuales hay una pequeña variación en su porcentaje. Por ejemplo, hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un Pokémon de diferente género con el movimiento Atracción.
+Esta tabla muestra que la mayoría de especies están controladas de forma que la mayoría tienen un 50% de ser macho o hembra. Sin embargo, existen especies las cuales hay una pequeña variación en su porcentaje. Por ejemplo, hay excepciones en las que hay Pokémon que biológicamente pueden ser obligatoriamente de un género, esto puede afectar los combates de sobremanera para encerrar al rival con un Pokémon de diferente género con el movimiento Atracción.
 
 
 # 6. Datos bivariantes
@@ -851,7 +850,7 @@ Esta tabla muestra que la mayoría de especies están controladas de forma que l
 pokemon_monotipos <- pokemon_table %>% filter(is.na(type2))
 ```
 
-En esta sección, se examinará la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. A continuación, se presentan gráficos y análisis detallados para cada estadística de combate con el objetivo de determinar qué tipos Pokémon están más especializados en una clase de combate u otro, ya sea un combate por ataques físicos o por ataques especiales.
+En esta sección, se examinarán la relación entre los tipos elementales y las siguientes estadísticas de combate: hp, attack, special_attack, defense, y special_defense. A continuación, se presentan gráficos y análisis detallados para cada estadística de combate con el objetivo de determinar qué tipos Pokémon están más especializados en una clase de combate u otro, ya sea un combate por ataques físicos o por ataques especiales.
 
 **Nota:** Los Pokémon considerados en el análisis son solo aquellos que tienen un único tipo (monotipos). 
 
@@ -1090,7 +1089,7 @@ mean_sp_atk
 median_sp_atk
 ```
 
-La media del Ataque Especial para los Pokémon monotipos es de 64.75952, mientras la mediana es de 60, evidenciado valores muy similares entorno al centro de la distribución.
+La media del Ataque Especial para los Pokémon monotipos es de 64.75952, mientras la mediana es de 60, evidenciado valores muy similares en torno al centro de la distribución.
 
 #### Desviación estándar de Ataque Especial
 ```{r}
@@ -1104,7 +1103,7 @@ La desviación estándar es de 28.21935, lo cual indica, de nuevo, que la variab
 cat("Pokémon con menor Ataque Especial:", min_sp_atk_pokemon$name, "del tipo", min_sp_atk_pokemon$type1, "\n")
 cat("Pokémon con mayor Ataque Especial:", max_sp_atk_pokemon$name, "del tipo", max_sp_atk_pokemon$type1, "\n")
 ```
-Los Pokémon con menores valores en su Ataque Especial son Feebas y Bonsly, de tipo agua y roca respectivamente, a la vez que el Pokémon con mayor ataque especial es Xurkitree, de tipo eléctrico. Salvo Feebas (tipo agua), los otros dos Pokémon concuerdan con lo mostrado en el anterior gráfico, donde el tipo roca es uno de los más débiles en cuanto a ataque especial y el tipo psíquico es uno de los más fuertes. 
+Los Pokémon con menores valores en su Ataque Especial son Feebas y Bonsly, de tipo agua y roca, respectivamente; mientras que el Pokémon con mayor ataque especial es Xurkitree, de tipo eléctrico. Salvo Feebas (tipo agua), los otros dos Pokémon concuerdan con lo mostrado en el anterior gráfico, donde el tipo roca es uno de los más débiles en cuanto a ataque especial y el tipo psíquico es uno de los más fuertes. 
 
 
 ### 6.1.5 Defensa Especial
@@ -1172,9 +1171,9 @@ En conclusión, se puede afirmar que existen ciertos tipos Pokémon especializad
 
 ## 6.2 Estadisticas totales vs tipos de pokemon
 
-Como sabemos la funcion en combate de un pokemon viene determinada por sus estadísticas y el reparto de las mismas. Y a su vez estas estadísticas vienen determinadas por varios factores, como la etapa evolutiva, la rareza del pokemon (normal, legendario, singular, etc), o los posibles tipos del pokemon.
+La función en combate de un pokemon viene determinada por sus estadísticas y el reparto de las mismas. Y a su vez estas estadísticas vienen determinadas por varios factores, como la etapa evolutiva, la rareza del pokemon (normal, legendario, singular, etc), o los posibles tipos del pokemon.
 
-Estos tipos representan elementos o entidades en la vida real, como el tipo fantasma representa a los fantasmas o lo espiritual, o como el tipo volador representa a los pájaros que nos podríamos encontrar por la calle. Esta representación no solo se ve reflejada en el diseño visual del pokemon, si no también en el reparto y cantidad de sus estadísticas, lo cual nos lleva a ver que (por lo general) un pokemon con tipo bicho suele ser más débil que un pokemon de tipo dragón.
+Estos tipos representan elementos o entidades en la vida real, como el tipo fantasma representa a los fantasmas o lo espiritual, o como el tipo volador representa a los pájaros que podrían ser encontrados por la calle. Esta representación no solo se ve reflejada en el diseño visual del pokemon, si no también en el reparto y cantidad de sus estadísticas, lo cual nos lleva a ver que (por lo general) un pokemon con tipo bicho suele ser más débil que un pokemon de tipo dragón.
 
 
 ```{r}
@@ -1201,11 +1200,11 @@ ggplot(pokemon_filter_type, aes(x = type, y = total)) +
 
 ```
 
-Con respecto a los tipos con mayor rendimiento , el tipo Dragón es el tipo con la mayor mediana de puntos totales, lo cual es consistente con el hecho de que este tipo tiende a estar asociado a Pokémon poderosos y legendarios como Rayquaza o Dialga, que suelen tener estadísticas base muy altas.(680 ambos)
+Con respecto a los tipos con mayor rendimiento, el tipo Dragón es el tipo con la mayor mediana de puntos totales, lo cual es consistente con el hecho de que este tipo tiende a estar asociado a Pokémon poderosos y legendarios como Rayquaza o Dialga, que suelen tener estadísticas base muy altas (680 ambos).
 Acero también se presenta con una alta mediana y un rango amplio. Esto refleja que muchos Pokémon tipo Acero, como Metagross y Aegislash, son reconocidos por sus grandes defensas y estadística global sólida. Los legendarios de este tipo, como Solgaleo, también refuerzan esta tendencia.
 Hada es otro tipo que presenta una mediana alta. Desde su introducción en la sexta generación, este tipo ha incluido Pokémon de alta gama como Xerneas y Tapu Koko, que justifican su buena posición en el gráfico.
 
-Por el contrario , el tipo Bicho es el tipo con los puntos totales más bajos con una notable diferencia, con excepciones como Volcarona o Genesect.
+Por el contrario, el tipo Bicho es el tipo con los puntos totales más bajos con una notable diferencia, con excepciones como Volcarona o Genesect.
 
 Planta y Veneno también presentan medianas más bajas y rangos menos amplios, lo que refleja que estos tipos suelen estar dominados por Pokémon con estadísticas más equilibradas o incluso bajas, a excepción de algunos legendarios como Nihilego.
 
@@ -1232,9 +1231,9 @@ correlacion <- cor(pokemon_table$height, pokemon_table$weight, use = "complete.o
 correlacion
 ```
 
-Según los resultados obtenidos, podemos intuir que las variables de altura y peso tienden a aumentar juntas y tienen una correlación positiva, aunque las variables no muestran una gran dependencia entre ellas para su variación.
+Según los resultados obtenidos, se puede intuir que las variables de altura y peso tienden a aumentar juntas y tienen una correlación positiva, aunque las variables no muestran una gran dependencia entre ellas para su variación.
 
-A continuación, observaremos su relación de forma más visual mediante un gráfico de dispersión:
+A continuación, se observará su relación de forma más visual mediante un gráfico de dispersión:
 
 ```{r}
 # Filtrar valores irreales
@@ -1254,7 +1253,7 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 - En algunos casos, la masa de los Pokémon puede llegar a los 999 kg, mientras que la altura máxima se encuentra en 20 m, como es el caso de Eternatus , el pokemon mas grande actualmente.
 
-A partir de este gráfico de dispersión, podemos concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
+A partir de este gráfico de dispersión, se puede concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
 
 ### 6.3.2 Altura y Peso según el tipo de Pokémon
 
@@ -1290,7 +1289,7 @@ Cada tipo de Pokémon muestra una relación diferente entre peso y altura.
 
 - Otros tipos tienen Pokémon con un rango de pesos mucho mayor (por ejemplo, Dragón, Veneno, Agua), mientras que otros tienen un rango mucho más estrecho (como Bicho o Hada).
 
-Debido a la forma en la que están distribuidos los datos en las gráficas, podemos calcular sus rectas de regresión:
+Debido a la forma en la que están distribuidos los datos en las gráficas, es posible calcular sus rectas de regresión:
 
 ```{r}
 # Agrupamos por tipo y aplicamos lm() por cada grupo correctamente
@@ -1332,7 +1331,7 @@ En primer lugar, se examinará la correlación entre la velocidad y las dos form
 
 Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
 
-Como dato adicional, calcularemos los coeficientes de determinación (R-square), los cuales son una herramienta que nos ayuda a entender cómo un modelo de regresión se adapta a los datos:
+Como dato adicional, se calcularán los coeficientes de determinación (R-square), los cuales son una herramienta que facilita entender cómo un modelo de regresión se adapta a los datos:
 
 ```{r}
 # R² entre speed y attack
@@ -1364,7 +1363,7 @@ r_squared_sp_def <- pokemon_table |>
 
 ### 6.4.1 La Velocidad en base al Ataque
 
-Primero compararemos el Ataque y el Ataque Especial:
+Primero se comparará el Ataque y el Ataque Especial:
 
 ```{r}
 
@@ -1737,7 +1736,7 @@ g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
 grid.arrange(g1, g2, g3, g4, nrow = 2)
 ```
 
-Otro aspecto interesante a destacar es que, en algunos casos, ciertos Pokémon sobresalen en otras estadísticas más que en velocidad. Un ejemplo claro es el tipo Acero, cuyos Pokémon cuentan con estadísticas destacadas en diversas áreas, pero no sobresalen en velocidad. De hecho, ningún Pokémon de tipo Acero supera los 110 puntos en esta estadística, lo que indica que es probable que la mayoría de los Pokémon que priorizan velocidad puedan atacar antes que los de tipo Acero. Sin embargo, este tipo se caracteriza por su versatilidad, ya que puede ser utilizado tanto de forma defensiva como ofensiva, dependiendo de cómo se enfoquen sus demás estadísticas.
+Otro aspecto interesante a destacar es que, en algunos casos, ciertos Pokémon sobresalen en otras estadísticas más que en velocidad. Un ejemplo claro es el tipo Acero, cuyos Pokémon cuentan con estadísticas destacadas en diversas áreas, pero no sobresalen en velocidad. De hecho, ningún Pokémon de tipo Acero supera los 110 puntos en esta estadística, lo que indica que es probable que la mayoría de los Pokémon que priorizan velocidad puedan atacar antes que los de tipo Acero. Sin embargo, este tipo se caracteriza por su versatilidad, dado que puede ser utilizado tanto de forma defensiva como ofensiva, dependiendo de cómo se enfoquen sus demás estadísticas.
 
 
 ```{r}
@@ -1832,7 +1831,7 @@ ggplot(pokemon_table, aes(x = hp, y = defense)) +
 
 ```
 
-Se puede observar que hay una tendencia positiva gracias a la línea roja, lo cual sugiere que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea así en la mayoría de los casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
+Se puede observar que hay una tendencia positiva gracias a la línea roja, sugiriendo que sí que existe cierta relación entre HP y Defensa. Sin embargo no se puede afirmar que esto sea así en la mayoría de los casos ya que los puntos están poco concentrados, por lo que la relación anteriormente mencionada  no es muy fuerte.
 
 Para contrastar este análisis se puede hallar el coeficiente de correlación y la covarianza para obtener datos cuantitativos:
 
@@ -1882,7 +1881,7 @@ ggplot(pokemon_table, aes(x = hp, y = sp_def)) +
 
 ```
 
-Nuevamente se puede observar que existe una relación positiva débil entre Defensa Especial y HP de un Pokémon, ya que el gráfico de dispersión posee las mismas características que el de la Defensa física.
+Nuevamente se puede observar que existe una relación positiva débil entre Defensa Especial y HP de un Pokémon, puesto que el gráfico de dispersión posee las mismas características que el de la Defensa física.
 
 Se procederá a calcular la covarianza y el coeficiente de correlación para verificar esta conclusión:
 
@@ -1912,31 +1911,25 @@ covhpspdef <- (round(covhpspdef, 2))
 covhpspdef
 ```
 
-Como era de esperar, se han obtenido unos resultados bastante similares a los de la Defensa física, lo que nos indica de igual forma que existe una relación positiva entre ambas estadísticas, pero esta relación es algo débil.
+Como era de esperar, se han obtenido unos resultados bastante similares a los de la Defensa física, lo que indica de igual forma que existe una relación positiva entre ambas estadísticas, pero esta relación es algo débil.
 
-En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP, sin embargo, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
+En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP. No obstante, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
 
 
 # 7. Conclusiones
 
-A lo largo de este análisis, hemos profundizado en las estadísticas de combate y características físicas de los Pokémon, con el objetivo de evaluar si el mundo Pokémon está balanceado en cuanto a la distribución de poder entre los distintos tipos. Para ello hemos utilizado técnicas estadísticas como correlaciones, covarianzas y diversas representaciones gráficas (boxplots, gráficos de dispersión, etc.), obteniendo una visión más clara sobre la distribución y relación de las estadísticas en cada tipo de Pokémon.
+A lo largo de este análisis, se han examinado las estadísticas de combate y características físicas de los Pokémon con el propósito de evaluar el equilibrio en la distribución de poder entre los diferentes tipos. Para ello, se emplearon técnicas estadísticas como correlaciones, covarianzas y diversas representaciones gráficas (boxplots, gráficos de dispersión, entre otras), proporcionando una visión más clara de la distribución y relación de las estadísticas en cada tipo de Pokémon.
 
+Los tipos Dragón, Acero y Hada destacan por su potencia global, mostrando las estadísticas más elevadas y consistentes en términos de desempeño en combate. En contraste, los tipos Bicho y Normal tienden a presentar las estadísticas más bajas de forma general, aunque ciertos Pokémon individuales dentro de estos tipos son competitivos. Sin embargo, la mayoría muestra un rendimiento estadístico inferior, lo que podría indicar un desequilibrio en el balance del juego respecto a estos tipos.
 
-Tipos como Dragón, Acero y Hada destacan por su potencia global: estos tipos de Pokémon presentan las estadísticas globales más altas y son consistentes en cuanto a su poder en combate. En contraste, los tipos Bicho y Normal son los que tienden a tener las estadísticas más bajas en términos generale, aunque algunos Pokémon individuales dentro de estos tipos son competitivos. La mayoría presenta un rendimiento estadístico menor, lo que podría indicar un desequilibrio en el balance del juego en cuanto a estos tipos.
+El análisis de las distribuciones mediante boxplots reveló que algunos tipos presentan una mayor varianza que otros. Ejemplos como los tipos Dragón y Psíquico muestran un rango amplio de puntos totales, lo que refleja la coexistencia de Pokémon comunes y legendarios con estadísticas extremadamente altas.
 
-El análisis de las distribuciones (boxplots) nos mostró que algunos tipos tienen mucha más varianza que otros. Ejemplos como Dragón y Psíquico presentan un rango muy amplio de puntos totales, lo que refleja tanto la presencia de Pokémon comunes como la de Pokémon legendarios con estadísticas extremadamente altas.
+En el análisis de correlaciones entre la velocidad y otras estadísticas clave (ataque, ataque especial, defensa y defensa especial), se observó que ciertos tipos, como Psíquico, Hada y Lucha, tienden a presentar una correlación positiva alta. Esto sugiere que estos tipos de Pokémon no solo destacan por su velocidad, sino también por su poder en términos de ataque o defensa. No obstante, en algunos tipos, como el tipo Roca, se observan correlaciones negativas o muy bajas entre velocidad y defensa, lo que sugiere una relación inversa o débil.
 
-En el análisis de las correlaciones entre la velocidad y otras estadísticas clave (ataque, ataque especial, defensa y defensa especial), vimos que ciertos tipos como Psíquico, Hada y Lucha tienden a tener una alta correlación positiva. Esto indica que estos tipos de Pokémon no solo son rápidos, sino que también tienden a ser poderosos en términos de ataque o defensa. Sin embargo, en algunos tipos específicos, observamos correlaciones negativas o muy bajas, como en el tipo Roca, donde la correlación entre la velocidad y la defensa es baja o incluso negativa. 
+Estos resultados sugieren una mayor variabilidad en el diseño de los Pokémon dentro de ciertos tipos, lo que podría estar relacionado con roles estratégicos específicos. Por ejemplo, los Pokémon del tipo Roca suelen ser más lentos, pero con una mayor capacidad defensiva.
 
-Este tipo de hallazgos sugiere que hay una mayor variabilidad en el diseño de los Pokémon dentro de ciertos tipos, lo que podría estar asociado a roles estratégicos más especializados, como el caso de los Pokémon Roca, que tienden a ser más lentos pero defensivos.
+Los tipos con una mayor variedad de Pokémon poderosos tienden a ser más flexibles y competitivos, lo que indica que no todos los tipos ofrecen el mismo nivel de oportunidad para diferentes estrategias. El tipo Dragón, con sus altos puntos totales, y el tipo Psíquico, con correlaciones positivas entre velocidad y ataque, parecen estar diseñados para sobresalir en contextos específicos. En contraste, tipos como Roca o Veneno, a pesar de sus debilidades estadísticas, cumplen roles estratégicos definidos, como la defensa o el control de estado, lo que sugiere que el juego ofrece un equilibrio basado en la diversidad de estrategias, aunque no necesariamente en el poder absoluto.
 
-Los tipos con más variedad de Pokémon poderosos tienden a ser más flexibles y competitivos, lo que sugiere que no todos los tipos ofrecen el mismo nivel de oportunidad para diferentes estrategias. Dragón, con sus altos puntos totales, y Psíquico, con sus correlaciones positivas en velocidad y ataque, parecen ser tipos diseñados para dominar en ciertos contextos.
-Los tipos como Roca o Veneno, a pesar de sus debilidades estadísticas, tienen roles estratégicos definidos en el juego (defensa o control de estado), lo que sugiere que el juego está balanceado de alguna manera al ofrecer diferentes tipos de estrategias, aunque no siempre con el mismo nivel de poder bruto.
+En conclusión, el análisis demuestra que el juego de Pokémon **no está completamente equilibrado en términos de la distribución de poder entre los tipos**. Algunos tipos presentan ventajas claras en el juego competitivo, mientras que otros tienen estadísticas generalmente más bajas, lo que puede limitar su competitividad. No obstante, esta falta de balance puede estar relacionada con decisiones de diseño, donde ciertos tipos están destinados a cumplir roles especializados o defensivos, en lugar de sobresalir en poder ofensivo.
 
-Tras el análisis exhaustivo de los Pokémon en cuanto a sus tipos y estadísticas, se demuestra que el juego de Pokémon **no está completamente balanceado**, especialmente en términos de la distribución de poder por tipo. 
-
-Ciertos tipos  tienen claras ventajas en el juego competitivo, otros tipos tienen estadísticas generalmente más bajas, lo que podría limitar su competitividad. No obstante, esta falta de balance también puede deberse a decisiones de diseño, donde algunos tipos están destinados a cumplir roles más especializados o defensivos en lugar de ser los más poderosos en términos absolutos.
-
-Resumiendo, Pokémon es un juego donde el balance no necesariamente significa igualdad entre los tipos, sino que permite que ciertos tipos sobresalgan en roles específicos, mientras que otros, más poderosos, dominan en la ofensiva.
-
-Gracias por leer nuestro análisis exploratorio de datos :)
+En resumen, el balance en Pokémon no implica igualdad entre los tipos, sino que permite que algunos sobresalgan en roles específicos, mientras que otros, más poderosos, dominan en la ofensiva.
