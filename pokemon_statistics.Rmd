@@ -174,7 +174,7 @@ pokemon_table |>
 
 ```
 
-
+<br>
 
 **Hay algunos casos donde en el dataset se muestra NA:**
 
@@ -1120,7 +1120,7 @@ ggplot(pokemon_monotipos, aes(x = type1, y = sp_def)) +
   coord_flip()
 ```
 
-En este Box-plot se observa la distribución de la Defensa Especial entre los tipos de Pokémon. Esta no presenta grandes diferencias entre cada uno de ellos. Los únicos que destacan débilmente por sus valores son los tipos roca y bicho (con bajo puntuaje en defensa especial) y los tipos fantasma hada y psíquico (altos valores).
+En este Box-plot se observa la distribución de la Defensa Especial entre los tipos de Pokémon. Esta no presenta grandes diferencias entre cada uno de ellos. Los únicos que destacan débilmente por sus valores son los tipos roca y bicho (con bajo puntaje en defensa especial) y los tipos fantasma hada y psíquico (altos valores).
 
 
 ```{r}
@@ -1171,9 +1171,9 @@ En conclusión, se puede afirmar que existen ciertos tipos Pokémon especializad
 
 ## 6.2 Estadisticas totales vs tipos de pokemon
 
-La función en combate de un pokemon viene determinada por sus estadísticas y el reparto de las mismas. Y a su vez estas estadísticas vienen determinadas por varios factores, como la etapa evolutiva, la rareza del pokemon (normal, legendario, singular, etc), o los posibles tipos del pokemon.
+La función en combate de un Pokémon viene determinada por sus estadísticas y el reparto de las mismas. Y a su vez estas estadísticas vienen determinadas por varios factores, como la etapa evolutiva, la rareza del Pokémon (normal, legendario, singular, etc), o los posibles tipos del Pokémon.
 
-Estos tipos representan elementos o entidades en la vida real, como el tipo fantasma representa a los fantasmas o lo espiritual, o como el tipo volador representa a los pájaros que podrían ser encontrados por la calle. Esta representación no solo se ve reflejada en el diseño visual del pokemon, si no también en el reparto y cantidad de sus estadísticas, lo cual nos lleva a ver que (por lo general) un pokemon con tipo bicho suele ser más débil que un pokemon de tipo dragón.
+Estos tipos representan elementos o entidades en la vida real, como el tipo fantasma representa a los fantasmas o lo espiritual, o como el tipo volador representa a los pájaros que podrían ser encontrados por la calle. Esta representación no solo se ve reflejada en el diseño visual del Pokémon, sino también en el reparto y cantidad de sus estadísticas, lo cual nos lleva a ver que (por lo general) un Pokémon con tipo bicho suele ser más débil que un Pokémon de tipo dragón.
 
 
 ```{r}
@@ -1208,7 +1208,7 @@ Por el contrario, el tipo Bicho es el tipo con los puntos totales más bajos con
 
 Planta y Veneno también presentan medianas más bajas y rangos menos amplios, lo que refleja que estos tipos suelen estar dominados por Pokémon con estadísticas más equilibradas o incluso bajas, a excepción de algunos legendarios como Nihilego.
 
-El gráfico resalta cómo ciertos tipos, particularmente Dragón, Acero, y Hada, dominan en términos de puntos totales, lo cual es consistente con su reputación dentro del universo pokémon. La presencia de pokémon legendarios dentro de estos tipos claramente eleva las estadísticas. Por otro lado, tipos como Bicho y Planta parecen ser menos competitivos, lo que también coincide con las tendencias en los juegos, donde estos tipos a menudo se ven eclipsados por otros más fuertes.
+El gráfico resalta cómo ciertos tipos, particularmente Dragón, Acero, y Hada, dominan en términos de puntos totales, lo cual es consistente con su reputación dentro del universo Pokémon. La presencia de Pokémon legendarios dentro de estos tipos claramente eleva las estadísticas. Por otro lado, tipos como Bicho y Planta parecen ser menos competitivos, lo que también coincide con las tendencias en los juegos, donde estos tipos a menudo se ven eclipsados por otros más fuertes.
 
 
 ## 6.3 Altura VS Peso
@@ -1251,7 +1251,7 @@ De este gráfico, se pueden obtener diversas conclusiones:
 
 - Los puntos están bastante dispersos en toda la gráfica con una tendencia clara; existe una densidad muy elevada de Pokémon que se encuentran entre los 0,1 y 250 kg y los 0,1 y 2,5m de altura.
 
-- En algunos casos, la masa de los Pokémon puede llegar a los 999 kg, mientras que la altura máxima se encuentra en 20 m, como es el caso de Eternatus , el pokemon mas grande actualmente.
+- En algunos casos, la masa de los Pokémon puede llegar a los 999 kg, mientras que la altura máxima se encuentra en 20 m, como es el caso de Eternatus , el Pokémon mas grande actualmente.
 
 A partir de este gráfico de dispersión, se puede concluir que **existe una relación general positiva entre la altura y el peso de los Pokémon**: a medida que la altura aumenta, también lo hace el peso. Sin embargo, la mayoría de los Pokémon tienen una altura y un peso relativamente bajos, mientras que solo unos pocos alcanzan valores extremos, lo que sugiere que **Pokémon muy grandes o muy pesados son casos excepcionales**.
 
@@ -1317,7 +1317,7 @@ De estas ecuaciones se pueden obtener diversas conclusiones:
 
 - Hay tipos donde la pendiente es cero, como en Siniestro y Tierra, lo cual indica que, para esos tipos, la altura es prácticamente independiente del peso. Esto puede sugerir que hay poca variación en la altura para los Pokémon de esos tipos, sin importar cuánto pesen.
 
-- Los tipos Agua y Veneno tienen pendientes más notables, lo que implica que en estos tipos hay una relación un poco más marcada entre el peso y la altura en comparación con otros tipos. El tipo Tierra, a pesar de tener el intercepto más alto, tiene una pendiente cero, sugiriendo que los Pokémon de tipo Ground son, en promedio, más altos, pero no varían en altura respecto al peso.
+- Los tipos Agua y Veneno tienen pendientes más notables, lo que implica que en estos tipos hay una relación un poco más marcada entre el peso y la altura en comparación con otros tipos. El tipo Tierra, a pesar de tener el intercepto más alto, tiene una pendiente cero, sugiriendo que los Pokémon de tipo Tierra son, en promedio, más altos, pero no varían en altura respecto al peso.
 
 Para la mayoría de los tipos, **el peso tiene un efecto muy leve en la altura de los Pokémon, excepto por algunos casos como Agua y Veneno**.
 Los interceptos sugieren que los Pokémon de ciertos tipos, como Tierra y Psíquico, tienden a ser más altos incluso a bajos pesos, mientras que otros tipos, como Hada y Agua, tienden a ser más bajos en comparación.
@@ -1325,11 +1325,11 @@ Las pendientes cercanas a cero en muchos tipos pueden indicar que otros factores
 
 ## 6.4 Comparativas entre estadísticas en base a la Velocidad
 
-El objetivo de esta sección es comparar las estadísticas de ataque físico y ataque especial en función de la velocidad de los Pokémon, seguido de un análisis similar con las estadísticas de defensa física y defensa especial. La velocidad es una característica clave que determina el orden de los turnos en una batalla, y resulta relevante explorar su relación con las capacidades ofensivas y defensivas de los Pokémon.
+El objetivo de esta sección es comparar las estadísticas de Ataque físico y Ataque Especial en función de la Velocidad de los Pokémon, seguido de un análisis similar con las estadísticas de Defensa física y Defensa Especial. La Velocidad es una característica clave que determina el orden de los turnos en una batalla, y resulta relevante explorar su relación con las capacidades ofensivas y defensivas de los Pokémon.
 
-En primer lugar, se examinará la correlación entre la velocidad y las dos formas de ataque, con el fin de identificar si los Pokémon con mayor velocidad tienden a poseer un mayor ataque físico, ataque especial, o si presentan un equilibrio entre ambos. Posteriormente, se llevará a cabo un análisis equivalente para las defensas, con el propósito de observar si los Pokémon veloces exhiben algún patrón en su capacidad de resistencia ante ataques físicos o especiales.
+En primer lugar, se examinará la correlación entre la Velocidad y las dos formas de ataque, con el fin de identificar si los Pokémon con mayor velocidad tienden a poseer un mayor Ataque físico, Ataque Especial, o si presentan un equilibrio entre ambos. Posteriormente, se llevará a cabo un análisis equivalente para las defensas, con el propósito de observar si los Pokémon veloces exhiben algún patrón en su capacidad de resistencia ante ataques físicos o especiales.
 
-Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
+Por último, se procederá a comparar las rectas de regresión obtenidas en los análisis previos, con el fin de identificar patrones que permitan establecer conclusiones sobre la relación entre estas estadísticas clave. Esto facilitará la comprensión de si existen tipos de Pokémon que siguen estrategias específicas en términos de Velocidad y desempeño ofensivo/defensivo, o si estos factores tienden a comportarse de manera independiente.
 
 Como dato adicional, se calcularán los coeficientes de determinación (R-square), los cuales son una herramienta que facilita entender cómo un modelo de regresión se adapta a los datos:
 
@@ -1418,9 +1418,9 @@ kable(attack_stats)
 
 ```
 
-Los tipos Hada (0.500), Psíquico (0.503) y Dragón (0.460) exhiben una relación positiva entre velocidad y ataque, lo que sugiere que los Pokémon más rápidos de estos tipos tienden a tener un ataque más elevado.
+Los tipos Hada (0.500), Psíquico (0.503) y Dragón (0.460) exhiben una relación positiva entre Velocidad y Ataque, lo que sugiere que los Pokémon más rápidos de estos tipos tienden a tener un Ataque más elevado.
 
-En cuanto a las covarianzas, los tipos Hada (477) y Psíquico (455) presentan los valores más altos, lo que refuerza la correlación observada entre velocidad y ataque en estas categorías.
+En cuanto a las covarianzas, los tipos Hada (477) y Psíquico (455) presentan los valores más altos, lo que refuerza la correlación observada entre Velocidad y Ataque en estas categorías.
  
  
 #### R-squared : 
@@ -1464,9 +1464,9 @@ kable(sp_atk_stats)
 ```
  
  
-Los tipos Lucha (0.604), Veneno (0.516), y Bicho (0.508) presentan las correlaciones más altas, lo que sugiere que la velocidad y el ataque especial están altamente relacionados en estos tipos.
+Los tipos Lucha (0.604), Veneno (0.516), y Bicho (0.508) presentan las correlaciones más altas, lo que sugiere que la Velocidad y el Ataque Especial están altamente relacionados en estos tipos.
 
-Con respecto a las covarianzas, el Bicho (481) y Psíquico (455) muestran alta variación conjunta entre velocidad y ataque especial.
+Con respecto a las covarianzas, el Bicho (481) y Psíquico (455) muestran alta variación conjunta entre Velocidad y Ataque Especial.
 
 #### R-squared : 
 
@@ -1476,7 +1476,7 @@ cat("R² de Velocidad y Ataque Especial:", r_squared_sp_atk, "\n")
 
 ```
 
-La relación entre la velocidad y el ataque especial es un poco más fuerte que la relación con el ataque físico, con un R² de 0.179. Esto indica que el 17.9% de la variabilidad en el ataque especial puede explicarse por la velocidad. Aunque esta relación es mayor que con el ataque, sigue siendo relativamente débil. Sin embargo, es notable que los Pokémon con mayor velocidad tienden a tener un ataque especial algo más alto en comparación con el ataque físico.
+La relación entre la Velocidad y el Ataque Especial es un poco más fuerte que la relación con el Ataque físico, con un R² de 0.179. Esto indica que el 17.9% de la variabilidad en el Ataque Especial puede explicarse por la Velocidad. Aunque esta relación es mayor que con el Ataque, sigue siendo relativamente débil. Sin embargo, es notable que los Pokémon con mayor Velocidad tienden a tener un Ataque Especial algo más alto en comparación con el Ataque físico.
 
 ### 6.4.2 La Velocidad en base a la Defensa
 
@@ -1515,9 +1515,9 @@ kable(defense_stats)
 
 Los tipos con la mejor correlación, aunque más moderada, son Hada (0.392), Normal (0.343) y Lucha (0.243).
 
-En cuanto a las covarianzas, los tipos Hada (355) y Normal (205) presentan los valores más elevados, aunque la relación es más débil en comparación con la observada en el ataque.
+En cuanto a las covarianzas, los tipos Hada (355) y Normal (205) presentan los valores más elevados, aunque la relación es más débil en comparación con la observada en el Ataque.
 
-Un caso notable es el del tipo Roca, que presenta una correlación negativa significativa (-0.377) y la mayor covarianza negativa (-393). Este resultado sugiere que, en este tipo, los Pokémon más rápidos tienden a tener una defensa más baja, lo que contradice las expectativas tradicionales sobre la relación entre velocidad y defensa.
+Un caso notable es el del tipo Roca, que presenta una correlación negativa significativa (-0.377) y la mayor covarianza negativa (-393). Este resultado sugiere que, en este tipo, los Pokémon más rápidos tienden a tener una Defensa más baja, lo que contradice las expectativas tradicionales sobre la relación entre Velocidad y Defensa.
 
 
 #### R-squared : 
@@ -1529,7 +1529,7 @@ cat("R² de Velocidad y Defensa:", r_squared_defense, "\n")
 ```
 
 
-En este caso, el R² es prácticamente nulo (0.00006), lo que indica que no hay prácticamente ninguna relación entre la velocidad y la defensa. Esto sugiere que la capacidad defensiva de un Pokémon es independiente de su velocidad. Es decir, un Pokémon rápido no necesariamente tiene una defensa alta o baja.
+En este caso, el R² es prácticamente nulo (0.00006), lo que indica que no hay prácticamente ninguna relación entre la Velocidad y la Defensa. Esto sugiere que la capacidad defensiva de un Pokémon es independiente de su Velocidad. Es decir, un Pokémon rápido no necesariamente tiene una Defensa alta o baja.
 
 
 ```{r}
@@ -1564,11 +1564,11 @@ kable(sp_def_stats)
 ```
 
 
-Los tipos Dragón (0.406), Hada (0.398) y Fuego (0.404) destacan por mostrar una correlación positiva entre la velocidad y la defensa especial.
+Los tipos Dragón (0.406), Hada (0.398) y Fuego (0.404) destacan por mostrar una correlación positiva entre la Velocidad y la Defensa Especial.
 
 En términos de covarianza, los tipos Hada (411) y Dragón (303) presentan los valores más altos, lo que refuerza la relación entre estas dos variables en dichos tipos.
 
-Un caso particular es el del tipo Acero, que muestra una correlación ligeramente negativa (-0.026) entre velocidad y defensa especial, acompañada de una covarianza negativa (-19.2). Esto sugiere que los Pokémon de tipo Acero más rápidos no presentan necesariamente mejores defensas especiales.
+Un caso particular es el del tipo Acero, que muestra una correlación ligeramente negativa (-0.026) entre Velocidad y Defensa Especial, acompañada de una covarianza negativa (-19.2). Esto sugiere que los Pokémon de tipo Acero más rápidos no presentan necesariamente mejores defensas especiales.
 
 #### R-squared : 
 
@@ -1578,16 +1578,16 @@ cat("R² de Velocidad y Defensa Especial:", r_squared_sp_def, "\n")
 
 ```
 
-La relación entre la velocidad y la defensa especial es también muy baja, con un R² de 0.046. Solo el 4.6% de la variabilidad en la defensa especial puede explicarse por la velocidad. Al igual que con la defensa física, esto implica que los Pokémon rápidos no tienen una ventaja o desventaja clara en términos de defensa especial.
+La relación entre la Velocidad y la Defensa Especial es también muy baja, con un R² de 0.046. Solo el 4.6% de la variabilidad en la Defensa Especial puede explicarse por la Velocidad. Al igual que con la Defensa física, esto implica que los Pokémon rápidos no tienen una ventaja o desventaja clara en términos de Defensa Especial.
 
 ### 6.4.3 Conclusión
 
 
-Tras realizar las comparaciones correspondientes, se pueden extraer algunas conclusiones relevantes sobre la relación entre la velocidad y ciertos tipos de Pokémon:
+Tras realizar las comparaciones correspondientes, se pueden extraer algunas conclusiones relevantes sobre la relación entre la Velocidad y ciertos tipos de Pokémon:
 
-Al analizar las gráficas, se observa que la mayoría de los Pokémon tienden a invertir más en ataque en función de su velocidad. Esto se debe a que resulta más lógico y eficiente que un Pokémon rápido pueda atacar antes y con mayor potencia, en lugar de priorizar defensas. En general, no es una estrategia óptima invertir en Pokémon veloces que tengan buenas defensas pero un bajo potencial ofensivo.
+Al analizar las gráficas, se observa que la mayoría de los Pokémon tienden a invertir más en ataque en función de su Velocidad. Esto se debe a que resulta más lógico y eficiente que un Pokémon rápido pueda atacar antes y con mayor potencia, en lugar de priorizar defensas. En general, no es una estrategia óptima invertir en Pokémon veloces que tengan buenas defensas pero un bajo potencial ofensivo.
 
-En cuanto a los atacantes especiales, los Pokémon de tipo Eléctrico destacan por su alta velocidad. Esto sugiere que es más viable optar por Pokémon con un buen Ataque Especial y velocidad elevada, ya que, al comparar las gráficas de Defensa Especial, se observa que su media es considerablemente inferior en comparación con la Defensa Física.
+En cuanto a los atacantes especiales, los Pokémon de tipo Eléctrico destacan por su alta velocidad. Esto sugiere que es más viable optar por Pokémon con un buen Ataque Especial y velocidad elevada, ya que, al comparar las gráficas de Defensa Especial, se observa que su media es considerablemente inferior en comparación con la Defensa física.
 
 A continuación, se presentan una serie de gráficas que comparan Velocidad con Ataque, Defensa, Ataque Especial y Defensa Especial de los Pokémon de tipo Eléctrico:
 
@@ -1666,7 +1666,7 @@ Al analizar las gráficas correspondientes al tipo Eléctrico, se observa que es
 
 Además, se pueden identificar afinidades particulares en ciertos tipos en cuanto a sus estadísticas, inclinándose hacia lo físico o lo especial. Un ejemplo claro es el tipo Roca, cuyos Pokémon, debido a su naturaleza más robusta, se orientan principalmente hacia las estadísticas físicas en lugar de las especiales. La Defensa Especial, en general, no destaca en este tipo, salvo excepciones extremas como el caso de Shuckle.
 
-En cuanto a la relación entre velocidad y capacidades físicas en el tipo Roca, se puede concluir que existe un patrón interesante: a mayor velocidad, los Pokémon tienden a tener un mayor Ataque pero una menor capacidad defensiva. En contraste, aquellos con menor velocidad suelen tener una mejor defensa, aunque esto puede comprometer su capacidad de infligir el daño deseado por el usuario.
+En cuanto a la relación entre Velocidad y capacidades físicas en el tipo Roca, se puede concluir que existe un patrón interesante: a mayor velocidad, los Pokémon tienden a tener un mayor Ataque pero una menor capacidad defensiva. En contraste, aquellos con menor Velocidad suelen tener una mejor defensa, aunque esto puede comprometer su capacidad de infligir el daño deseado por el usuario.
 
 
 ```{r}
@@ -1736,7 +1736,7 @@ g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
 grid.arrange(g1, g2, g3, g4, nrow = 2)
 ```
 
-Otro aspecto interesante a destacar es que, en algunos casos, ciertos Pokémon sobresalen en otras estadísticas más que en velocidad. Un ejemplo claro es el tipo Acero, cuyos Pokémon cuentan con estadísticas destacadas en diversas áreas, pero no sobresalen en velocidad. De hecho, ningún Pokémon de tipo Acero supera los 110 puntos en esta estadística, lo que indica que es probable que la mayoría de los Pokémon que priorizan velocidad puedan atacar antes que los de tipo Acero. Sin embargo, este tipo se caracteriza por su versatilidad, dado que puede ser utilizado tanto de forma defensiva como ofensiva, dependiendo de cómo se enfoquen sus demás estadísticas.
+Otro aspecto interesante a destacar es que, en algunos casos, ciertos Pokémon sobresalen en otras estadísticas más que en Velocidad. Un ejemplo claro es el tipo Acero, cuyos Pokémon cuentan con estadísticas destacadas en diversas áreas, pero no sobresalen en Velocidad. De hecho, ningún Pokémon de tipo Acero supera los 110 puntos en esta estadística, lo que indica que es probable que la mayoría de los Pokémon que priorizan Velocidad puedan atacar antes que los de tipo Acero. Sin embargo, este tipo se caracteriza por su versatilidad, dado que puede ser utilizado tanto de forma defensiva como ofensiva, dependiendo de cómo se enfoquen sus demás estadísticas.
 
 
 ```{r}
@@ -1806,9 +1806,9 @@ g4 <- ggplot(pokemon_long_sp_def, aes(x = speed, y = sp_def)) +
 grid.arrange(g1, g2, g3, g4, nrow = 2)
 ```
 
-En relación con los coeficientes de correlación y covarianzas, los tipos Hada, Psíquico y Dragón presentan una relación positiva significativa entre velocidad y sus estadísticas ofensivas y defensivas, destacándose como los tipos con mayor consistencia en estas métricas.
+En relación con los coeficientes de correlación y covarianzas, los tipos Hada, Psíquico y Dragón presentan una relación positiva significativa entre Velocidad y sus estadísticas ofensivas y defensivas, destacándose como los tipos con mayor consistencia en estas métricas.
 
-Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resultar contraproducentes, especialmente en lo que respecta a la defensa. En estos casos, la velocidad parece asociarse con menores estadísticas defensivas. Esta discrepancia es un aspecto notable, ya que permite observar las correlaciones inversamente proporcionales, lo cual resulta particularmente interesante en el análisis comparativo de estas estadísticas.
+Por otro lado, tipos como Roca y Acero exhiben patrones inversos que pueden resultar contraproducentes, especialmente en lo que respecta a la Defensa. En estos casos, la Velocidad parece asociarse con menores estadísticas defensivas. Esta discrepancia es un aspecto notable, ya que permite observar las correlaciones inversamente proporcionales, lo cual resulta particularmente interesante en el análisis comparativo de estas estadísticas.
 
 
 ## 6.5 Relación entre HP y Defensa / Defensa Especial
@@ -1913,7 +1913,7 @@ covhpspdef
 
 Como era de esperar, se han obtenido unos resultados bastante similares a los de la Defensa física, lo que indica de igual forma que existe una relación positiva entre ambas estadísticas, pero esta relación es algo débil.
 
-En conclusión, un Pokémon con una alta Defensa o Defensa Especial tiende a tener una mayor estadística de HP. No obstante, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
+En conclusión, un Pokémon con una Defensa o Defensa Especial alta tiende a tener una mayor estadística de HP. No obstante, esto no ocurre en todos los casos por lo que no se debe concluir en que un Pokémon es capaz de aguantar bien cualquier golpe al tener alguna de estas estadísticas altas, puesto que hay movimientos que ignoran cualquier defensa del enemigo para calcular su daño.
 
 
 # 7. Conclusiones
